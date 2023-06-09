@@ -11,7 +11,7 @@
 
 * [![React][React.js]][React-url]
 * [![Typescript][Typescript.com]][Typescript-url]
-* [![SQL][Mysql.com][Mysql-url]
+* [![SQL][Mysql.com]][Mysql-url]
 
 
 
