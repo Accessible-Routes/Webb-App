@@ -8,8 +8,8 @@
 
 ### Built With
 
-[![React][React.js][React-url]
-[![Typescript][Typescript.com]
+* [![React][React.js]][React-url]
+* [![Typescript][Typescript.com]][Typescript-url]
 
 
 
