@@ -7,6 +7,20 @@
 [![MIT License][license-shield]][license-url]
 
 
+<!-- TABLE OF CONTENTS -->
+<details>
+    <summary> Table of Contents </summary>
+    <ol>
+        <li>
+            <a href="#about"> About the project</a>
+            <ul>
+                <li><a href="#built-with">Built With</a>
+            </ul>
+        </li>
+    </ol>
+<details>
+
+
 <!-- ABOUT THE PROJECT -->
 ## About
 The Accessible Routes project was established to provide students with a guide to navigating a less-than-accessible campus.
@@ -27,7 +41,7 @@ The Accessible Routes project was established to provide students with a guide t
 <!-- LINKS & IMAGES -->
 [contributors-shield]: https//img.shields.io/github/contributors/json-mp3/Accessible-Routes.svg?style=for-the-badge
 [contributors-url]: https://github.com/json-mp3/Accessible-Routes/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/json-mp3/Accessible-Routes.svg?style=for-the-badged
+[forks-shield]: https://img.shields.io/github/forks/json-mp3/Accessible-Routes.svg?style=for-the-badge
 [forks-url]: https://github.com/json-mp3/Accessible-Routes/network/members
 [stars-shield]: https://img.shields.io/github/stars/json-mp3/Accessible-Routes.svg?style=for-the-badge
 [stars-url]: https://github.com/json-mp3/Accessible-Routes/stargazers
