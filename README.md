@@ -1,12 +1,12 @@
 <!-- PROJECT SHIELDS -->
 
-<div align="center">
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-</div>
+[![Activity][activity-shield]][activity-url]
+
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -59,6 +59,8 @@ Distributed under the MIT License. See [LICENSE](https://github.com/json-mp3/Acc
 [issues-url]:  https://github.com/json-mp3/Accessible-Routes/issues
 [license-shield]: https://img.shields.io/github/license/json-mp3/Accessible-Routes.svg?style=for-the-badge
 [license-url]: https://github.com/json-mp3/Accessible-Routes/blob/master/LICENSE.txt
+[activity-shield]: https://img.shields.io/github/last-commit/json-mp3/accessible-routes?style=flat-square
+[activity-url]: https://github.com/Zxhjlk/Accessible-Routes/activity
 
 
 
