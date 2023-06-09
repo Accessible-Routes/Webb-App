@@ -27,6 +27,8 @@
 [stars-url]: https://github.com/zxhjlk/Accessible-Routes/stargazers
 [issues-shield]: https://img.shields.io/github/issues/zxhjlk/Accessible-Routes.svg?style=for-the-badge
 [issues-url]:  https://github.com/zxhjlk/Accessible-Routes/issues
+[license-shield]: https://img.shields.io/github/license/zxhjlk/Accessible-Routes.svg?style=for-the-badge
+[license-url]: https://github.com/zxhjlk/Accessible-Routes/blob/master/LICENSE.txt
 
 
 [Typescript.com]: https://img.shields.io/badge/Typescript-blue?style=for-the-badge&logo=typescript&logoColor=white
