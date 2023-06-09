@@ -59,7 +59,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/json-mp3/Acc
 [issues-url]:  https://github.com/json-mp3/Accessible-Routes/issues
 [license-shield]: https://img.shields.io/github/license/json-mp3/Accessible-Routes.svg?style=for-the-badge
 [license-url]: https://github.com/json-mp3/Accessible-Routes/blob/master/LICENSE.txt
-[activity-shield]: https://img.shields.io/github/last-commit/json-mp3/accessible-routes?style=flat-square
+[activity-shield]: https://img.shields.io/github/last-commit/json-mp3/accessible-routes?style=for-the-badge
 [activity-url]: https://github.com/Zxhjlk/Accessible-Routes/activity
 
 
