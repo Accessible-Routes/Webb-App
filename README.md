@@ -33,6 +33,13 @@
 * [![Open Street Map][OpenStreetMap.com]][OpenStreetMap-url]
 
 
+<!-- Getting Started -->
+## Prerequisites
+
+
+## Installation
+
+
 
 ## License
 
@@ -41,7 +48,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/json-mp3/Acc
 <!-- https://home.aveek.io/GitHub-Profile-Badges/ -->
 
 <!-- LINKS & IMAGES -->
-[contributors-shield]: https//img.shields.io/github/contributors/json-mp3/Accessible-Routes.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/json-mp3/Accessible-Routes.svg?style=for-the-badge
 [contributors-url]: https://github.com/json-mp3/Accessible-Routes/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/json-mp3/Accessible-Routes.svg?style=for-the-badge
 [forks-url]: https://github.com/json-mp3/Accessible-Routes/network/members
