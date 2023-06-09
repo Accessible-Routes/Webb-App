@@ -18,7 +18,7 @@
             </ul>
         </li>
     </ol>
-<details>
+</details>
 
 
 <!-- ABOUT THE PROJECT -->
@@ -35,6 +35,9 @@ The Accessible Routes project was established to provide students with a guide t
 
 
 
+## License
+
+Distributed under the MIT License. See [LICENSE][https://github.com/json-mp3/Accessible-Routes/blob/main/LICENSE] for more information.
 
 <!-- https://home.aveek.io/GitHub-Profile-Badges/ -->
 
