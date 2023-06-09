@@ -45,4 +45,4 @@ The Accessible Routes project was established to provide students with a guide t
 [Mysql.com]: https://img.shields.io/badge/MySQL-20232A?style=for-the-badge&logo=mysql&logoColor=white
 [Mysql-url]: https://www.mysql.com/
 [OpenStreetMap.com]: https://img.shields.io/badge/OpenStreetMap-7EBC6F.svg?style=for-the-badge&logo=OpenStreetMap&logoColor=white
-[OpenStreetMap-url]: 
+[OpenStreetMap-url]: https://openstreetmap.org
