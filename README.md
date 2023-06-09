@@ -23,13 +23,12 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About
-The Accessible Routes project was established to provide students with a guide to navigating a less-than-accessible campus.
-
+<p align="center">The Accessible Routes project was established to provide students with a guide to navigating a less-than-accessible campus.</p>
 
 ### Built With
 
 * [![React][React.js]][React-url]
-* [![Typescript][Typescript.com]][Typescript-url]
+* [![JavaScript][JavaScript.com]][JavaScript-url]
 * [![SQL][Mysql.com]][Mysql-url]
 * [![Open Street Map][OpenStreetMap.com]][OpenStreetMap-url]
 
@@ -37,7 +36,7 @@ The Accessible Routes project was established to provide students with a guide t
 
 ## License
 
-Distributed under the MIT License. See [LICENSE][https://github.com/json-mp3/Accessible-Routes/blob/main/LICENSE] for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/json-mp3/Accessible-Routes/blob/main/LICENSE) for more information.
 
 <!-- https://home.aveek.io/GitHub-Profile-Badges/ -->
 
@@ -55,8 +54,8 @@ Distributed under the MIT License. See [LICENSE][https://github.com/json-mp3/Acc
 
 
 
-[Typescript.com]: https://img.shields.io/badge/Typescript-blue?style=for-the-badge&logo=typescript&logoColor=white
-[Typescript-url]: https://www.typescriptlang.org/
+[JavaScript.com]: https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black
+[JavaScript-url]: https://www.javascript.com/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [Mysql.com]: https://img.shields.io/badge/MySQL-20232A?style=for-the-badge&logo=mysql&logoColor=white
