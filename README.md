@@ -11,7 +11,7 @@
 
 * [![React][React.js]][React-url]
 * [![Typescript][Typescript.com]][Typescript-url]
-
+* [![SQL][Mysql.com][Mysql-url]
 
 
 
@@ -32,7 +32,10 @@
 [license-url]: https://github.com/json-mp3/Accessible-Routes/blob/master/LICENSE.txt
 
 
+
 [Typescript.com]: https://img.shields.io/badge/Typescript-blue?style=for-the-badge&logo=typescript&logoColor=white
 [Typescript-url]: https://www.typescriptlang.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
+[Mysql.com]: https://img.shields.io/badge/MySQL-20232A?style=for-the-badge&logo=mysql&logoColor=white
+[Mysql-url]: https://www.mysql.com/
