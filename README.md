@@ -49,17 +49,17 @@ Distributed under the MIT License. See [LICENSE](https://github.com/json-mp3/Acc
 <!-- https://home.aveek.io/GitHub-Profile-Badges/ -->
 
 <!-- LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors/json-mp3/Accessible-Routes.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/json-mp3/Accessible-Routes.svg?style=flat-square
 [contributors-url]: https://github.com/json-mp3/Accessible-Routes/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/json-mp3/Accessible-Routes.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/json-mp3/Accessible-Routes.svg?style=flat-square
 [forks-url]: https://github.com/json-mp3/Accessible-Routes/network/members
-[stars-shield]: https://img.shields.io/github/stars/json-mp3/Accessible-Routes.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/json-mp3/Accessible-Routes.svg?style=flat-square
 [stars-url]: https://github.com/json-mp3/Accessible-Routes/stargazers
-[issues-shield]: https://img.shields.io/github/issues/json-mp3/Accessible-Routes.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/json-mp3/Accessible-Routes.svg?style=flat-square
 [issues-url]:  https://github.com/json-mp3/Accessible-Routes/issues
-[license-shield]: https://img.shields.io/github/license/json-mp3/Accessible-Routes.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/json-mp3/Accessible-Routes.svg?style=flat-square
 [license-url]: https://github.com/json-mp3/Accessible-Routes/blob/master/LICENSE.txt
-[activity-shield]: https://img.shields.io/github/last-commit/json-mp3/accessible-routes?style=for-the-badge
+[activity-shield]: https://img.shields.io/github/last-commit/json-mp3/accessible-routes?style=flat-square
 [activity-url]: https://github.com/Zxhjlk/Accessible-Routes/activity
 
 
