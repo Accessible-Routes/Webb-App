@@ -6,7 +6,7 @@ need to figure out what to do!
     - Map marker <Coco> 
     - Searching function <Coco>
     - Routing function <Coco>
-
+    - API calls to GET and PUT <Coco>
 
 Unanswered questions:
     - sample question? <name of person adding it>
