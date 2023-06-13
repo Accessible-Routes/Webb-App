@@ -1,0 +1,24 @@
+-----------------------------------------------------------------------------------------------------------
+<Coco Tang>            Date: 13/06/23
+
+
+Links:
+
+https://react-leaflet.js.org/
+
+What you learned:
+
+React Leaflet is a helpful tool I found to work with OSM. It works based on Leaflet.
+
+What features this may be useful for:
+
+It has map and searching functions. Later when we come to routing, there is another package called leaflet routing machine built on leaflet.
+
+Things Other members need to know:
+
+To use leaflet, first install two packages in webb folder. Type on terminal:
+	npm install react react-dom leaflet
+	npm install react-leaflet
+Then you should be able to find "react-dom" and "react-leaflet" in dependencies in /webb/package-lock.json. You might not need to do it if it is already in webb/package-lock.json.
+
+-----------------------------------------------------------------------------------------------------------
