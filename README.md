@@ -1,4 +1,3 @@
-<<<<<<< main
 <!-- PROJECT SHIELDS -->
 
 [![Contributors][contributors-shield]][contributors-url]
@@ -111,6 +110,3 @@ Distributed under the MIT License. See [LICENSE](https://github.com/json-mp3/Acc
 [OpenStreetMap-url]: https://openstreetmap.org
 [Node.js]: https://img.shields.io/badge/Node.js-339933.svg?style=for-the-badge&logo=nodedotjs&logoColor=white
 [Node-url]: https://nodejs.org/en
-=======
-# Accessible-Routes
->>>>>>> main
