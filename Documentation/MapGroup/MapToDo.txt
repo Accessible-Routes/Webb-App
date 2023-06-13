@@ -2,6 +2,10 @@
 Map Interface Group Running To-Do List:
     - to-do item <Name of person adding it>
 need to figure out what to do!
+    - Map display on web pages <Coco>
+    - Map marker <Coco> 
+    - Searching function <Coco>
+    - Routing function <Coco>
 
 
 Unanswered questions:
