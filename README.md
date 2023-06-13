@@ -18,6 +18,15 @@
                 <li><a href="#built-with">Built With</a>
             </ul>
         </li>
+        <li>
+            <a href="#prerequisites"> Prerequisites</a>
+        </li>
+        <li>
+            <a href="#installation"> Installation</a>
+        </li>
+        <li>
+            <a href="#license"> License</a>
+        </li>
     </ol>
 </details>
 
@@ -29,6 +38,7 @@
 ### Built With
 
 * [![React][React.js]][React-url]
+* [![Node][Node.js]][Node-url]
 * [![JavaScript][JavaScript.com]][JavaScript-url]
 * [![SQL][Mysql.com]][Mysql-url]
 * [![Open Street Map][OpenStreetMap.com]][OpenStreetMap-url]
@@ -36,11 +46,34 @@
 
 <!-- Getting Started -->
 ## Prerequisites
+ * Clone or fork the repo
+    * GitHub Desktop: download [here](https://desktop.github.com/)
+    * Clone repo through Git Bash
+    ```sh
+    $ git clone https://github.com/json-mp3/Accessible-Routes
+    ```
+    * To fork, press the fork button on the top right of the repo, or [here](https://github.com/json-mp3/Accessible-Routes/fork)
+ * Node.js 
+    * Download [here](https://nodejs.org/en/download)
 
 
 ## Installation
-
-
+1. Open terminal in the project folder and change directory to the webb folder
+    * cd webb
+2. There will be a few commands that need to be run before opening the website
+    ```sh
+    npm install
+    ```
+    ```sh
+    npm install react react-dom leaflet
+    ```
+    ```sh
+	npm install react-leaflet
+    ```
+3. Open the website
+    ```sh
+    npm start
+    ```
 
 ## License
 
@@ -73,3 +106,5 @@ Distributed under the MIT License. See [LICENSE](https://github.com/json-mp3/Acc
 [Mysql-url]: https://www.mysql.com/
 [OpenStreetMap.com]: https://img.shields.io/badge/OpenStreetMap-7EBC6F.svg?style=for-the-badge&logo=OpenStreetMap&logoColor=white
 [OpenStreetMap-url]: https://openstreetmap.org
+[Node.js]: https://img.shields.io/badge/Node.js-339933.svg?style=for-the-badge&logo=nodedotjs&logoColor=white
+[Node-url]: https://nodejs.org/en
