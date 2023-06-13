@@ -1,6 +1,9 @@
 -----------------------------------------------------------------------------------------------------------
 Website Group Running To-Do List:
     - to-do item <Name of person adding it>
+    - figure out domain hosting <Jason>
+    - plan what the website UI will look like by drawing from other similar websites that already exist <Jason>
+    - mobile test the website <Jason>
 
 
 
