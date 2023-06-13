@@ -8,9 +8,9 @@ import "./mapSample.module.css";
 
 function MyMap() 
 {
-    const position = [51.505, -0.09]
+    const position = [42.7298, -73.6755]
     return (
-        <MapContainer center={position} zoom={13} style={{width:"100%",height:300}}>
+        <MapContainer center={position} zoom={15} style={{width:"50%",height:300}}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
