@@ -59,7 +59,9 @@
 
 ## Installation
 1. Open terminal in the project folder and change directory to the webb folder
-    * cd webb
+    ```sh
+    cd webb
+    ```
 2. There will be a few commands that need to be run before opening the website
     ```sh
     npm install
