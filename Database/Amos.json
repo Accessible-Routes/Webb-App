@@ -1,5 +1,5 @@
 
 [
-    { "door": 1, "stairs": true, "stair_size": "S", "stair_num": 2 },
-    { "door": 2, "stairs": false, "stair_size": null, "stair_num": 0 }
+    { "lat": 42.730054, "long": -73.682751,"stairs": true, "stair_size": "S", "stair_num": 2, "button": false },
+    { "lat": 42.730139, "long": -73.682198, "stairs": true, "stair_size": null, "stair_num": 0 }
 ]
