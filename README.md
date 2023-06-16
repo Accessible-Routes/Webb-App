@@ -40,7 +40,7 @@
 * [![React][React.js]][React-url]
 * [![Node][Node.js]][Node-url]
 * [![JavaScript][JavaScript.com]][JavaScript-url]
-* [![SQL][Mysql.com]][Mysql-url]
+* [![MongoDB][MongoDB.com]][MongoDB-url]
 * [![Open Street Map][OpenStreetMap.com]][OpenStreetMap-url]
 
 
@@ -104,8 +104,8 @@ Distributed under the MIT License. See [LICENSE](https://github.com/json-mp3/Acc
 [JavaScript-url]: https://www.javascript.com/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[Mysql.com]: https://img.shields.io/badge/MySQL-20232A?style=for-the-badge&logo=mysql&logoColor=white
-[Mysql-url]: https://www.mysql.com/
+[MongoDB.com]: https://img.shields.io/badge/MongoDB-47A248.svg?style=for-the-badge&logo=MongoDB&logoColor=white
+[MongoDB-url]: https://www.mongodb.com/
 [OpenStreetMap.com]: https://img.shields.io/badge/OpenStreetMap-7EBC6F.svg?style=for-the-badge&logo=OpenStreetMap&logoColor=white
 [OpenStreetMap-url]: https://openstreetmap.org
 [Node.js]: https://img.shields.io/badge/Node.js-339933.svg?style=for-the-badge&logo=nodedotjs&logoColor=white
