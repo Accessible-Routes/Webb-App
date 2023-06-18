@@ -1,0 +1,6 @@
+Leaflet Routing Machine resutls:
+        Following the tutorial on the LRM website (https://www.liedman.net/leaflet-routing-machine/tutorials/basic-usage/) was unsucessful and had numerous errors that I was unable to find a solution for.
+        Demos on https://codesandbox.io/examples/package/leaflet-routing-machine had the same result. They worked on the website they were on, but I was unable to get any of them to run on my codespace on github. Hours of copying over and testing them resulted in nothing.
+        Other online tutorials had similar results. My lacking knowledge of js may be part of the issue however.
+        
+        I'm concluding that this means that LRM is unlikely to be a good choice for our project.
