@@ -4,31 +4,13 @@ import MyMap from './common/components/mapSample.component';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        
-        
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-          <MapComponent/> 
-        </a>
-        <MyMap />
-      </header>
+    <div className="Map-container">
+      <div className="Map">
+        <MyMap/>
+      </div>
     </div>
   );
 
-
-}
-
-const MapComponent = () =>{
-  return(<div>
-    I am the map
-    </div>)
 
 }
 

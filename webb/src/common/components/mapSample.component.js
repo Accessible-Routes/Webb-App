@@ -10,7 +10,7 @@ function MyMap()
 {
     const position = [42.7300, -73.6775]
     return (
-        <MapContainer center={position} zoom={15} style={{width:"60%",height:400}}>
+        <MapContainer center={position} zoom={17} style={{width:"85%",height:"100vh"}}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
