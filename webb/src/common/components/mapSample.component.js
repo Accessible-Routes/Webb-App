@@ -8,7 +8,7 @@ import "./mapSample.module.css";
 
 function MyMap() 
 {
-    const position = [42.7300, -73.6775]
+    const position = [42.7294, -73.6797]
     return (
         <MapContainer center={position} zoom={17} style={{width:"87%",height:"100vh"}}>
             <TileLayer
