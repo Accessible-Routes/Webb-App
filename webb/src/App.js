@@ -1,36 +1,38 @@
 import './App.css';
 import MyMap from './common/components/mapSample.component';
+import searchBar from './common/components/searchBar';
+import {React, useState } from 'react';
 
 function App() {
   return (
-<<<<<<< HEAD
-    <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-        <MyMap />
-      </header>
-=======
-    <div className="Map-container">
-      <div className="Map">
+    <div className="Page">
         <MyMap/>
-      </div>
->>>>>>> 707a7095b8c95247fd226ef13ac3b03ab09897ad
+        <Search/>
     </div>
   );
-
-
 }
 
-<<<<<<< HEAD
+const Search = () =>{
+  const BarStyle = {width: "14.60vw", height: "4vh", background: "#F0F0F0", border: "#000000", padding: "0.2rem", };
+  return(
+    <input
+    style={BarStyle}
+    //key="search-bar"
+    //value={keyword}
+    placeholder={"Choose Building"}
+    //onChange={(e) => onChange(e.target.value)}
+    />
+  );
+}
 
-
-=======
->>>>>>> 707a7095b8c95247fd226ef13ac3b03ab09897ad
+const SearchDest = () =>{
+  const BarStyle = {width: "14.60vw", height: "4vh", background: "#F0F0F0", border: "#000000", padding: "0.2rem", };
+  return(
+    <input
+    style={BarStyle}
+    placeholder={"Choose Destination"}
+    />
+  );
+}
 
 export default App;
