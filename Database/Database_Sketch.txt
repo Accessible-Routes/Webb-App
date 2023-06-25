@@ -1,0 +1,46 @@
+Table building {
+  name int [PK]
+  accessibility bool
+}
+
+Table room {
+  room_number int
+  floor int
+  building_name varchar [ref: < building.name]
+  coordinate "int[]"
+  room_type room.room_type
+  tags "varchar[]"
+  accessibility bool
+  inside_accessibliity bool
+  accessible_door "int[]" [ref: <> door.id]
+  min_stairs_needed int [Note: 'When accessibility is false']
+
+  indexes {
+    (room_number, floor, building_name) [PK]
+  }
+}
+
+Enum room.room_type {
+  classroom
+  office
+  hallway
+  bathroom
+  staircase
+  lecture_hall
+  elevator
+  closet
+}
+
+Table door {
+  id int
+  location varchar
+  building_name varchar [ref: < building.name]
+  accessibility bool
+  wheelchair_button bool
+
+  indexes {
+    (id, building_name) [PK]
+  }
+
+  Note: 'We could find a better way to identify the doors later'
+}
