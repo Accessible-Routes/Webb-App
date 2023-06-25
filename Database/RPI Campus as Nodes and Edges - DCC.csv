@@ -1,0 +1,55 @@
+DCC,The 1st floor PDF is very low quality- maybe get blueprint straight from admin?,,,Skipping floor 1 for now due to low quality and relevance,,,
+Int,String,String,"[Float, Float] (?",String,String,"""Door"" Object",connected to
+Floor,Room Number,Room Type,Cartesian Coordinates (list of),Accessibility to the room,Accessibility inside the room,Accessibility Entrance,
+200,200,,,,,,
+,201,Hallway,,,,,"200A, 253, 204, 202"
+,202,Bathroom,,,,,"201, 203"
+,203,Bathroom,,,,,202
+,204,Bathroom,,,,,"205, 201"
+,205,Bathroom,,,,,204
+,206,Office,,Stairs,,,201
+,207,Office,,,,,200A
+,208,Office,,,,,200A
+,209,Office,,,,,"200A, 218"
+,210,Office,,,,,209
+,211,Office,,,,,209
+,212,Office,,,,,209
+,213,Office,,,,,209
+,214,,,,,,
+,215,Office,,,,,209
+,216,Office,,,,,209
+,217,Office,,,,,209
+,218,,,Stairs,,,"209, 219"
+,219,,,,,,"221, 220, 232, 234, 235, 223, 236, 225, 238, 239, 227, 229, 230, 240"
+,220,Hallway,,,,,219
+,221,Hallway,,,,,"219, 308, 318"
+,222,Bathroom,,,,,223
+,223,Bathroom,,,,,"222, 219"
+,224,Hallway,,,,,"219, 318"
+,225,Closet,,,,,219
+,226,Bathroom,,,,,227
+,227,Bathroom,,,,,"219, 226"
+,228,Hallway,,,,,
+,229,Office,,,,,219
+,230,Office,,,,,219
+,231,Hallway,,,,,"219, 248"
+,232,Classroom,,,,,219
+,233,Office,,,,,
+,234,Office,,,,,
+,235,Classroom,,,,,
+,236,Classroom,,,,,
+,237,Office,,,,,
+,238,Office,,,,,
+,239,Classroom,,,,,
+,240,Classroom,,,,,
+,241,Office,,,,,
+,242,Hallway,,,,,
+,243,,,,,,
+,244,,,,,,
+,245,,,,,,
+,246,,,,,,
+,247,,,,,,
+,248,,,,,,
+,249,,,,,,
+,250,,,,,,
+,251,,,,,,
