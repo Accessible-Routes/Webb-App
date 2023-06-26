@@ -1,0 +1,17 @@
+In order to store data about campus and it's accessibility such that we can find paths between 
+any two spots on campus, we represented every building on campus as a graph (as in graph theory)
+of nodes and edges, as well as a graph on a cartesian plane.
+
+The graph theory graph:
+    - Nodes:
+        Nodes in the graph represent rooms, hallways, auditoriums, elevators, stairwells, and other spaces that have walls
+    - Edges:
+        Edges connect nodes, so they represent doors and doorways
+
+The cartesian-plane graph:
+    We will superimpose a cartesian plane over the floorplans which we are getting our data from. This way nodes will have
+    cartesian coordinates and one node per building will have actual lattitude/longitude coordinates, so we will know wherever
+    every node is relative to eachother and can use math to find where they are in space in reference to the node which has 
+    the geo-coordinates. In order for this to work, we need a scale of sorts on the floorplans so that we can convert between
+    distance on the cartesian plane and real-life horizontal distance. In order for this to work, we must also ensure we have 
+    floorplans of every building we want to include for possible routing.
