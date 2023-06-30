@@ -1,1 +1,18 @@
-This is the documentation folder! Documentation about our work process should go here
+Welcome to Accessible Routes!
+
+Goal of the project: route someone from wherever they are on campus to whever they want to go without the physical
+barriers that would keep them from reaching their destination, or if no such routes exist say that.
+
+For now, we're specifically interested in helping physically disabled students get to their classes and around main campus.
+There are other people who we anticipate using our application, however, if it comes to making a decision that will either
+aid physically disabled students or another user, we will prioritize aiding the physically disabled students.
+
+Target users:
+    - students who use mobility aids such as wheelchairs, canes, and crutches
+    - 
+
+Other anticipated users:
+    - able-bodied people carrying stuff on carts
+    - physically disabled non-students
+    - able-bodied people trying to get to someplace they've never been before
+
