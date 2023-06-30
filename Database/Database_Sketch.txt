@@ -5,6 +5,7 @@ Table building {
 
 Table room {
   room_number varchar
+  room_name "varchar[]"
   floor int
   building_name varchar [ref: < building.name]
   coordinate "float[][2]"
@@ -31,13 +32,15 @@ Enum room.room_type {
   closet
 }
 
-Table door {
+Table outside_door {
   id varchar
   location varchar
   building_name varchar [ref: < building.name]
   accessibility bool
   wheelchair_button bool
   coordinate "float[]"
+  interior_coodinate "float[]"
+  direction door.direction
 
   indexes {
     (id, building_name) [PK]
@@ -46,12 +49,18 @@ Table door {
   Note: 'We could find a better way to identify the doors later (building door)'
 }
 
+Enum door.direction {
+  in
+  out
+  in_n_out
+}
+
 Table room_door {
   id int
   room_number varchar [ref: - room.room_number]
   floor int 
   building_name varchar
-  accessible_building_door varchar [ref: <> door.id]
+  accessible_building_door varchar [ref: <> outside_door.id]
 
   indexes {
     (id, room_number, floor, building_name) [PK]
