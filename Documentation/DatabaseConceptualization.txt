@@ -15,3 +15,5 @@ The cartesian-plane graph:
     the geo-coordinates. In order for this to work, we need a scale of sorts on the floorplans so that we can convert between
     distance on the cartesian plane and real-life horizontal distance. In order for this to work, we must also ensure we have 
     floorplans of every building we want to include for possible routing.
+
+Pathfinding:

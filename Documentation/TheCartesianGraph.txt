@@ -1,0 +1,14 @@
+To make the cartesian planes to use for the pathfinding:
+
+    - download the PDF of a floorplan for an RPI building via QUACS git repository: https://github.com/quacs/quacs-data/tree/master/floor_plans
+    - use GIMP to turn the PDF into a PNG file
+    - upload that floorplan PNG to Desmos and stretch the image by clicking and dragging one corner of it so that the 
+        top and bottom of the image are horizontal lines on y=50 and y=-50
+
+
+Next question:
+    - from this we can either record the cartesian coordinates of the corners of every node so that we know the space for
+        pathfinding OR we can get a line for the middle of every node and consider that the path. Whatever data we get from these
+        graphs is dependent on how we want to make the pathfinding software work which is dependent on how we want to convey the
+        path to the user which is dependent on what's the simplest, quickest thing we can make that will be helpful for disabled
+        students.
