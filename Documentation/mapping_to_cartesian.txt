@@ -1,0 +1,15 @@
+Documentation for Mapping a Floor Plan to a Cartesian Plane
+
+Getting set up:
+
+Download a floor plan and convert it from a pdf file to a png file.
+Import into desmos to impose it on the graphing structure. 
+Expand the map so that the top and bottom edges are at 50 and -50, respectively, on the plane.
+Move the image so that the bottom left corner of the floor plan is on the origin.
+
+Mapping:
+
+Create lines in hallways (such has y = 5, x = 20, etc.). 
+Add points onto the lines representing the hallways next to doors.
+Feel free to add more lines as necessary for rooms that might be hidden behind other rooms.
+download the graph/plan with the lines and points, and make sure to record the lines and points with their room numbers. 
