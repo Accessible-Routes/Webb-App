@@ -21,7 +21,7 @@ CREATE TYPE "door"."direction" AS ENUM (
 
 CREATE TABLE "building" (
   "name" varchar PRIMARY KEY,
-  "accessibility" bool
+  "accessible" bool
 );
 
 CREATE TABLE "room" (
@@ -31,8 +31,8 @@ CREATE TABLE "room" (
   "building_name" varchar,
   "room_type" room.room_type,
   "tags" varchar[],
-  "accessibility" bool,
-  "inside_accessibliity" bool,
+  "accessible" bool,
+  "inside_accessibility" bool,
   "min_stairs_needed" int,
   PRIMARY KEY ("room_number", "building_name")
 );
@@ -41,7 +41,7 @@ CREATE TABLE "entrance" (
   "id" varchar,
   "location" varchar,
   "building_name" varchar,
-  "accessibility" bool,
+  "accessible" bool,
   "wheelchair_button" bool,
   "coordinate" float[],
   "interior_coodinate" float[],
@@ -62,6 +62,7 @@ CREATE TABLE "floor" (
   "building_name" varchar,
   "floor_index" int,
   "path" float[][][2],
+  "floor_entrance" float[][2]
   PRIMARY KEY ("building_name", "floor_index")
 );
 
@@ -93,3 +94,6 @@ ALTER TABLE "entrance_room_door" ADD FOREIGN KEY ("room_door_accessible_building
 
 
 ALTER TABLE "building" ADD FOREIGN KEY ("name") REFERENCES "floor" ("building_name");
+
+
+insert into room values('101', null, 100,'Amos Eaton', 'hallway', null, null, null, 0);
