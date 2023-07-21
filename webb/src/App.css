@@ -32,12 +32,12 @@
   display: flex;  
 }
 
-.Map {
+.MyMap {
   position: static;
-  border: 3px solid red
 }
 
 .SearchBar {
   position: relative;
-  right: 0
+  right: 0;
+  border: 2px solid #000000
 }

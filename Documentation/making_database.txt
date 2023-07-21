@@ -29,3 +29,17 @@ WITH
         FIRSTROW=2
 )
 GO
+
+7/21
+
+The above method did not work.
+Tried the following method instead:
+
+IMPORTING TO DATABASE FROM CSV: (currently haven't gotten it working, still trying different things)
+
+\copy room(floor, room_number, room_type, door_coordinate, accessible_door, inside_accessibility, room_name, building_name, tags, min_stairs_needed)
+FROM '/Users/ISABEL~1/AppData/Local/Temp/RPI Campus as Nodes and Edges - 87 Gym.csv'
+DELIMITER ','
+CSV HEADER;
+
+This also did not work, there is an error at the "FROM" line. Currently trying to figure out why there is an error.
