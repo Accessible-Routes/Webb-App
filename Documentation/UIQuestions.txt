@@ -1,0 +1,10 @@
+Questions about the user's experience with navigating campus that would impact how we design this project:
+
+    - How little detail can we give in directions for the user to still be able to navigate campus? 
+        Can we just give them a list of room names in the order they should go through them?
+    - How often will people want a seperate route than the one we provide? And how do we build in a 
+        feature that essentially is "give me another route"?
+
+
+In the future possibly have a feature which will allow the user to select a node or edge they would like to toggle as a way to
+get the algorithm to give them another route if they find the one provided to them unsatisfactory.

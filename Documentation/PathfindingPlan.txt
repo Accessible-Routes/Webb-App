@@ -1,0 +1,10 @@
+Use Dijkstra's algorithm to find the shortest path between the user's current node and the node they're trying to get to 
+without using node or edges that have tags the user wants to avoid.
+
+Possible algorithms to use:
+    - Dijkstra's
+    - Prim's
+
+
+We intend to have only positively weighted edges (representing horizontal distance), Dijkstra's algorithm seems best fit for 
+finding the shortest possible accessible route.

@@ -1,0 +1,31 @@
+Looking over the database and trying to input data:
+
+Issues:
+- seem to be getting an issue with using arrays as a data type
+	- when trying to input data for room_name specifically (which is a varchar array), I keep getting an error: "missing data for column "room_name"" despite me giving a value for that attribute
+	- doing the method with copy from stdin doesn't work for me, so I instead tried to do a single insert statement, which did work
+	- however, this would end up being very tedious, so we want to try to take the data directly from the csv file (see below)
+- undecided on whether we need to use a custom type or just use a varchar (specifically for room_type attribute)
+- is there any easy way to just input the data from the csv files into the database without manually line by line adding them in
+
+
+To insert data into database directly from the csv file:
+
+- rearrange the spreadsheets so that the columns are in the same order as the database relation schemas (or rearrange order of schemas)
+- also need to add attributes that are in the schema but not the spreadsheet (like building_name)
+- also extend floor number to all rooms on that floor
+- get rid of exra empty cells (rows)
+- need to go through sheets and update room types according to the custom type (enum) as defined in the database ('Hall' vs 'Hallway') (also capitalization)
+	- make sure all types in the spreadsheet are seen in th enum (ex: 'Bathroom (W)' vs 'Bathroom (M)')
+
+Example for importing from csv: (for more info see https://blog.skyvia.com/3-easy-ways-to-import-csv-file-to-sql-server/ )
+
+-- import the file
+BULK INSERT dbo.Actors
+FROM 'C:\Documents\Skyvia\csv-to-mssql\actor.csv'
+WITH
+(
+        FORMAT='CSV',
+        FIRSTROW=2
+)
+GO
