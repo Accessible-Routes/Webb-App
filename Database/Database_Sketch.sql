@@ -1,14 +1,16 @@
 CREATE SCHEMA "room";
 
 CREATE TYPE "room"."room_type" AS ENUM (
-  'classroom',
-  'office',
-  'hallway',
-  'bathroom',
-  'staircase',
-  'lecture_hall',
-  'elevator',
-  'closet'
+  'Classroom',
+  'Office',
+  'Hallway',
+  'Bathroom(M)',
+  'Bathroom(W)',
+  'Bathroom(N)',
+  'Stairs',
+  'Lecture_Hall',
+  'Elevator',
+  'Closet'
 );
 
 CREATE TABLE "building" (
