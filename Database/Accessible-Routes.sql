@@ -3,14 +3,17 @@ CREATE SCHEMA "room";
 CREATE SCHEMA "door";
 
 CREATE TYPE "room"."room_type" AS ENUM (
-  'classroom',
-  'office',
-  'hallway',
-  'bathroom',
-  'staircase',
-  'lecture_hall',
-  'elevator',
-  'closet'
+  'Classroom',
+  'Office',
+  'Hallway',
+  'Bathroom(M)',
+  'Bathroom(W)',
+  'Bathroom(N)',
+  'Stairs',
+  'Lecture_Hall',
+  'Elevator',
+  'Closet',
+  'Lab'
 );
 
 CREATE TYPE "door"."direction" AS ENUM (
@@ -25,16 +28,17 @@ CREATE TABLE "building" (
 );
 
 CREATE TABLE "room" (
-  "room_number" varchar,
-  "room_name" varchar[],
   "floor" int,
-  "building_name" varchar,
+  "room_number" varchar,
   "room_type" room.room_type,
-  "tags" varchar[],
-  "accessible" bool,
+  "door_coordinate" float[2],
+  "accessible_door" bool,
   "inside_accessibility" bool,
+  "room_name" varchar[],
+  "building_name" varchar,
+  "tags" varchar[],
   "min_stairs_needed" int,
-  PRIMARY KEY ("room_number", "building_name")
+  PRIMARY KEY ("room_number", "building_name","coordinate")
 );
 
 CREATE TABLE "entrance" (
@@ -47,15 +51,6 @@ CREATE TABLE "entrance" (
   "interior_coodinate" float[],
   "direction" door.direction,
   PRIMARY KEY ("id", "building_name")
-);
-
-CREATE TABLE "room_door" (
-  "room_number" varchar,
-  "floor" int,
-  "building_name" varchar,
-  "coordinate" float[2],
-  "accessible_building_door" varchar,
-  PRIMARY KEY ("room_number", "floor", "building_name", "coordinate")
 );
 
 CREATE TABLE "floor" (
