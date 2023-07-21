@@ -38,7 +38,7 @@ CREATE TABLE "room" (
   "building_name" varchar,
   "tags" varchar[],
   "min_stairs_needed" int,
-  PRIMARY KEY ("room_number", "building_name","coordinate")
+  PRIMARY KEY ("room_number", "building_name","door_coordinate")
 );
 
 CREATE TABLE "entrance" (
