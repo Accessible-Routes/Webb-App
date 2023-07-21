@@ -1,0 +1,16 @@
+Changing the database
+
+- get rid of room_door relation
+- put coordinate into room relation
+- adding door_coordinate to the key because there are multiple doors to a room
+- the coordinate for room is the coordinate of the door (in the hallway technically, 
+  but as previous discussed it's right outside the door so if you can get to right outside the door, that gets you to the door)
+- reorganizing spreadsheets to accommodate this
+
+rooms can be represented by multiple tuples, based on coordinate - coordinate was added to primary key
+- coordinate is door for room (some rooms have multiple doors)
+- for hallways the coord will be at its starts, finishes, and turns
+
+
+decided 'Gym' is not a legal room_type but instead gyms will just be null... since byms have names anyway (specificlaly 87 gym)
+

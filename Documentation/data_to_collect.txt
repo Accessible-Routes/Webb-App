@@ -1,0 +1,5 @@
+data needed:
+
+min_stairs_needed
+check doors for wheelchair buttons
+check bathrooms if they are really accessible
