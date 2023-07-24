@@ -16,3 +16,16 @@ Other anticipated users:
     - physically disabled non-students
     - able-bodied people trying to get to someplace they've never been before
 
+Defining physically accessible:
+    - difficulty finding accessible entrances to buildings
+    - an abundance of stairs (such as the few steps to enter a building, or those found along outdoor paths)
+    - lack of elevators in buildings
+    - dysfunctional elevators in buildings
+    - stairs without sturdy railings
+    - narrow passageways
+    - heavy doors without buttons to automatically open them
+    - lack of bathrooms which can physically accommodate a wheelchair (even among those labeled wheelchair accessible)
+
+Just as there are many different forms of physical ability between the binary of fully able-bodied and wheelchair-bound,
+we hope to include the flexibility in our solutions (in the future) to guide each individual to avoid only the physical 
+barriers which are necessary for them to avoid at that time to keep from hurting themselves.
