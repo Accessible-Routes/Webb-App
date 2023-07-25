@@ -104,5 +104,6 @@ ALTER TABLE "entrance_room_door" ADD FOREIGN KEY ("room_door_accessible_building
 ALTER TABLE "building" ADD FOREIGN KEY ("name") REFERENCES "floor" ("building_name");
 
 
-INSERT INTO room 
-VALUES (2, 216, 'Classroom', {0.0, 0.0}, true, true, NULL, 'Amos Eaton', NULL, 13);
+\copy room from 'RPI Campus as Nodes and Edges - 87 Gym.csv' delimiter ',' csv header null as '' ;
+\copy room from 'RPI Campus as Nodes and Edges - DCC.csv' delimiter ',' csv header null as '' ;
+\copy room from 'RPI Campus as Nodes and Edges - Amos Eaton.csv' delimiter ',' csv header null as '' ;
