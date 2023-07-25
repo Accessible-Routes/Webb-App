@@ -1,31 +1,64 @@
 import psycopg2
 
+"""
+Returns true if room is 100% accessible (ie inside_accessibility and door
+        accessibility are both TRUE)
+Returns -1 if any error (ie the room is not found)
 
-def lookup_room_acc(building, room, floor):
+building = building name ex: 'Amos Eaton'. building is not case sensitive
+room = room number ex: 216. Should be a string, even if the room number
+        is all numbers
+floor = floor number, should be int
+"""
+def lookup_room_acc_all(building, room, floor):
     conn = psycopg2.connect("dbname=routes user=routes password=routes")
     cur = conn.cursor()
-    cur.execute("SELECT accessibility FROM (SELECT * FROM room WHERE lower(building_name) = '" + building + "') a WHERE room_number= '" + room + "' AND floor = '" + floor + "';")
-    #print(cur.fetchall())
-    return cur.fetchall*()
+    cur.execute("SELECT inside_accessibility FROM (SELECT * FROM room WHERE lower(building_name) = '" + building + "') a WHERE room_number= '" + room + "' AND floor = '" + str(floor) + "';")
+    insacctmp =  cur.fetchall()
+    if(len(insacctmp) < 1):
+        print("ERROR: data not found")
+        return -1
+    insacc = insacctmp[0][0]
+    cur.execute("SELECT accessible_door FROM (SELECT * FROM room WHERE lower(building_name) = '" + building + "') a WHERE room_number= '" + room + "' AND floor = '" + str(floor) + "';")
+    toroomtmp =  cur.fetchall()
+    if(len(toroomtmp) < 1):
+        print("ERROR: data not found")
+        return -1
+    toroom = toroomtmp[0][0]
+    return insacc and toroom 
     
 def lookup_room_inside(building, room, floor):
     conn = psycopg2.connect("dbname=routes user=routes password=routes")
     cur = conn.cursor()
-    cur.execute("SELECT inside_accessibility FROM (SELECT * FROM room WHERE lower(building_name) = '" + building + "') a WHERE room_number= '" + room + "' AND floor = '" + floor + "';")
+    cur.execute("SELECT inside_accessibility FROM (SELECT * FROM room WHERE lower(building_name) = '" + building + "') a WHERE room_number= '" + room + "' AND floor = '" + str(floor) + "';")
     #print(cur.fetchall())
-    return cur.fetchall()
+    insacctmp =  cur.fetchall()
+    if(len(insacctmp) < 1):
+        print("ERROR: data not found")
+        return -1
+    insacc = insacctmp[0][0]  
+    return insacc
     
-def lookup_doors(building, room, floor):
+def lookup_room_door(building, room, floor):
     conn = psycopg2.connect("dbname=routes user=routes password=routes")
     cur = conn.cursor()
-    cur.execute("SELECT accessible door FROM (SELECT * FROM room WHERE lower(building_name) = '" + building + "') a WHERE room_number= '" + room + "' AND floor = '" + floor + "';")
+    cur.execute("SELECT accessible_door FROM (SELECT * FROM room WHERE lower(building_name) = '" + building + "') a WHERE room_number= '" + room + "' AND floor = '" + str(floor) + "';")
+    tmp = cur.fetchall()
+    if(len(tmp) < 1):
+        print("ERROR: data not found")
+        return -1
+    final = True
+    for i in range(len(tmp)):
+        if(tmp[i] == False):
+            final = False
+            break
     #print(cur.fetchall())
-    return cur.fetchall()
+    return final
     
 def lookup_min_stairs(building, room, floor):
     conn = psycopg2.connect("dbname=routes user=routes password=routes")
     cur = conn.cursor()
-    cur.execute("SELECT min_stairs FROM (SELECT * FROM room WHERE lower(building_name) = '" + building + "') a WHERE room_number= '" + room + "' AND floor = '" + floor + "';")
+    cur.execute("SELECT min_stairs FROM (SELECT * FROM room WHERE lower(building_name) = '" + building + "') a WHERE room_number= '" + room + "' AND floor = '" + str(floor) + "';")
     return cur.fetchall()
     
 def lookup_door_acc(building, room ):
@@ -35,15 +68,9 @@ def lookup_door_acc(building, room ):
     return cur.fetchall()
 
 
-    
 if __name__ == '__main__':
     
-    """conn = psycopg2.connect("dbname=routes user=routes password=routes")
-    cur = conn.cursor()
-    cur.execute("SELECT DISTINCT a.movieid id, title, 'movie' as streamingtype FROM (SELECT movieid FROM moviesgenres WHERE lower(genre) = 'animation' except SELECT movieid FROM moviesgenres WHERE lower(genre) = 'horror') AS a INNER JOIN movies ON a.movieid = movies.movieid UNION SELECT DISTINCT a.seriesid id, title, 'series' as streamingtype FROM (SELECT seriesid FROM seriesgenres WHERE lower(genre) = 'animation' EXCEPT SELECT seriesid FROM seriesgenres WHERE lower(genre) = 'horror') AS a INNER JOIN series ON a.seriesid = series.seriesid ORDER BY title DESC, streamingtype ASC, id ASC;")
-    print(cur.fetchall())"""
-    #lookup_room('amos eaton', '216', '100')
-    
-    """
-    SELECT * FROM (SELECT * FROM room WHERE lower(building_name) = 'amos eaton') a WHERE room_number= '216';
-    """
+    print(lookup_room_acc_all('amos eaton', '216', 2))
+    print(lookup_room_acc_all('amos eaton', '218', 2))
+    print(lookup_room_inside('amos eaton', '216', 2))
+    print(lookup_room_door('amos eaton', '214', 2))

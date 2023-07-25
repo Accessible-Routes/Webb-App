@@ -2,6 +2,7 @@ DROP TABLE room;
 DROP TABLE entrance;
 DROP TABLE building;
 DROP TABLE floor;
+DROP TABLE entrance_room_door;
 DROP TYPE "room"."room_type";
 DROP TYPE "door"."direction";
 DROP SCHEMA room;
@@ -47,11 +48,7 @@ CREATE TABLE "room" (
   "building_name" varchar(64),
   "tags" varchar(64)[],
   "min_stairs_needed" int,
-<<<<<<< Updated upstream
-  PRIMARY KEY ("room_number", "building_name","door_coordinate")
-=======
   PRIMARY KEY ("room_number", "building_name","door_coordinate", "floor")
->>>>>>> Stashed changes
 );
 
 CREATE TABLE "entrance" (
@@ -80,15 +77,15 @@ COMMENT ON TABLE "entrance" IS 'We could find a better way to identify the doors
 
 --COMMENT ON COLUMN "room_door"."room_number" IS 'if this door is in the hallway, then leave it blank';
 
-ALTER TABLE "floor" ADD FOREIGN KEY ("floor_index") REFERENCES "room" ("floor");
+--ALTER TABLE "floor" ADD FOREIGN KEY ("floor_index") REFERENCES "room" ("floor");
 
-ALTER TABLE "building" ADD FOREIGN KEY ("name") REFERENCES "room" ("building_name");
+--ALTER TABLE "building" ADD FOREIGN KEY ("name") REFERENCES "room" ("building_name");
 
-ALTER TABLE "building" ADD FOREIGN KEY ("name") REFERENCES "entrance" ("building_name");
+--ALTER TABLE "building" ADD FOREIGN KEY ("name") REFERENCES "entrance" ("building_name");
 
-ALTER TABLE "room_door" ADD FOREIGN KEY ("room_number") REFERENCES "room" ("room_number");
+--ALTER TABLE "room_door" ADD FOREIGN KEY ("room_number") REFERENCES "room" ("room_number");
 
-ALTER TABLE "floor" ADD FOREIGN KEY ("floor_index") REFERENCES "room_door" ("floor");
+--ALTER TABLE "floor" ADD FOREIGN KEY ("floor_index") REFERENCES "room_door" ("floor");
 
 CREATE TABLE "entrance_room_door" (
   "entrance_id" varchar(64),
@@ -96,14 +93,25 @@ CREATE TABLE "entrance_room_door" (
   PRIMARY KEY ("entrance_id", "room_door_accessible_building_door")
 );
 
-ALTER TABLE "entrance_room_door" ADD FOREIGN KEY ("entrance_id") REFERENCES "entrance" ("id");
+--ALTER TABLE "entrance_room_door" ADD FOREIGN KEY ("entrance_id") REFERENCES "entrance" ("id");
 
-ALTER TABLE "entrance_room_door" ADD FOREIGN KEY ("room_door_accessible_building_door") REFERENCES "room_door" ("accessible_building_door");
-
-
-ALTER TABLE "building" ADD FOREIGN KEY ("name") REFERENCES "floor" ("building_name");
+--ALTER TABLE "entrance_room_door" ADD FOREIGN KEY ("room_door_accessible_building_door") REFERENCES "room_door" ("accessible_building_door");
 
 
+--ALTER TABLE "building" ADD FOREIGN KEY ("name") REFERENCES "floor" ("building_name");
+
+
+<<<<<<< Updated upstream
+=======
+--ACCESSIBLE ROOM
+INSERT INTO room 
+VALUES (2, 216, 'Classroom', '{0.0, 0.0}', true, true, NULL, 'Amos Eaton', NULL, 13);
+
+--INSIDE INACCESSIBLE
+INSERT INTO room 
+VALUES (2, 214, 'Classroom', '{0.0, 0.0}', true, false, NULL, 'Amos Eaton', NULL, 13);
+
+>>>>>>> Stashed changes
 \copy room from 'RPI Campus as Nodes and Edges - 87 Gym.csv' delimiter ',' csv header null as '' ;
 \copy room from 'RPI Campus as Nodes and Edges - DCC.csv' delimiter ',' csv header null as '' ;
 \copy room from 'RPI Campus as Nodes and Edges - Amos Eaton.csv' delimiter ',' csv header null as '' ;
