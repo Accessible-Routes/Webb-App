@@ -18,28 +18,24 @@ To insert data into database directly from the csv file:
 - need to go through sheets and update room types according to the custom type (enum) as defined in the database ('Hall' vs 'Hallway') (also capitalization)
 	- make sure all types in the spreadsheet are seen in th enum (ex: 'Bathroom (W)' vs 'Bathroom (M)')
 
+
+Notes on how to fix csv files to match inputting into the database:
+
+- for arrays format "{a,b,c}"
+- for null put '' (empty)
+	- or actually 
+- null array format: 
+	- null array is just null
+	- array with null values is "{,}"
+- NOTE: DO NOT FORGET THAT KEYS CANNOT BE NULL
+
+
 Example for importing from csv: (for more info see https://blog.skyvia.com/3-easy-ways-to-import-csv-file-to-sql-server/ )
 
--- import the file
-BULK INSERT dbo.Actors
-FROM 'C:\Documents\Skyvia\csv-to-mssql\actor.csv'
-WITH
-(
-        FORMAT='CSV',
-        FIRSTROW=2
-)
-GO
+Use the following:
+\copy room from 'RPI Campus as Nodes and Edges - 87 Gym.csv' delimiter ',' csv header null as '' ;
+\copy room from 'RPI Campus as Nodes and Edges - DCC.csv' delimiter ',' csv header null as '' ;
+\copy room from 'RPI Campus as Nodes and Edges - Amos Eaton.csv' delimiter ',' csv header null as '' ;
 
-7/21
-
-The above method did not work.
-Tried the following method instead:
-
-IMPORTING TO DATABASE FROM CSV: (currently haven't gotten it working, still trying different things)
-
-\copy room(floor, room_number, room_type, door_coordinate, accessible_door, inside_accessibility, room_name, building_name, tags, min_stairs_needed)
-FROM '/Users/ISABEL~1/AppData/Local/Temp/RPI Campus as Nodes and Edges - 87 Gym.csv'
-DELIMITER ','
-CSV HEADER;
-
-This also did not work, there is an error at the "FROM" line. Currently trying to figure out why there is an error.
+Running on my own machine (tested with a testing.csv file):
+\copy room from 'C:/Users/Isabele Lieber/OneDrive - Rensselaer Polytechnic Institute/classes/RCOS/Accessible-Routes/87 Gym.csv' delimiter ',' csv header null as '' ;
