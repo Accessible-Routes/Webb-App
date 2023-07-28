@@ -9,14 +9,15 @@ function App() {
     <div className="Page">
         <MyMap/>
         <div className="Search">
-            <Search/>
+            <SearchStart/>
             <SearchDest/>
         </div>
     </div>
   );
 }
 
-const Search = () =>{
+
+const SearchStart = () =>{
   const BarStyle = {width: "14.60vw", height: "4vh", background: "#F0F0F0", border: '3px solid rgba(0, 0, 0, 0.5)', padding: "0.2rem", };
   const [inputText, setInputText] = useState("");
   let inputHandler = (e) => {
