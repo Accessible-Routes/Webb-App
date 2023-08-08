@@ -18,14 +18,25 @@ function MyMap()
     const Carnegie = [42.73042, -73.6832]
     const DCC = [42.72964, -73.67924]
     const Union = [42.72999, -73.67664]
+    const JEC = [42.72955, -73.68039]
+    const Lally = [42.73004, -73.68189]
+    const Greene = [42.72999, -73.68118]
+    const Folsom = [42.72932, -73.68267]
+    const VCC = [42.72922, -73.68182]
     const campus_center = [42.7294, -73.6797]
     return (
-        <MapContainer center={campus_center} zoom={17} style={{width:"87%",height:"100vh"}}>
+        <MapContainer center={campus_center} zoom={17} style={{width:"100%",height:"100vh"}}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={Troy}> <Popup> Troy Building </Popup> </Marker>
+            <Marker position={Troy}
+            eventHandlers={{
+                click: () => {
+                    MyMap.flyTo([Troy], 12)
+                },
+            }}
+            > <Popup> Troy Building </Popup> </Marker>
             <Marker position={Ricketts}> <Popup> Ricketts Building </Popup> </Marker>
             <Marker position={SageLab}> <Popup> Russell Sage Laboratory  </Popup> </Marker>
             <Marker position={JRowl}> <Popup> Johnsson Rowland Science Center</Popup></Marker>
@@ -33,6 +44,11 @@ function MyMap()
             <Marker position={Carnegie}> <Popup> Carnegie Hall </Popup> </Marker>
             <Marker position={DCC}> <Popup> Darin Communications Center </Popup> </Marker>
             <Marker position={Union}> <Popup> Rensselaer Student Union </Popup> </Marker>
+            <Marker position={JEC}> <Popup> Johnsson Engineering Center </Popup> </Marker>
+            <Marker position={Lally}> <Popup> Lally Hall </Popup> </Marker>
+            <Marker position={Greene}> <Popup> Greene Building </Popup> </Marker>
+            <Marker position={Folsom}> <Popup> Folsom Library </Popup> </Marker>
+            <Marker position={VCC}> <Popup> Vorhees Computing Center </Popup> </Marker>
 
         </MapContainer>
 

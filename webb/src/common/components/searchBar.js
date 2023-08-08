@@ -16,6 +16,7 @@ const searchBar = () =>{
       style={BarStyle}
       //key="search-bar"
       //value={keyword}
+      type="search"
       onChange={inputHandler}
       placeholder={"Choose Starting Location"}
       />
