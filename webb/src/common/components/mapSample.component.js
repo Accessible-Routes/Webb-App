@@ -23,6 +23,7 @@ function MyMap()
     const Greene = [42.72999, -73.68118]
     const Folsom = [42.72932, -73.68267]
     const VCC = [42.72922, -73.68182]
+    const gym = [42.73077, -73.67885]
     const campus_center = [42.7294, -73.6797]
     return (
         <MapContainer center={campus_center} zoom={17} style={{width:"100%",height:"100vh"}}>
@@ -49,7 +50,7 @@ function MyMap()
             <Marker position={Greene}> <Popup> Greene Building </Popup> </Marker>
             <Marker position={Folsom}> <Popup> Folsom Library </Popup> </Marker>
             <Marker position={VCC}> <Popup> Vorhees Computing Center </Popup> </Marker>
-
+            <Marker position={gym}> <Popup> '87 Gymnasium </Popup> </Marker>
         </MapContainer>
 
     );
