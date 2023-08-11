@@ -1,0 +1,21 @@
+Brouter (Java): 
+labels actual roads, 
+includes elevation, 
+Can choose to not use stairs
+Flexible routing destinations (doesn’t have to be a building)
+No-go zones
+Platforms: Android, Web
+
+Profile section:
+Delete mentions of tertiary on line 142
+Delete mentions of road on line 141
+Change true on line 45 to false: 
+assign   allow_steps              false   # %allow_steps% | Set to false to disallow steps | boolean
+
+______________________________________________
+Open Source Routing Machine(C++):
+Can choose not to use stairs
+Includes list of directions to do to get to destination
+Platforms:Linux,FreeBSD, Windows, Mac OS X
+
+
