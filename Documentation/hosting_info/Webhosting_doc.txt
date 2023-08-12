@@ -1,0 +1,26 @@
+Infinity free:
+No time limit,
+Any domain,
+Free SSL,
+Free subdomain names,
+Unlimited bandwidth,
+Free dns service,
+Full .htaccess support,
+Unlimited hosting,
+400 MySQL databases,
+
+Wix:
+500 mb diskspace,
+500 mb bandwidth,
+Free SSL,
+Free security monitoring,
+Wix.com subdomain,
+
+000Webhost:
+300 mb disk space,
+3 gb bandwidth,
+1 MySQL database,
+Host own domain,
+
+Google Cloud Hosting:
+Massive storage
