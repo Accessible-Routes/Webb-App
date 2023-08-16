@@ -111,6 +111,21 @@ VALUES (2, 216, 'Classroom', '{0.0, 0.0}', true, true, NULL, 'Amos Eaton', NULL,
 INSERT INTO room 
 VALUES (2, 214, 'Classroom', '{0.0, 0.0}', true, false, NULL, 'Amos Eaton', NULL, 13);
 
+INSERT INTO building VALUES("Amos Eaton", true);
+INSERT INTO building VALUES("87 Gym", false);
+INSERT INTO building VALUES("DCC", true);
+INSERT INTO building VALUES("Academy", true);
+INSERT INTO building VALUES("Carnegie", true);
+INSERT INTO building VALUES("JRowl", true);
+INSERT INTO building VALUES("Lally", true);
+INSERT INTO building VALUES("Low/CII", true);
+INSERT INTO building VALUES("MRC", true);
+INSERT INTO building VALUES("Pittsburgh", true);
+INSERT INTO building VALUES("Ricketts", true);
+INSERT INTO building VALUES("Sage", true);
+INSERT INTO building VALUES("Troy", true);
+INSERT INTO building VALUES("West Hall", true);
+
 >>>>>>> Stashed changes
 \copy room from 'RPI Campus as Nodes and Edges - 87 Gym.csv' delimiter ',' csv header null as '' ;
 \copy room from 'RPI Campus as Nodes and Edges - DCC.csv' delimiter ',' csv header null as '' ;
