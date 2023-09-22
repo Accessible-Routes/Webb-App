@@ -9,17 +9,18 @@ function App() {
     <div className="Page">
         <MyMap/>
         <div className="Search">
-            <Search/>
+            <SearchStart/>
             <SearchDest/>
         </div>
     </div>
   );
 }
 
-const Search = () =>{
+
+const SearchStart = () =>{
   const BarStyle = {width: "14.60vw", height: "4vh", background: "#F0F0F0", border: '3px solid rgba(0, 0, 0, 0.5)', padding: "0.2rem", };
   const [inputText, setInputText] = useState("");
-  let inputHandler = (e) => {
+  const handleChange = (e) => {
     //convert input text to lower case
     var lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
@@ -30,7 +31,7 @@ const Search = () =>{
       style={BarStyle}
       //key="search-bar"
       //value={keyword}
-      onChange={inputHandler}
+      onChange={handleChange}
       placeholder={"Choose Starting Location"}
       />
     </div>
@@ -39,6 +40,7 @@ const Search = () =>{
 
 const SearchDest = () =>{
   const BarStyle = {width: "14.60vw", height: "4vh", background: "#F0F0F0", border: "3px solid rgba(0, 0, 0, 0.5)", padding: "0.2rem", };
+  const [searchInput, setSearchInput] = useState("");
   return(
     <input
     style={BarStyle}
