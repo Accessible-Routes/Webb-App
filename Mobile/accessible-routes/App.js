@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import MapView from 'react-native-maps';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
