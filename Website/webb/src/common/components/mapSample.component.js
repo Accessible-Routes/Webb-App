@@ -30,6 +30,7 @@ function MyMap()
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
             />
             <Marker position={Troy}
             eventHandlers={{
@@ -54,6 +55,10 @@ function MyMap()
         </MapContainer>
 
     );
+}
+
+function zoomOnClick(e){
+    MyMap.setView(e.latlng, 13);    
 }
 export default MyMap;
 
