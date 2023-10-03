@@ -9,63 +9,32 @@ from django.db import models
 import uuid
 
 class Building(models.Model):
-    name = models.CharField(primary_key=True, max_length=64)
+    id = models.UUIDField(primary_key=True, unique=True, blank=False, default=uuid.uuid4)
+    name = models.TextField(blank=True, null=True)
     accessible = models.BooleanField(blank=True, null=True)
 
     class Meta:
         db_table = 'building'
 
-class Entrance(models.Model):
-    id = models.CharField(primary_key=True, max_length=64)  # The composite primary key (id, building_name) found, that is not supported. The first column is selected.
-    location = models.CharField(max_length=64, blank=True, null=True)
-    building_name = models.CharField(max_length=64)
-    accessible = models.BooleanField(blank=True, null=True)
-    wheelchair_button = models.BooleanField(blank=True, null=True)
-    coordinate = models.TextField(blank=True, null=True)  # This field type is a guess.
-    interior_coodinate = models.TextField(blank=True, null=True)  # This field type is a guess.
-    direction = models.TextField(blank=True, null=True)  # This field type is a guess.
-
-    class Meta:
-        db_table = 'entrance'
-        unique_together = (('id', 'building_name'),)
-        db_table_comment = 'We could find a better way to identify the doors later (building door)'
-
-
-class EntranceRoomDoor(models.Model):
-    id = models.UUIDField(unique=True, blank=False, default=uuid.uuid4)
-    entrance_id = models.CharField(primary_key=True, max_length=64)  # The composite primary key (entrance_id, room_door_accessible_building_door) found, that is not supported. The first column is selected.
-    room_door_accessible_building_door = models.CharField(max_length=64)
-
-    class Meta:
-        db_table = 'entrance_room_door'
-        unique_together = (('entrance_id', 'room_door_accessible_building_door'),)
-
-
-class Floor(models.Model):
-    id = models.UUIDField(primary_key=True, unique=True, blank=False, default=uuid.uuid4)
-    building_name = models.CharField(max_length=64)  # The composite primary key (building_name, floor_index) found, that is not supported. The first column is selected.
-    floor_index = models.IntegerField()
-    path = models.TextField(blank=True, null=True)  # This field type is a guess.
-    floor_entrance = models.TextField(blank=True, null=True)  # This field type is a guess.
-
-    class Meta:
-        db_table = 'floor'
-        unique_together = (('building_name', 'floor_index'),)
-
-
 class Room(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, blank=False, default=uuid.uuid4)
-    floor = models.ForeignKey(Floor, on_delete=models.CASCADE)
-    room_number = models.CharField(max_length=64)  # The composite primary key (room_number, building_name, door_coordinate, floor) found, that is not supported. The first column is selected.
+    room_number = models.CharField(max_length=64) 
     room_type = models.TextField(blank=True, null=True)  # This field type is a guess.
-    door_coordinate = models.TextField()  # This field type is a guess.
-    accessible_door = models.BooleanField(blank=True, null=True)
-    inside_accessibility = models.BooleanField(blank=True, null=True)
+    
     room_name = models.TextField(blank=True, null=True)  # This field type is a guess.
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
+    stairs = models.BooleanField(default=False)
+    elevator = models.BooleanField(default=False)
+    ramps = models.BooleanField(default=False)
+    #rooms connected
+    #add field to show what other rooms its connected to.
+
     tags = models.TextField(blank=True, null=True)  # This field type is a guess.
-    min_stairs_needed = models.IntegerField(blank=True, null=True, db_comment='When accessibility is false')
 
     class Meta:
         db_table = 'room'
 
+class RoomConnection(models.Model):
+    id = models.UUIDField(primary_key=True, unique=True, blank=False, default=uuid.uuid4)
+    room1 = models.ForeignKey(Room, on_delete=models.CASCADE)
+    room2 = models.ForeignKey(Room, on_delete=models.CASCADE)
