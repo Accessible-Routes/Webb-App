@@ -1,0 +1,29 @@
+Buildings defined as RPI campus for the first iteration of Accessible Routes:
+	- Rensselaer Union
+	- CBIS
+	- RPI Playhouse
+	- Academy Hall
+	- Sage dining Hall
+	- 87 Gym
+	- Ricketts
+	- Troy Building
+	- Sage Labs
+	- DCC
+	- Low
+	- JEC
+	- JROWL
+	- VCC
+	- Folsom Library
+	- Greene Building
+	- Amos Eaton
+	- Lally
+	- Walker Labs
+	- Cogswell Labs
+	- EMPAC
+	- Carnegie
+	- Pitsburg
+	- West Hall
+	- Commons dining hall
+	
+Routing should work within and between any room a student is likely to use in these buildings (ie lecture halls, classrooms, NOT bathrooms). 
+The goal for the first iteration is to help with navigating between classes and clubs.
