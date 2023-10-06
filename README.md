@@ -33,7 +33,13 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About
-<p align="center">The Accessible Routes project was established to provide students with a guide to navigating a less-than-accessible campus.</p>
+<div align="center">
+    <a href="https://github.com/json-mp3/Accessible-Routes">
+<img src="https://github.com/zxhjlk/Accessible-Routes/blob/main/Logo.png" alt="ARoutes Logo" width="360" height="216">
+</a>
+<h3 align="center">Accessible Routes</h3>
+<p>The Accessible Routes project was established to provide students with a guide to navigating a less-than-accessible campus.</p>
+</div>
 
 ### Built With
 
