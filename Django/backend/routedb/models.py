@@ -13,28 +13,38 @@ class Building(models.Model):
     name = models.TextField(blank=True, null=True)
     accessible = models.BooleanField(blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+    
     class Meta:
         db_table = 'building'
 
+#"Rooms" can be stairs, elevators, or ramps and connect actual rooms
 class Room(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, blank=False, default=uuid.uuid4)
-    room_number = models.CharField(max_length=64) 
-    room_type = models.TextField(blank=True, null=True)  # This field type is a guess.
+    room_number = models.IntegerField(blank=True, null=True, default=-1)
+    room_type = models.TextField(blank=True, null=True)  
     
-    room_name = models.TextField(blank=True, null=True)  # This field type is a guess.
+    room_name = models.TextField(blank=True, null=True)  
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
     stairs = models.BooleanField(default=False)
     elevator = models.BooleanField(default=False)
     ramps = models.BooleanField(default=False)
+
+    accessible = models.BooleanField(blank=True, null=True, default=False)
     #rooms connected
     #add field to show what other rooms its connected to.
 
-    tags = models.TextField(blank=True, null=True)  # This field type is a guess.
+    tags = models.TextField(blank=True, null=True) 
+    connected_rooms = models.ManyToManyField("self", blank=True)
 
+    def __str__(self):
+        return f'{self.room_name}{self.room_number}'
+    
     class Meta:
         db_table = 'room'
 
-class RoomConnection(models.Model):
-    id = models.UUIDField(primary_key=True, unique=True, blank=False, default=uuid.uuid4)
-    room1 = models.ForeignKey(Room, on_delete=models.CASCADE)
-    room2 = models.ForeignKey(Room, on_delete=models.CASCADE)
+# class RoomConnection(models.Model):
+#     id = models.UUIDField(primary_key=True, unique=True, blank=False, default=uuid.uuid4)
+#     room1 = models.ForeignKey(Room, on_delete=models.CASCADE)
+#     room2 = models.ForeignKey(Room, on_delete=models.CASCADE)

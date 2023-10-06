@@ -1,16 +1,42 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Room
-from .serializers import RoomSerializer
+from .models import Room, Building
 from django.http import JsonResponse
 # Create your views here.
+class AllBuildingView(APIView):
+    def get(self, request):
+        buildings = Building.objects.all()
+        building_list = []
+        for building in buildings:
+            temp_json = {}
+            temp_json['Name'] = building.name
+            temp_json['UUID'] = building.id
+            building_list.append(temp_json)
+        return JsonResponse(building_list, safe=False, status=200)
 
 class AllRoomView(APIView):
     def get(self, request):
-        rooms = Room.objects.all()
         
-        return Response('lol',status=200)
+        room_json = {}
+        buildings = Building.objects.all()
+        for building in buildings:
+            room_json[building.name] = []
+            rooms = Room.objects.filter(building = building)
+
+            for room in rooms:
+                room_dict = {}
+                room_dict['Number'] = room.room_number
+                room_dict['UUID'] = room.id
+
+                # Depending on what we want, we can give the connections for each room.
+                # room_dict['Connections'] = []
+                # for connect in room.connected_rooms.all():
+                #     room_dict['Connections'].append(connect.id)
+
+                room_json[building.name].append(room_dict)
+
+        return JsonResponse(room_json, status=200)
 
 class RoomAccessibleView(APIView):
     
@@ -18,9 +44,20 @@ class RoomAccessibleView(APIView):
         try:
             room = Room.objects.get(id=room_id)            
         except:
-            return JsonResponse({'message':'no room?'},status=404)
-        serializer = RoomSerializer(room)
-        return Response(serializer.data, status=200)
+            return JsonResponse({'message':'No Room Found.'},status=404)
+        
+        room_json = {}
+        room_json['UUID'] = room.id
+        room_json['Number'] = room.room_number
+        room_json['Building'] = room.building.name
+        room_json['Accessible'] = room.accessible
+        room_json['Connections'] = []
+        for connect in room.connected_rooms.all():
+            room_json['Connections'].append(connect.id)
+
+        return JsonResponse(room_json,status=200)
+
+        
     
     #make better get request
     #post request?
