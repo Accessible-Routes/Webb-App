@@ -41,3 +41,13 @@
   right: 0;
   border: 2px solid #000000
 }
+
+.StartDropDown {
+  position: static;
+  transform: none;
+}
+
+.EndDropDown {
+  position: static;
+  transform: none;
+}
