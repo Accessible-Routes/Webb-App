@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework_api_key.permissions import HasAPIKey
 from rest_framework.response import Response
 from .models import Room, Building
 from django.http import JsonResponse
+
 # Create your views here.
 class AllBuildingView(APIView):
     def get(self, request):
@@ -51,17 +53,42 @@ class RoomAccessibleView(APIView):
         room_json['Number'] = room.room_number
         room_json['Building'] = room.building.name
         room_json['Accessible'] = room.accessible
+        room_json['Room Type'] = room.room_type
         room_json['Connections'] = []
         for connect in room.connected_rooms.all():
             room_json['Connections'].append(connect.id)
 
         return JsonResponse(room_json,status=200)
-
-        
     
-    #make better get request
-    #post request?
-    #get request for all rooms
+class RoomCreationView(APIView):
+    permission_classes = [HasAPIKey]
+    def post(self, request):
+        data = request.data
+        name = data.get('Name','')
+        number = data.get('Number')
+        building = data.get('Building')
+        accessible = data.get('Accessible', False)
+        connections = data.getlist('Connections')
 
-
+        if not number or not building or not connections:
+            return Response('Invalid Form Data', status=404)
         
+        try:
+            building = Building.objects.get(name = building)
+        except:
+            return Response('Invalid Form Data', status=404)
+
+        new_room = Room(building=building, room_name=name, room_number=number, accessible=accessible)
+        for room in connections:
+            try:
+                room = Room.objects.get(id = room)
+            except:
+                return Response('Invalid Form Data', status=404)
+        
+        new_room.save()
+        for room in connections:
+            room = Room.objects.get(id = room)
+            new_room.connected_rooms.add(room)
+            room.connected_rooms.add(new_room)
+            
+        return Response(status=200)

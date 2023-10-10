@@ -23,7 +23,14 @@ class Building(models.Model):
 class Room(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, blank=False, default=uuid.uuid4)
     room_number = models.IntegerField(blank=True, null=True, default=-1)
-    room_type = models.TextField(blank=True, null=True)  
+    
+    class RoomType(models.TextChoices):
+        CLASS_ROOM = 'CLASSROOM'
+        LECTURE_HALL = 'LECTURE_HALL'
+        HALLWAY = 'HALLWAY'
+        UNSPECIFIED = 'UNSPECIFIED'
+
+    room_type = models.TextField(choices=RoomType.choices, default=RoomType.UNSPECIFIED)  
     
     room_name = models.TextField(blank=True, null=True)  
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
@@ -31,7 +38,7 @@ class Room(models.Model):
     elevator = models.BooleanField(default=False)
     ramps = models.BooleanField(default=False)
 
-    accessible = models.BooleanField(blank=True, null=True, default=False)
+    accessible = models.BooleanField(default=False)
     #rooms connected
     #add field to show what other rooms its connected to.
 
@@ -39,12 +46,8 @@ class Room(models.Model):
     connected_rooms = models.ManyToManyField("self", blank=True)
 
     def __str__(self):
-        return f'{self.room_name}{self.room_number}'
+        return f'{self.room_name} {self.room_number}'
     
     class Meta:
         db_table = 'room'
 
-# class RoomConnection(models.Model):
-#     id = models.UUIDField(primary_key=True, unique=True, blank=False, default=uuid.uuid4)
-#     room1 = models.ForeignKey(Room, on_delete=models.CASCADE)
-#     room2 = models.ForeignKey(Room, on_delete=models.CASCADE)
