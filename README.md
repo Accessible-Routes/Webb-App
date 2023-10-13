@@ -33,14 +33,20 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About
-<p align="center">The Accessible Routes project was established to provide students with a guide to navigating a less-than-accessible campus.</p>
+<div align="center">
+<h3 align="center">Accessible Routes</h3>
+    <a href="https://github.com/json-mp3/Accessible-Routes">
+<img src="https://github.com/zxhjlk/Accessible-Routes/blob/main/Logo.png" alt="ARoutes Logo" width="360" height="216">
+</a>
+<p>The Accessible Routes project was established to provide students with a guide to navigating a less-than-accessible campus.</p>
+</div>
 
 ### Built With
 
 * [![React][React.js]][React-url]
 * [![Node][Node.js]][Node-url]
 * [![JavaScript][JavaScript.com]][JavaScript-url]
-* [![MongoDB][MongoDB.com]][MongoDB-url]
+* [![PostgreSQL][PostgreSQL.com]][PostgreSQL-url]
 * [![Open Street Map][OpenStreetMap.com]][OpenStreetMap-url]
 
 
@@ -104,8 +110,8 @@ Distributed under the MIT License. See [LICENSE](https://github.com/json-mp3/Acc
 [JavaScript-url]: https://www.javascript.com/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[MongoDB.com]: https://img.shields.io/badge/MongoDB-47A248.svg?style=for-the-badge&logo=MongoDB&logoColor=white
-[MongoDB-url]: https://www.mongodb.com/
+[PostgreSQL.com]: https://img.shields.io/badge/PostgreSQL-4169E1.svg?style=for-the-badge&logo=PostgreSQL&logoColor=white
+[PostgreSQL-url]: https://www.postgresql.org/
 [OpenStreetMap.com]: https://img.shields.io/badge/OpenStreetMap-7EBC6F.svg?style=for-the-badge&logo=OpenStreetMap&logoColor=white
 [OpenStreetMap-url]: https://openstreetmap.org
 [Node.js]: https://img.shields.io/badge/Node.js-339933.svg?style=for-the-badge&logo=nodedotjs&logoColor=white

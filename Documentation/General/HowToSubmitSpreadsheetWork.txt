@@ -1,0 +1,5 @@
+To get RCOS commit credit for working on the accessibility google spreadsheet, go to:
+    - file
+    - download
+    - Comma Seperated Values (CSV)
+    - push to folder "AccessibilityData" under Documentation
