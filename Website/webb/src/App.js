@@ -3,6 +3,9 @@ import MyMap from './common/components/mapSample.component';
 //import searchBar from './common/components/searchBar';
 import {React, useState } from 'react';
 import Select from 'react-select';
+import {AwesomeButtonProgress} from 'react-awesome-button';
+import 'react-awesome-button/dist/styles.css'; 
+
 
 
 function App() {
@@ -12,8 +15,20 @@ function App() {
         <div className="Search">
             <StartDropDown/>
             <EndDropDown/>
+            <Button/>
         </div>
     </div>
+  );
+}
+
+const Button = () => {
+  return (
+    <AwesomeButtonProgress type="secondary"
+      onPress={async (element, next)=>{
+        next();
+      }}>
+        Progress
+    </AwesomeButtonProgress>
   );
 }
 
@@ -32,12 +47,14 @@ const StartDropDown = () => {
   return(
     <div> 
       <Select 
+      menuPortalTarget={document.body} 
+      menuPosition = {'fixed'}
       placeholder = 'Choose Starting Location' 
       onChange = {handleChange}
       options={options} />
-      <p>{Starting}</p>
     </div>
   );
+  //<p>{Starting}</p>
 }
 
 const EndDropDown = () => {
@@ -50,12 +67,14 @@ const EndDropDown = () => {
   return(
     <div> 
       <Select 
+      menuPortalTarget={document.body} 
+      menuPosition = {'fixed'}
       placeholder = 'Choose Starting Location' 
       onChange = {handleChange}
       options={options} />
-      <p>{Ending}</p>
     </div>
   );
+  //<p>{Ending}</p>
 }
 
 const SearchStart = () =>{
