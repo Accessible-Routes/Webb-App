@@ -4,12 +4,14 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import TopBar from './topBar.component';
 import SearchBar from './searchbar.component';
+import FindRouteButton from './findroutebutton.component';
 
 const Header = () => {
   return <View style={styles.header}>
     <TopBar/>
     <SearchBar/>
     <SearchBar/>
+    <FindRouteButton/>
   </View>
 };
 
