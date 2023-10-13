@@ -70,6 +70,9 @@ class RoomCreationView(APIView):
         accessible = data.get('Accessible', False)
         connections = data.getlist('Connections')
 
+        if len(connections) == 0:
+            return Response('Invalid Form Data', status=404)
+        
         if not number or not building or not connections:
             return Response('Invalid Form Data', status=404)
         
@@ -79,6 +82,10 @@ class RoomCreationView(APIView):
             return Response('Invalid Form Data', status=404)
 
         new_room = Room(building=building, room_name=name, room_number=number, accessible=accessible)
+
+        if len(connections) == 1 and connections[0] == '':
+            return Response('Successfully created room', status=200)
+        
         for room in connections:
             try:
                 room = Room.objects.get(id = room)
@@ -91,4 +98,14 @@ class RoomCreationView(APIView):
             new_room.connected_rooms.add(room)
             room.connected_rooms.add(new_room)
             
-        return Response(status=200)
+        return Response('Successfully created room', status=200)
+
+class RoomEditView(APIView):
+    permission_classes = [HasAPIKey]
+    def post(self, request):
+        data = request.data
+        name = data.get('Name','')
+        number = data.get('Number')
+        building = data.get('Building')
+        accessible = data.get('Accessible', False)
+        connections = data.getlist('Connections')
