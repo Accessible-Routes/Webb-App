@@ -6,10 +6,12 @@ import Header from './common/components/header.component';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+    <SafeAreaView style={{flex:1}}>
       <Header/>
-      <MyMap/>
     </SafeAreaView>
+      <MyMap/>
+    </View>
   );
 }
 
