@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, View, Text } from 'react-native';
 
@@ -7,9 +7,15 @@ import SearchBar from './searchbar.component';
 import FindRouteButton from './findroutebutton.component';
 
 const Header = () => {
+  const [startLocation, setStartLocation] = useState('');
+  const [endLocation, setEndLocation] = useState('');
+
+
   return <View style={styles.header}>
     <TopBar/>
-    <SearchBar title="start"/>
+    <SearchBar title={"Start"} setLocationText={setStartLocation}/>
+    <SearchBar title={"End"} setLocationText={setEndLocation}/>
+
   </View>
 };
 

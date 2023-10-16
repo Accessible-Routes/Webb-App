@@ -2,12 +2,13 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TextInput } from 'react-native';
 
 
-const SearchBar = props => {
+const SearchBar = ({title, setLocationText}) => {
     return (<View style={styles.container}>
-        <Text style={styles.inputTitle}>{props.title}:</Text>
+        <Text style={styles.inputTitle}>{title}:</Text>
         <TextInput 
             style={styles.input}
-            placeholder= {props.title + " location"} />
+            placeholder= {title + " location"} 
+            onChangeText={newText => setLocationText(newText)}/>
     </View>);
 };
 
