@@ -16,9 +16,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
+  }
 });

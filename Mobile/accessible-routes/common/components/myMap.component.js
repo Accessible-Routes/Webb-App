@@ -23,7 +23,7 @@ const MyMap = () => {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      flex: 3,
     },
     map: {
       width: '100%',

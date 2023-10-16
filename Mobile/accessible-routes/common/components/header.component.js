@@ -16,12 +16,13 @@ const Header = () => {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      
       flexDirection: "column"
     },
     header: {
       width: '100%',
       height: '25%',
+      flex: 1,
     },
 
   });
