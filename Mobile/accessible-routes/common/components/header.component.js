@@ -15,7 +15,7 @@ const Header = () => {
     <TopBar/>
     <SearchBar title={"Start"} setLocationText={setStartLocation}/>
     <SearchBar title={"End"} setLocationText={setEndLocation}/>
-
+    <FindRouteButton/>
   </View>
 };
 
@@ -23,12 +23,13 @@ const Header = () => {
 const styles = StyleSheet.create({
     container: {
       
-      flexDirection: "column"
+      flexDirection: "column",
     },
     header: {
       width: '100%',
       height: '25%',
       flex: 1,
+      flexDirection: "column",
     },
 
   });
