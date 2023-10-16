@@ -9,9 +9,7 @@ import FindRouteButton from './findroutebutton.component';
 const Header = () => {
   return <View style={styles.header}>
     <TopBar/>
-    <SearchBar/>
-    <SearchBar/>
-    <FindRouteButton/>
+    <SearchBar title="start"/>
   </View>
 };
 
@@ -19,6 +17,7 @@ const Header = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      flexDirection: "column"
     },
     header: {
       width: '100%',

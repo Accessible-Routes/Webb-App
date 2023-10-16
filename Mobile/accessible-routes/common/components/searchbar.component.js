@@ -1,33 +1,42 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, TextInput } from 'react-native';
 
 
-
-const SearchBar = () => {
-    return <View style={styles.container}>
-        <Text> Start: </Text>
-        <TouchableOpacity style={styles.searchBtnContainer}>
-            <Text>Click here to search</Text>
-        </TouchableOpacity>
-    </View>
+const SearchBar = props => {
+    return (<View style={styles.container}>
+        <Text style={styles.inputTitle}>{props.title}:</Text>
+        <TextInput 
+            style={styles.input}
+            placeholder= {props.title + " location"} />
+    </View>);
 };
-
-
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        height: 30,
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+    },
 
-        width: "100%",
-        height: 20,
-        flexDirection: "row"
+    input: {
+        flex: 5,
+        height: 40,
+        width: 80,
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
     },
-    searchBtnContainer: {
-        
-        backgroundColor: "#dedede",
-        borderRadius: 5 / 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
+
+    inputTitle: {
+        flex: 1,
+        height: 40,
+        width: 80,
+        margin: 12,
+        padding: 10,
+        fontWeight: "bold",
+        fontSize: 15,
+    }
 
 })
 
