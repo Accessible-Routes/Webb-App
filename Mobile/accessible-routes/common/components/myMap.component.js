@@ -1,8 +1,8 @@
 import React from 'react';
-import MapView from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
 import { StyleSheet, View, Text } from 'react-native';
 
-const MyMap = ({pathData}) => {
+const MyMap = ({routeData}) => {
   const campus_center = [42.7294, -73.6797]
   const initialRegion = {
     latitude: 42.729268, 
@@ -15,6 +15,14 @@ const MyMap = ({pathData}) => {
             <MapView 
               initialRegion={initialRegion}
               style={styles.map}>
+
+               {routeData.route.map((marker) => 
+                (<Marker
+                  key={marker.index}
+                  coordinate={{latitude: marker.lat, longitude: marker.long}}
+                  title={'loc'}
+                />)
+              )} 
 
               
             </MapView>
