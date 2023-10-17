@@ -1,3 +1,8 @@
-#React
+node_modules/
+.env
+Lib/
+Scripts/
+pyvenv.cfg
+*.pyc
 node_modules
 
