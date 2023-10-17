@@ -6,10 +6,7 @@ import TopBar from './topBar.component';
 import SearchBar from './searchbar.component';
 import FindRouteButton from './findroutebutton.component';
 
-const Header = () => {
-  const [startLocation, setStartLocation] = useState('');
-  const [endLocation, setEndLocation] = useState('');
-
+const Header = ({ setStartLocation, setEndLocation }) => {
 
   return <View style={styles.header}>
     <TopBar/>

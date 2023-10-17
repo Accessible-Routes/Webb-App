@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
-export const useFetch = (url, startLoc, endLoc) => {
+
+
+
+export const useFetch = (startLoc, endLoc) => {
+  const url = '';
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
@@ -20,6 +24,6 @@ export const useFetch = (url, startLoc, endLoc) => {
       }
     };
     fetchData();
-  }, [url]);
+  }, [startLoc, endLoc]);
   return { data, isPending, error };
 };
