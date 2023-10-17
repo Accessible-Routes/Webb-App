@@ -25,7 +25,7 @@ class Room(models.Model):
     room_number = models.IntegerField(blank=True, null=True, default=-1)
     
     class RoomType(models.TextChoices):
-        CLASS_ROOM = 'CLASSROOM'
+        CLASS_ROOM = 'CLASS_ROOM'
         LECTURE_HALL = 'LECTURE_HALL'
         HALLWAY = 'HALLWAY'
         UNSPECIFIED = 'UNSPECIFIED'

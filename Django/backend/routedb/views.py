@@ -104,8 +104,109 @@ class RoomEditView(APIView):
     permission_classes = [HasAPIKey]
     def post(self, request):
         data = request.data
-        name = data.get('Name','')
-        number = data.get('Number')
-        building = data.get('Building')
-        accessible = data.get('Accessible', False)
-        connections = data.getlist('Connections')
+
+        uuid = data.get('UUID')
+        try:
+            room = Room.objects.get(id = uuid)
+        except:
+            return Response(f'Room with uuid:{uuid} does not exist', status=404)
+        
+        number = data.get('Number', None)
+        if number is not None:
+            number = int(number)
+            room.room_number = number
+        
+        room_type = data.get('Room_Type', None)
+
+        flag = False
+        if room_type is None:
+            flag = True
+
+        for item in Room.RoomType.choices:
+            if room_type == item[0]:
+                flag = True
+        
+        if not flag:
+            return Response(f'Invalid Room Type Data', status=404)
+        
+        building_id = data.get('Building', None)
+        try:
+            building = Building.objects.get(id=building_id)
+            room.building = building
+        except:
+            return Response(f'Building with uuid:{building_id} does not exist', status=404)
+        
+        stairs = data.get('Stairs', None)
+        if stairs is not None:
+            if stairs == 'true':
+                room.stairs = True
+                print('true')
+            elif stairs == 'false':
+                room.stairs = False
+                print('false')
+            else:
+                return Response(f'Invalid Room Stairs Data', status=404)
+        
+        elevator = data.get('Elevator', None)
+        if elevator is not None:
+            if elevator == 'true':
+                room.elevator = True
+                print('true')
+            elif elevator == 'false':
+                room.elevator = False
+                print('false')
+            else:
+                return Response(f'Invalid Room Elevator Data', status=404)
+        
+        ramps = data.get('Ramps', None)
+        if ramps is not None:
+            if ramps == 'true':
+                room.ramps = True
+                print('true')
+            elif ramps == 'false':
+                room.ramps = False
+                print('false')
+            else:
+                return Response(f'Invalid Room Ramps Data', status=404)
+
+        accessible = data.get('Accessible', None)
+        if accessible is not None:
+            if accessible == 'true':
+                room.accessible = True
+                print('true')
+            elif accessible == 'false':
+                room.accessible = False
+                print('false')
+            else:
+                return Response(f'Invalid Room Accessible Data', status=404)
+
+        tags = data.get('Tags', None)
+        if tags is not None:
+            room.tags = tags
+
+        connections = data.getlist('Connections', None)
+        if connections is None:
+            return Response(f'Successfully editted room', status=200)
+        
+        for connection in connections:
+            try:
+                Room.objects.get(id=connection)
+            except:
+                return Response(f'Room with uuid:{connection} does not exist', status=404)
+        
+        for connect in room.connected_rooms.all():
+            connected_room = Room.objects.get(id=connect.id)
+            connected_room.connected_rooms.remove(room)
+            connected_room.save()
+            room.connected_rooms.remove(connected_room)
+            room.save()
+        
+        for connection in connections:
+            connected_room = Room.objects.get(id=connection)
+            connected_room.connected_rooms.add(room)
+            connected_room.save()
+            room.connected_rooms.add(connected_room)
+            room.save()
+
+        return Response(f'Successfully editted room', status=200)
+

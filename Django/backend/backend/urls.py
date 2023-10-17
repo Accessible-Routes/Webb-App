@@ -16,12 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from routedb.views import RoomAccessibleView, AllRoomView, AllBuildingView, RoomCreationView
+from routedb.views import RoomAccessibleView, AllRoomView, AllBuildingView, RoomCreationView, RoomEditView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/all-buildings', AllBuildingView.as_view(), name='all-buildings'),
     path('api/all-rooms', AllRoomView.as_view(), name='all-rooms'),
     path('api/rooms/<room_id>/', RoomAccessibleView.as_view(), name='room'),
-    path('api/create-room/', RoomCreationView.as_view(), name='room-creation')
+    path('api/create-room/', RoomCreationView.as_view(), name='room-creation'),
+    path('api/edit-room/', RoomEditView.as_view(), name='room-edit'),
 ]
