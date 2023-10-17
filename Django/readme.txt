@@ -1,5 +1,15 @@
 The backend for Accessible Routes is written using the Django Framework.
 
+To start the backend, 
+1. (Optional) Create a python virtual environment and start it.
+2. Run "pip install -r Django/requirements.txt"
+3. Run "python Django/backend/manage.py makemigrations"
+4. Run "python Django/backend/manage.py migrate"
+5. Run "python Django/backend/manage.py runserver"
+
+If start successfully, you should see something like "Starting development server at http://127.0.0.1:8000/"
+If you are having issues, they may be related to setting up the Postgres database locally.
+
 The main API that is needed is below:
 Ask for an API key for requests that need API Keys.
 
