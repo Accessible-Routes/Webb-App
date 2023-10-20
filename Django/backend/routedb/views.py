@@ -210,7 +210,7 @@ class RoomEditView(APIView):
 
         return Response(f'Successfully editted room', status=200)
 
-
+# There are assumptions about the json request data such as nodes coming first then ways
 class NodeRecreateView(APIView):
     permission_classes = [HasAPIKey]
     def post(self, request):
