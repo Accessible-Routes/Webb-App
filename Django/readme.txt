@@ -1,6 +1,13 @@
 The backend for Accessible Routes is written using the Django Framework.
 
-To start the backend, 
+To start the backend, you have to create the database then migrate the database.
+Part 1: Create the database
+1. Install PostgreSQL and PgAdmin. The version that the production server uses is version 16 but any version should work.
+2. Follow step 6 on here: https://stackpython.medium.com/how-to-start-django-project-with-a-database-postgresql-aaa1d74659d8
+    Take note of 
+3. 
+
+Part 2: Migrate the database
 1. (Optional) Create a python virtual environment and start it.
 2. Run "pip install -r Django/requirements.txt"
 3. Run "python Django/backend/manage.py makemigrations"
