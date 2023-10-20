@@ -225,6 +225,16 @@ class NodeRecreateView(APIView):
                 new_node.lat = element['lat']
                 new_node.long = element['lon']
                 new_node.save()
-        
+            new_way = Way()
+            if element['type'] == 'way':
+                new_way.id = element['id']
+                nodes = element['nodes']
+                new_way.save()
+                for node in nodes:
+                    current_node = Node.objects.get(id=node)
+                    new_way.nodes.add(current_node)
+                    new_way.save()
+                    current_node.save()
+
         return Response(f'Successfully Recreated Nodes and Edges', status=200)
 

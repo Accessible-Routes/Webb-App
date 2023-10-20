@@ -48,7 +48,13 @@ class Node(models.Model):
     id = models.BigIntegerField(primary_key=True, unique=True, blank=False)
     lat = models.DecimalField(max_digits=10, decimal_places=7, default=0.0)
     long = models.DecimalField(max_digits=10, decimal_places=7, default=0.0)
+    
+    def __str__(self):
+        return f'{self.id}'
 
 class Way(models.Model):
     id = models.BigIntegerField(primary_key=True, unique=True, blank=False)
     nodes = models.ManyToManyField(Node)
+
+    def __str__(self):
+        return f'{self.id}'
