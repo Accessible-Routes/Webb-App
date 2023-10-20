@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import osmnx as ox
 import json
+from entrancePoint import entrancePoint
+
 
 def testPlotRoute(RPI):
       orig = ox.nearest_nodes(RPI, 42.7324294, -73.6905807)
@@ -12,20 +14,25 @@ def testPlotRoute(RPI):
       #route_map = ox.plot_route_folium(RPI, route)
       #route_map.save('test.html')
       return route
-def addNodes(filename):
+def createNodeArray(filename):
       f = open(filename)
       data = json.load(f)
       add_nulls = lambda number, zero_count : "{0:0{1}d}".format(number, zero_count)
       counter = 0
+      nodeArr = []
       for i in data['Entrances']:
             for j in i['Points']:
                   counter += 1
-                  name = i['NAME']
+                  buidling = i['NAME']
                   tmp_id = add_nulls(counter, 5)
-                  pointName = name + str(tmp_id)
+                  pointName = buidling + str(tmp_id)
                   print(pointName)
                   lon, lat = j.strip(' ').split(',')
                   print(float(lon), float(lat))
+                  tmp_p = entrancePoint(tmp_id, lon, lat, pointName, buidling)
+                  nodeArr.append(tmp_p)
+
+
       # '001': 
       #       {
       #             'y': 7.367210, 
@@ -33,7 +40,7 @@ def addNodes(filename):
       #             'street_count': 1
       #       }
       # }
-      return 0
+      return nodeArr
 
 
 def plotGraph():
@@ -78,8 +85,9 @@ def customNodeCreator(filename):
 
 #place = 'Rensselaer Polytechnic Institute'
 #test = plotGraph().edges(data=True)
-addNodes('Database/fetchGraph/buildingEntrance.json')
-
+arr = createNodeArray('Database/fetchGraph/buildingEntrance.json')
+for i in arr:
+      print(i.serialize())
 # for u, v, highway in RPI.edges(highway='highway'):
       #       if highway != 'footpath' or highway != 'path': 
       #             RPI.remove_edge(u, v)
