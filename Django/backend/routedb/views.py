@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework_api_key.permissions import HasAPIKey
 from rest_framework.response import Response
-from .models import Room, Building
+from .models import Room, Building, Node, Way
 from django.http import JsonResponse
 
 # Create your views here.
@@ -209,4 +209,22 @@ class RoomEditView(APIView):
             room.save()
 
         return Response(f'Successfully editted room', status=200)
+
+
+class NodeRecreateView(APIView):
+    permission_classes = [HasAPIKey]
+    def post(self, request):
+        data = request.data
+        elements = data.get('elements')
+        Node.objects.all().delete()
+        Way.objects.all().delete()
+        for element in elements:
+            new_node = Node()
+            if element['type'] == 'node':
+                new_node.id = element['id']
+                new_node.lat = element['lat']
+                new_node.long = element['lon']
+                new_node.save()
+        
+        return Response(f'Successfully Recreated Nodes and Edges', status=200)
 

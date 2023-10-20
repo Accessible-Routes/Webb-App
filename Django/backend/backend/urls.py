@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from routedb.views import RoomAccessibleView, AllRoomView, AllBuildingView, RoomCreationView, RoomEditView
+from routedb.views import RoomAccessibleView, AllRoomView, AllBuildingView, RoomCreationView, RoomEditView, NodeRecreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('api/rooms/<room_id>/', RoomAccessibleView.as_view(), name='room'),
     path('api/create-room/', RoomCreationView.as_view(), name='room-creation'),
     path('api/edit-room/', RoomEditView.as_view(), name='room-edit'),
+    path('api/recreate/', NodeRecreateView.as_view(), name='node-recreate')
 ]
