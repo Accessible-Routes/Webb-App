@@ -1,14 +1,16 @@
 import './App.css';
 import MyMap from './common/components/mapSample.component';
 //import searchBar from './common/components/searchBar';
-import {React, useState } from 'react';
+import {React, useState, useEffect} from 'react';
 import Select from 'react-select';
 import {AwesomeButtonProgress} from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css'; 
+import axios from 'axios';
 
 
 
 function App() {
+  Call();
   return (
     <div className="Page">
         <MyMap/>
@@ -27,7 +29,7 @@ const Button = () => {
       onPress={async (element, next)=>{
         next();
       }}>
-        Progress
+        Start
     </AwesomeButtonProgress>
   );
 }
@@ -36,6 +38,36 @@ const options = [
   { value: 'test', label: 'Amos Eaton' },
   { value: 'test2', label: 'DCC'}
 ]
+
+let buildings = []
+
+let test = []
+
+//WORK IN PROGRESS, WILL GRAB FROM DJANGO DB TO DISPLAY ALL BUILDINGS
+//NEEDS TO BE PARSED CORRECTLY
+const Call = () => {
+  axios
+    .get('http://127.0.0.1:8000/api/all-buildings')
+    .then((result) => {
+      console.log(result.data)
+      for (let building in result.data) {
+        buildings.push({
+          value: building.UUID,
+          label: building.Name
+        })
+        test.push(building)
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+}
+
+const customStyles = {
+  indicatorSeparator: styles => ({ ...styles, display: "none" }),
+    option: (provided, state) => ({
+      ...provided,
+    })
+}
 
 const StartDropDown = () => {
   //Store starting location selected by user to get ready for to query 
@@ -51,7 +83,7 @@ const StartDropDown = () => {
       menuPosition = {'fixed'}
       placeholder = 'Choose Starting Location' 
       onChange = {handleChange}
-      options={options} />
+      options={buildings} />
     </div>
   );
   //<p>{Starting}</p>
