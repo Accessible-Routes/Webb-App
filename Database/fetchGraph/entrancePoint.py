@@ -1,3 +1,6 @@
+from shapely.geometry import  Point
+import geopandas as gpd
+
 class entrancePoint:
       def __init__(self, id, lng, lat, name, building):
             self.type = 'node'
@@ -7,10 +10,10 @@ class entrancePoint:
             self.tags = {"Entrance" : building}
       def serialize(self):
             dict ={
-                  "id" : self.id,
-                  "lat" : self.lat,
-                  "lon" : self.lng,
+                  "osmid" : self.id,
+                  'geometry' : Point(self.lng, self.lat),
+                  "y" : self.lat,
+                  "x" : self.lng,
                   "tags" : self.tags
             }
-            
             return dict

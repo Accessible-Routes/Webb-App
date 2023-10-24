@@ -3,7 +3,9 @@ import networkx as nx
 import osmnx as ox
 import json
 from entrancePoint import entrancePoint
-
+import geopandas as gpd
+from shapely.geometry import  Point
+import pandas as pd
 
 def testPlotRoute(RPI):
       orig = ox.nearest_nodes(RPI, 42.7324294, -73.6905807)
@@ -40,10 +42,11 @@ def createNodeArray(filename):
       #             'street_count': 1
       #       }
       # }
-      return nodeArr
+      gdf = gpd.GeoDataFrame(nodeArr)
+      return gdf
 
 
-def plotGraph():
+def plotGraph(new_nodes):
       #ox.config(use_cache=True, log_console=False)
       ox.settings.log_console = False
       ox.settings.use_cache = True
@@ -66,8 +69,10 @@ def plotGraph():
       for u, v in zip(shortest_path[0:], shortest_path[1:]):
             edge_data = RPI.get_edge_data(u, v)
             min_weight = min([edge_data[edge]['length'] for edge in edge_data])
-            print(f"{u}---({min_weight})---{v}")
-      
+            print(f"{u}---({edge_data, min_weight})---{v}")
+      nodes, edges = ox.graph_to_gdfs(RPI, nodes=True, edges=True)
+      nodes = pd.concat([nodes, new_nodes], ignore_index = True)
+      RPI = ox.graph_from_gdfs(nodes, edges)
       ox.plot.plot_graph_route(RPI,shortest_path)
       return RPI
 
@@ -75,19 +80,19 @@ def weight(RPI):
       RPI = ox.graph_to_gdfs(RPI, nodes=True, edges=True)
       #RPI['weight'] = 1.0
       return RPI
+def addNodes(RPI, filename):
+      tmp_list = createNodeArray(filename)
+
+      my_nodes = gpd.GeoDataFrame(tmp_list)
+      return RPI
 
 
-def customNodeCreator(filename):
-      nodeDict = {}
+place = 'Rensselaer Polytechnic Institute'
+new_nodes = createNodeArray('Database/fetchGraph/buildingEntrance.json')
+test = plotGraph(new_nodes).edges(data=True)
 
-      return nodeDict
-
-
-#place = 'Rensselaer Polytechnic Institute'
-#test = plotGraph().edges(data=True)
-arr = createNodeArray('Database/fetchGraph/buildingEntrance.json')
-for i in arr:
-      print(i.serialize())
+#for i in arr:
+#      print(i.serialize())
 # for u, v, highway in RPI.edges(highway='highway'):
       #       if highway != 'footpath' or highway != 'path': 
       #             RPI.remove_edge(u, v)
