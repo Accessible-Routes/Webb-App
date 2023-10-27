@@ -3,7 +3,7 @@ import MapView, { Marker, Polyline } from 'react-native-maps';
 import { StyleSheet, View, Text } from 'react-native';
 
 
-const MyMap = ({ buildingLocations, routeCordList }) => {
+const MyMap = ({ buildingLocations, routeCordList, routeFound }) => {
   const initialRegion = {
     latitude: 42.729268,
     longitude: -73.681227,
@@ -16,7 +16,7 @@ const MyMap = ({ buildingLocations, routeCordList }) => {
       initialRegion={initialRegion}
       style={styles.map}>
 
-    {/* Draw buildings */
+      {/* Draw buildings */
         buildingLocations.map((marker) =>
         (<Marker
           key={marker.location_type}
@@ -34,6 +34,11 @@ const MyMap = ({ buildingLocations, routeCordList }) => {
         />}
 
     </MapView>
+    <View style={{justifyContent:'center',alignItems:'center',alignSelf:'center', position:'absolute', paddingTop:40}}>
+
+          {routeFound ? <Text></Text> : <Text style={{fontSize:30, textDecorationLine: 'underline'}}>No Route Found</Text>}
+
+    </View>
 
   </View>
 };

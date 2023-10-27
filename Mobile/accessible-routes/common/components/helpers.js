@@ -72,10 +72,14 @@ const ParseLocationsAndRoute = (startLocationString, endLocationString) => {
 
   // Make Back-end call here to get Json, and parse similarly to the mock response.
   console.log("request: \nStart location: ", startLocationString, "\nEnd location: ", endLocationString)
-  if (startLocationString === "test1") {
-    MockResponseTest = MockResponse
+  route_found = true;
+
+  if (startLocationString === "route_2") {
+    MockResponseTest =  MockResponse2
+  } else if (startLocationString === "no_path") {
+    route_found = false;
   } else {
-    MockResponseTest = MockResponse2
+    MockResponseTest = MockResponse
   }
 
   {/*Parse start and ending locations */ }
@@ -85,8 +89,9 @@ const ParseLocationsAndRoute = (startLocationString, endLocationString) => {
   route = MockResponseTest.route.map((spot) => ({ latitude: spot.latitude, longitude: spot.longitude }))
 
   error = false;
+  
 
-  return { buildings, route, error }
+  return { buildings, route, route_found, error }
 }
 
 

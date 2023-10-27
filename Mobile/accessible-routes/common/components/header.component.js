@@ -7,19 +7,27 @@ import TopBar from './topBar.component';
 import SearchBar from './searchbar.component';
 
 
-const Header = ({ setBuildingLocations, setRouteCordList }) => {
+const Header = ({ setBuildingLocations, setRouteCordList, setRouteFound }) => {
   const [startLocationString, setStartLocationString] = useState('');
   const [endLocationString, setEndLocationString] = useState('');
 
   const requestRoute = () => {
-    const { buildings, route, error } = ParseLocationsAndRoute(startLocationString, endLocationString)
+    const { buildings, route, route_found, error } = ParseLocationsAndRoute(startLocationString, endLocationString)
+    setRouteFound(route_found);
     if (!error) {
-      console.log(buildings)
-      setBuildingLocations(buildings)
-      setRouteCordList(route)
+      if(route_found){
+        console.log(buildings)
+        setBuildingLocations(buildings)
+        setRouteCordList(route)
+      }else{
+        // if there is not path route available, clear all markers and routes on map
+        setBuildingLocations([])
+        setRouteCordList([])
+      }
     } else {
       console.log('route parsing error')
       console.log(error)
+
     }
   }
 
