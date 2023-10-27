@@ -39,28 +39,49 @@ const options = [
   { value: 'test2', label: 'DCC'}
 ]
 
-let buildings = []
+var buildings = []
 
-let test = []
+const no_duplicates = new Set()
 
-//WORK IN PROGRESS, WILL GRAB FROM DJANGO DB TO DISPLAY ALL BUILDINGS
-//NEEDS TO BE PARSED CORRECTLY
+function containsBuilding(obj, list) {
+  var i;
+  for (i = 0; i < list.length; i++) {
+      if (list[i].Name === obj.label) {
+          return true;
+      }
+  }
+
+  return false;
+}
+
+//WILL BE CHANGED TO FIT WITH NEW JSON FORMAT
 const Call = () => {
+  buildings = []
   axios
     .get('http://127.0.0.1:8000/api/all-buildings')
     .then((result) => {
-      console.log(result.data)
-      for (let building in result.data) {
-        buildings.push({
-          value: building.UUID,
-          label: building.Name
-        })
-        test.push(building)
+      for (let i = 0; i < result.data.length; i++){
+        console.log(buildings)
+        if (containsBuilding(result.data[i], buildings) === false){
+          no_duplicates.add({value: result.data[i].UUID, label: result.data[i].Name})
+          console.log(result.data[i])
+          buildings.push({
+            value: result.data[i].UUID,
+            label: result.data[i].Name
+         })
+        }
       }
+      //buildings = Array.from(no_duplicates)
     }).catch((err) => {
       console.log(err)
     })
 }
+
+// for (let building in result.data) {
+//   buildings.push({
+//     value: building.UUID,
+//     label: building.Name
+//   })
 
 const customStyles = {
   indicatorSeparator: styles => ({ ...styles, display: "none" }),
@@ -91,10 +112,10 @@ const StartDropDown = () => {
 
 const EndDropDown = () => {
   //Store destination location selected by user to get ready for query
-  const [Ending, setStart] = useState('');
+  const [Ending, setEnd] = useState('');
 
   const handleChange = (event) => {
-    setStart(event.label);
+    setEnd(event.label);
   }
   return(
     <div> 
@@ -103,42 +124,10 @@ const EndDropDown = () => {
       menuPosition = {'fixed'}
       placeholder = 'Choose Starting Location' 
       onChange = {handleChange}
-      options={options} />
+      options={buildings} />
     </div>
   );
   //<p>{Ending}</p>
-}
-
-const SearchStart = () =>{
-  const BarStyle = {width: "14.60vw", height: "4vh", background: "#F0F0F0", border: '3px solid rgba(0, 0, 0, 0.5)', padding: "0.2rem", };
-  const [inputText, setInputText] = useState("");
-  const handleChange = (e) => {
-    //convert input text to lower case
-    var lowerCase = e.target.value.toLowerCase();
-    setInputText(lowerCase);
-  };
-  return(
-    <div>
-      <input
-      style={BarStyle}
-      //key="search-bar"
-      //value={keyword}
-      onChange={handleChange}
-      placeholder={"Choose Starting Location"}
-      />
-    </div>
-  );
-}
-
-const SearchDest = () =>{
-  const BarStyle = {width: "14.60vw", height: "4vh", background: "#F0F0F0", border: "3px solid rgba(0, 0, 0, 0.5)", padding: "0.2rem", };
-  const [searchInput, setSearchInput] = useState("");
-  return(
-    <input
-    style={BarStyle}
-    placeholder={"Choose Destination"}
-    />
-  );
 }
 
 export default App;
