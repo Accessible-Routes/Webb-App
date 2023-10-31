@@ -15,6 +15,8 @@ class AllBuildingView(APIView):
             temp_json = {}
             temp_json['Name'] = building.name
             temp_json['UUID'] = building.id
+            temp_json['latitude'] = building.lat
+            temp_json['longitude'] = building.long
             building_list.append(temp_json)
         return JsonResponse(building_list, safe=False, status=200)
 
@@ -282,6 +284,6 @@ class OutdoorRouteView(APIView):
             node['latitude'] = uniform(42.729270, 42.730594)
             node['longitude'] = uniform(-73.682323, -73.677375)
             response_dict['route'].append(node)
-            
+
         #Returns JSON data
         return JsonResponse(response_dict, status=200)
