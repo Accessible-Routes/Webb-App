@@ -1,0 +1,69 @@
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .Page {
+    display: flex;  
+  }
+  
+  .MyMap {
+    position: static;
+  }
+  
+  .SearchBar {
+    position: relative;
+    right: 0;
+    border: 2px solid #000000
+  }
+  
+  .StartDropDown {
+    position: static;
+    transform: none;
+  }
+  
+  .EndDropDown {
+    position: static;
+    transform: none;
+  }
+  
+  .Search{
+    width: 14.60vw;
+    background-color: grey;
+    align-items:center;
+  }
+  
+  #mapButton {
+    position: absolute;
+    top: 20px;
+    right: 14vw;
+    padding: 10px;
+    z-index: 400;
+  }
+  
+  .test {
+    position: absolute;
+    top: 20px;
+    right: 14vw;
+    padding: 10px;
+    z-index: 400;
+  }
