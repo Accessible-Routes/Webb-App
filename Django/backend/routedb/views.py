@@ -4,6 +4,7 @@ from rest_framework_api_key.permissions import HasAPIKey
 from rest_framework.response import Response
 from .models import Room, Building, Node, Way
 from django.http import JsonResponse
+from random import randrange, uniform
 
 # Create your views here.
 class AllBuildingView(APIView):
@@ -46,7 +47,7 @@ class RoomAccessibleView(APIView):
         try:
             room = Room.objects.get(id=room_id)            
         except:
-            return JsonResponse({'message':'No Room Found.'},status=404)
+            return JsonResponse({'message':'No Room Found.'},status=400)
         
         room_json = {}
         room_json['UUID'] = room.id
@@ -71,15 +72,15 @@ class RoomCreationView(APIView):
         connections = data.getlist('Connections')
 
         if len(connections) == 0:
-            return Response('Invalid Form Data', status=404)
+            return Response('Invalid Form Data', status=400)
         
         if not number or not building or not connections:
-            return Response('Invalid Form Data', status=404)
+            return Response('Invalid Form Data', status=400)
         
         try:
             building = Building.objects.get(name = building)
         except:
-            return Response('Invalid Form Data', status=404)
+            return Response('Invalid Form Data', status=400)
 
         new_room = Room(building=building, room_name=name, room_number=number, accessible=accessible)
 
@@ -90,7 +91,7 @@ class RoomCreationView(APIView):
             try:
                 room = Room.objects.get(id = room)
             except:
-                return Response('Invalid Form Data', status=404)
+                return Response('Invalid Form Data', status=400)
         
         new_room.save()
         for room in connections:
@@ -127,7 +128,7 @@ class RoomEditView(APIView):
                 flag = True
         
         if not flag:
-            return Response(f'Invalid Room Type Data', status=404)
+            return Response(f'Invalid Room Type Data', status=400)
         
         building_id = data.get('Building', None)
         try:
@@ -145,7 +146,7 @@ class RoomEditView(APIView):
                 room.stairs = False
                 print('false')
             else:
-                return Response(f'Invalid Room Stairs Data', status=404)
+                return Response(f'Invalid Room Stairs Data', status=400)
         
         elevator = data.get('Elevator', None)
         if elevator is not None:
@@ -156,7 +157,7 @@ class RoomEditView(APIView):
                 room.elevator = False
                 print('false')
             else:
-                return Response(f'Invalid Room Elevator Data', status=404)
+                return Response(f'Invalid Room Elevator Data', status=400)
         
         ramps = data.get('Ramps', None)
         if ramps is not None:
@@ -167,7 +168,7 @@ class RoomEditView(APIView):
                 room.ramps = False
                 print('false')
             else:
-                return Response(f'Invalid Room Ramps Data', status=404)
+                return Response(f'Invalid Room Ramps Data', status=400)
 
         accessible = data.get('Accessible', None)
         if accessible is not None:
@@ -178,7 +179,7 @@ class RoomEditView(APIView):
                 room.accessible = False
                 print('false')
             else:
-                return Response(f'Invalid Room Accessible Data', status=404)
+                return Response(f'Invalid Room Accessible Data', status=400)
 
         tags = data.get('Tags', None)
         if tags is not None:
@@ -238,3 +239,49 @@ class NodeRecreateView(APIView):
 
         return Response(f'Successfully Recreated Nodes and Edges', status=200)
 
+class OutdoorRouteView(APIView):
+    def get(self, request):
+        data = request.data
+
+        start_name = data.get('starting_location', None)
+        end_name = data.get('ending_location', None)
+
+        if not start_name or not end_name:
+            return Response(f'Invalid Building Data', status=400)
+        
+        try:
+            start_building = Building.objects.get(name = start_name)
+            end_building = Building.objects.get(name = end_name)
+        except:
+            return Response(f'Invalid Room Accessible Data', status=400)
+        
+        response_dict = {}
+        response_dict['buildings'] = [{},{}]
+
+        # Data for building 1
+        response_dict['buildings'][0] = {}
+        response_dict['buildings'][0]['title'] = start_building.name
+        response_dict['buildings'][0]['location_type'] = 'start'
+        response_dict['buildings'][0]['latitude'] = start_building.lat
+        response_dict['buildings'][0]['longitude'] = start_building.long
+
+        # Data for building 2
+        response_dict['buildings'][1] = {}
+        response_dict['buildings'][1]['title'] = end_building.name
+        response_dict['buildings'][1]['location_type'] = 'end'
+        response_dict['buildings'][1]['latitude'] = end_building.lat
+        response_dict['buildings'][1]['longitude'] = end_building.long
+        
+        # Data for route routing from start to end building
+        response_dict['route'] = []
+        
+        # TODO 
+        # Implement the pathfinding algorithming, currently just generates a random path to just have an API to use
+        for _ in range(randrange(2,6)):
+            node = {}
+            node['latitude'] = uniform(42.729270, 42.730594)
+            node['longitude'] = uniform(-73.682323, -73.677375)
+            response_dict['route'].append(node)
+            
+        #Returns JSON data
+        return JsonResponse(response_dict, status=200)
