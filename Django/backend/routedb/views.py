@@ -243,7 +243,7 @@ class NodeRecreateView(APIView):
 
 class OutdoorRouteView(APIView):
     def get(self, request):
-        data = request.data
+        data = request.GET
 
         start_name = data.get('starting_location', None)
         end_name = data.get('ending_location', None)
