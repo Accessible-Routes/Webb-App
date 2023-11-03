@@ -12,7 +12,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
-        <Header setBuildingLocations={setBuildingLocations} setRouteCordList={SetRouteCordList} setRouteFound={setRouteFound}/>
+        <Header buildingLocations={buildingLocations} setBuildingLocations={setBuildingLocations} setRouteCordList={SetRouteCordList} setRouteFound={setRouteFound}/>
       </SafeAreaView>
       <MyMap
         routeCordList={routeCordList}

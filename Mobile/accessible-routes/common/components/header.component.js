@@ -7,16 +7,18 @@ import TopBar from './topBar.component';
 import SearchBar from './searchbar.component';
 
 
-const Header = ({ setBuildingLocations, setRouteCordList, setRouteFound }) => {
+const Header = ({ buildingLocations, setBuildingLocations, setRouteCordList, setRouteFound }) => {
   const [startLocationString, setStartLocationString] = useState('');
   const [endLocationString, setEndLocationString] = useState('');
 
-  const requestRoute = () => {
-    const { buildings, route, route_found, error } = ParseLocationsAndRoute(startLocationString, endLocationString)
+
+  useEffect(() => {}, [buildingLocations]);
+  const requestRoute = async () => {
+    const { buildings, route, route_found, error } = await ParseLocationsAndRoute(startLocationString, endLocationString)
     setRouteFound(route_found);
     if (!error) {
       if(route_found){
-        console.log(buildings)
+        // console.log(buildings)
         setBuildingLocations(buildings)
         setRouteCordList(route)
       }else{
@@ -27,7 +29,6 @@ const Header = ({ setBuildingLocations, setRouteCordList, setRouteFound }) => {
     } else {
       console.log('route parsing error')
       console.log(error)
-
     }
   }
 

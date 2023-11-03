@@ -66,12 +66,16 @@ const MockResponse2 = {
     },
   ]
 }
+import axios from 'axios';
 
-
-const ParseLocationsAndRoute = (startLocationString, endLocationString) => {
-
-  // Make Back-end call here to get Json, and parse similarly to the mock response.
-  console.log("request: \nStart location: ", startLocationString, "\nEnd location: ", endLocationString)
+const ParseLocationsAndRoute = async (startLocationString, endLocationString) => {
+  const baseUrl = `http://54.219.173.249:8000/api/get-route/`
+  const query_string = `?starting_location=${startLocationString}&ending_location=${endLocationString}`
+  const response = await axios.get(baseUrl + query_string).catch((err) => {
+    console.log('error during retrieval of when getting response: ', err);
+    return {error:true};
+  });
+  
   route_found = true;
 
   if (startLocationString === "route_2") {
@@ -93,6 +97,7 @@ const ParseLocationsAndRoute = (startLocationString, endLocationString) => {
 
   return { buildings, route, route_found, error }
 }
+
 
 
 
