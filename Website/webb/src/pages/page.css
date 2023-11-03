@@ -51,6 +51,13 @@
     background-color: grey;
     align-items:center;
   }
+
+  .SearchBar{
+    width: 80vw;
+    background-color: grey;
+    justify-content:center;
+    align-items:center;
+  }
   
   #mapButton {
     position: absolute;

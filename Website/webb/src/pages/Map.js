@@ -7,7 +7,9 @@ import {AwesomeButtonProgress} from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css'; 
 import axios from 'axios';
 
+import {Link} from "react-router-dom"
 
+/*
 export default function mapPage() 
 {
     Call();
@@ -24,6 +26,23 @@ export default function mapPage()
           </div>
       </div>
     );
+}*/
+
+const MapPage = () => {
+  Call();
+  return (
+    <div className="Page">
+      <MyMap/>
+        <button id="mapButton">
+          <Link to ="/accessibility"> Swap to Accessibility View </Link>
+        </button>
+      <div className="Search">
+          <StartDropDown/>
+          <EndDropDown/>
+          <Button/>
+      </div>
+    </div>
+  );
 }
   
 
@@ -39,8 +58,8 @@ const Button = () => {
   }
   
   var buildings = []
-  
-  const no_duplicates = new Set()
+
+  const isAccessible = new Map()
   
   function containsBuilding(obj, list) {
     var i;
@@ -49,27 +68,25 @@ const Button = () => {
             return true;
         }
     }
-  
     return false;
   }
 
-const Call = () => {
+  const Call = () => {
     buildings = []
     axios
-      .get('http://127.0.0.1:8000/api/all-buildings')
+      .get('http://54.219.173.249:8000/api/all-buildings')
       .then((result) => {
         for (let i = 0; i < result.data.length; i++){
           console.log(containsBuilding(result.data[i], buildings))
           console.log(result.data[i], buildings)
           if (containsBuilding(result.data[i], buildings) == false){
-            no_duplicates.add({value: result.data[i].UUID, label: result.data[i].Name})
-              buildings.push({
+            buildings.push({
                 value: result.data[i].UUID,
                 label: result.data[i].Name
             })
+            isAccessible.set(result.data[i].Name, result.data[i].accessible)
           }
         }
-        buildings = Array.from(no_duplicates)
       }).catch((err) => {
         console.log(err)
       })
@@ -121,3 +138,6 @@ const customStyles = {
     );
     //<p>{Ending}</p>
   }
+
+export default MapPage
+export {buildings, isAccessible};
