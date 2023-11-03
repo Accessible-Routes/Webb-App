@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
-import MyMap from './common/components/myMap.component';
-import Header from './common/components/header.component';
+import OutdoorNavScreen from './common/screens/OutdoorNavScreen';
 
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [routeCordList, SetRouteCordList] = useState([]);
-  const [buildingLocations, setBuildingLocations] = useState([]);
-  const [routeFound, setRouteFound] = useState(true);
 
   return (
-    <View style={styles.container}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <Header buildingLocations={buildingLocations} setBuildingLocations={setBuildingLocations} setRouteCordList={SetRouteCordList} setRouteFound={setRouteFound}/>
-      </SafeAreaView>
-      <MyMap
-        routeCordList={routeCordList}
-        buildingLocations={buildingLocations}
-        routeFound={routeFound}
-      />
-    </View>
+    <NavigationContainer>
+    <Stack.Navigator >
+      <Stack.Screen name="Home" component={OutdoorNavScreen} options={{ headerShown: false }}/>
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 }
 

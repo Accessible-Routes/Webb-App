@@ -7,7 +7,7 @@ import TopBar from './topBar.component';
 import SearchBar from './searchbar.component';
 
 
-const Header = ({ buildingLocations, setBuildingLocations, setRouteCordList, setRouteFound }) => {
+const OutdoorHeader = ({ buildingLocations, setBuildingLocations, setRouteCordList, setRouteFound }) => {
   const [startLocationString, setStartLocationString] = useState('');
   const [endLocationString, setEndLocationString] = useState('');
 
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Header;
+export default OutdoorHeader;
