@@ -4,7 +4,7 @@ import uuid
 class Building(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, blank=False, default=uuid.uuid4)
     name = models.TextField(blank=True, null=True)
-    accessible = models.BooleanField(blank=True, null=True)
+    accessible = models.BooleanField(default=False)
 
     lat = models.DecimalField(max_digits=28, decimal_places=25, default=0.0)
     long = models.DecimalField(max_digits=28, decimal_places=25, default=0.0)

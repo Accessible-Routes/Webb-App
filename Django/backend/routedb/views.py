@@ -17,6 +17,8 @@ class AllBuildingView(APIView):
             temp_json['UUID'] = building.id
             temp_json['latitude'] = building.lat
             temp_json['longitude'] = building.long
+            temp_json['accessible'] = building.accessible
+
             building_list.append(temp_json)
         return JsonResponse(building_list, safe=False, status=200)
 
@@ -252,8 +254,8 @@ class OutdoorRouteView(APIView):
             return Response(f'Invalid Building Data', status=400)
         
         try:
-            start_building = Building.objects.get(name = start_name)
-            end_building = Building.objects.get(name = end_name)
+            start_building = Building.objects.get(id = start_name)
+            end_building = Building.objects.get(id = end_name)
         except:
             return Response(f'Invalid Room Accessible Data', status=400)
         
