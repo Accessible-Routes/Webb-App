@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
 import OutdoorNavScreen from './common/screens/OutdoorNavScreen';
+import SearchBuildingScreen from './common/screens/SearchBuildingScreen';
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,7 +16,10 @@ export default function App() {
   return (
     <NavigationContainer>
     <Stack.Navigator >
-      <Stack.Screen name="Home" component={OutdoorNavScreen} options={{ headerShown: false }}/>
+    <Stack.Screen name="SearchBuilding" component={SearchBuildingScreen} options={{ headerShown: false }}/>
+    <Stack.Screen name="Home" component={OutdoorNavScreen} options={{ headerShown: false }}/>
+
+      
     </Stack.Navigator>
   </NavigationContainer>
   );
