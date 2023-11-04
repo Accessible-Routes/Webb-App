@@ -97,12 +97,12 @@ const ParseLocationsAndRoute = async (startLocationString, endLocationString) =>
   buildings = MockResponseTest.buildings.map((building) => ({ latitude: building.latitude, longitude: building.longitude, title: building.title, location_type: building.location_type }))
 
   {/*Parse Route */ }
-  route = MockResponseTest.route.map((spot) => ({ latitude: spot.latitude, longitude: spot.longitude }))
+  route_details = MockResponseTest.route.map((spot) => ({ latitude: spot.latitude, longitude: spot.longitude }))
 
   error = false;
   
 
-  return { buildings, route, route_found, error }
+  return { buildings, route_details, route_found, error }
 }
 
 

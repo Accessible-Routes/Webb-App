@@ -5,7 +5,7 @@ import MyMap from '../components/myMap.component';
 
 
 
-const OutdoorNavScreen = ({ navigation }) => {
+const OutdoorNavScreen = ({ navigation, route }) => {
     const [routeCordList, SetRouteCordList] = useState([]);
     const [buildingLocations, setBuildingLocations] = useState([]);
     const [routeFound, setRouteFound] = useState(true);
@@ -13,7 +13,13 @@ const OutdoorNavScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <SafeAreaView style={{ flex: 1 }}>
-                <OutdoorHeader buildingLocations={buildingLocations} setBuildingLocations={setBuildingLocations} setRouteCordList={SetRouteCordList} setRouteFound={setRouteFound} />
+                <OutdoorHeader 
+                    navigation={navigation} 
+                    route={route}
+                    buildingLocations={buildingLocations} 
+                    setBuildingLocations={setBuildingLocations} 
+                    setRouteCordList={SetRouteCordList} 
+                    setRouteFound={setRouteFound} />
             </SafeAreaView>
             <MyMap
                 routeCordList={routeCordList}

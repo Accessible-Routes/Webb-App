@@ -3,10 +3,17 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, SafeAreaVi
 import axios from 'axios';
 
 
-const SearchBuildingScreen = ({ navigation }) => { 
-    const [data, setData] = useState([]);
+const SearchBuildingScreen = ({ route, navigation }) => { 
+
+    const [buildingSearchField, SetBuildingSearchField] = useState('');
+    useEffect(() => {
+        // determines what search field the data should update
+        if (route.params?.buildingSearchField !== null &&
+            route.params?.buildingSearchField !== '') {
+          SetBuildingSearchField(route.params?.buildingSearchField)
+        }
+      }, [route.params?.buildingSearchField]);
     const [buildingText, SetBuildingText] = useState('');
-    const [filteredData, setFilteredData] = useState([]);
     const [buildingNames, setBuildingNames] = useState([]);
 
     useEffect(() => { requestAllBuildings() }, []);
@@ -16,29 +23,27 @@ const SearchBuildingScreen = ({ navigation }) => {
             console.log('error during retrieval of when getting response (requesting all ): ', err);
             // report error
         });
-        setBuildingNames(response.data) // commented for testing setBuildingNames(response.data)
-        // setBuildingNames(response)
+        setBuildingNames(response.data)
     }
 
     const renderBuildingDetails = (buildingName, buildingUID) => {
         console.log(buildingName)
         if (buildingName === '' || buildingName.toLowerCase().includes(buildingText.toLowerCase())) {
-            console.log('rendering: ' + buildingName)
             return (
-            
-            
             <View >
-
                 <TouchableOpacity
-                    onPressIn={() => {navigation.navigate('Home', {startingLocationUIDParam: buildingUID})}}
+                    onPressIn={() => { 
+                        if(buildingSearchField == 'start'){
+                            navigation.navigate('Home', {startLocationUID: buildingName})
+                        }else if(buildingSearchField == 'end'){
+                            navigation.navigate('Home', {endLocationUID: buildingName})
+                        }
+                        }}
                     style={styles.itemContainer}>
-                
                     <Text>
                         {buildingName}
                     </Text>
                 </TouchableOpacity>
-
-                
             </View>)
         }
     }

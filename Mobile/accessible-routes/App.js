@@ -15,11 +15,21 @@ export default function App() {
 
   return (
     <NavigationContainer>
-    <Stack.Navigator >
-    <Stack.Screen name="SearchBuilding" component={SearchBuildingScreen} options={{ headerShown: false }}/>
-    <Stack.Screen name="Home" component={OutdoorNavScreen} options={{ headerShown: false }}/>
-
-      
+    <Stack.Navigator>
+    <Stack.Screen name="Home" 
+      component={OutdoorNavScreen} 
+      options={{ headerShown: false }}
+      initialParams={{ startLocationUID: '', endLocationUID: '' }}/>
+    <Stack.Screen name="SearchStartingBuilding" 
+      component={SearchBuildingScreen} 
+      options={{ headerShown: false }}
+      initialParams={{ buildingSearchField: 'start' }}
+      />
+    <Stack.Screen name="SearchEndingingBuilding" 
+      component={SearchBuildingScreen} 
+      options={{ headerShown: false }}
+      initialParams={{ buildingSearchField: 'end' }}
+      />
     </Stack.Navigator>
   </NavigationContainer>
   );
