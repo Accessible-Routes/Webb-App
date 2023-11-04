@@ -32,7 +32,7 @@ const SearchBuildingScreen = ({ route, navigation }) => {
             return (
             <View >
                 <TouchableOpacity
-                    onPressIn={() => { 
+                    onPress={() => { 
                         if(buildingSearchField == 'start'){
                             navigation.navigate('Home', 
                             {startLocationName: buildingName,
@@ -44,6 +44,7 @@ const SearchBuildingScreen = ({ route, navigation }) => {
                             })
                         }
                         }}
+                    delayPressIn={100}
                     style={styles.itemContainer}>
                     <Text>
                         {buildingName}
@@ -55,13 +56,13 @@ const SearchBuildingScreen = ({ route, navigation }) => {
 
     return (
         <SafeAreaView>
-            <View style={{ height: 60, width:'100%' }}>
+            <View style={{ height: '8%', width:'100%' }}>
                 <TextInput 
                     style={styles.input}
                     placeholder="search building"
                     onChangeText={newText => SetBuildingText(newText)}/>
             </View>
-            <View>
+            <View style={{ height: '92%', width:'100%' }}>
                 <FlatList
                     data={buildingNames}
                     showsVerticalScrollIndicator={false}

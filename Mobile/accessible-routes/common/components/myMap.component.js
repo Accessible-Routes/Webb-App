@@ -28,7 +28,7 @@ const MyMap = ({ buildingLocations, routeCordList, routeFound }) => {
       {/* Draw route */
         <Polyline
           coordinates={routeCordList.map((line) => ({ latitude: line.latitude, longitude: line.longitude }))}
-          strokeColor={"#6f03fc"}
+          strokeColor={"#2e294e"}
           strokeWidth={3}
           lineJoin={"round"}
         />}
