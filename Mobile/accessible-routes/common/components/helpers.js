@@ -69,38 +69,23 @@ const MockResponse2 = {
 import axios from 'axios';
 
 const ParseLocationsAndRoute = async (startLocationString, endLocationString) => {
+
   const baseUrl = `http://54.219.173.249:8000/api/get-route`
-
-  startLocationString = 'DCC'
-  endLocationString = 'Low'
-
   const query_string = `?starting_location=${startLocationString}&ending_location=${endLocationString}`
-  console.log(baseUrl + query_string)
   const response = await axios.get(baseUrl + query_string).catch((err) => {
     console.log('error during retrieval of when getting response: ', err);
     return {error:true};
   });
-  console.log(response.data)
-  
-  route_found = true;
 
-  // if (startLocationString === "route_2") {
-  //   MockResponseTest =  MockResponse2
-  // } else if (startLocationString === "no_path") {
-  //   route_found = false;
-  // } else {
-  //   MockResponseTest = MockResponse
-  // }
-  MockResponseTest  = response.data
+  RouteResponse  = response.data
+  route_found = true;
+  error = false;
 
   {/*Parse start and ending locations */ }
-  buildings = MockResponseTest.buildings.map((building) => ({ latitude: building.latitude, longitude: building.longitude, title: building.title, location_type: building.location_type }))
+  buildings = RouteResponse.buildings.map((building) => ({ latitude: building.latitude, longitude: building.longitude, title: building.title, location_type: building.location_type }))
 
   {/*Parse Route */ }
-  route_details = MockResponseTest.route.map((spot) => ({ latitude: spot.latitude, longitude: spot.longitude }))
-
-  error = false;
-  
+  route_details = RouteResponse.route.map((spot) => ({ latitude: spot.latitude, longitude: spot.longitude }))
 
   return { buildings, route_details, route_found, error }
 }

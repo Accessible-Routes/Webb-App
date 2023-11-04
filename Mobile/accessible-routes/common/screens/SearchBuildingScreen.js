@@ -34,9 +34,14 @@ const SearchBuildingScreen = ({ route, navigation }) => {
                 <TouchableOpacity
                     onPressIn={() => { 
                         if(buildingSearchField == 'start'){
-                            navigation.navigate('Home', {startLocationUID: buildingName})
+                            navigation.navigate('Home', 
+                            {startLocationName: buildingName,
+                                buildingUID: buildingUID
+                                })
                         }else if(buildingSearchField == 'end'){
-                            navigation.navigate('Home', {endLocationUID: buildingName})
+                            navigation.navigate('Home', {endLocationName: buildingName, 
+                                buildingUID: buildingUID
+                            })
                         }
                         }}
                     style={styles.itemContainer}>

@@ -10,24 +10,28 @@ import SearchBar from './searchbar.component';
 const OutdoorHeader = ({ navigation, route, buildingLocations, setBuildingLocations, setRouteCordList, setRouteFound }) => {
   const [startLocationString, setStartLocationString] = useState('');
   const [endLocationString, setEndLocationString] = useState('');
+  const [startLocationUID, setStartLocationUID] = useState('');
+  const [endLocationUID, setEndLocationUID] = useState('');
 
   // update search fields from building search screen
   useEffect(() => {
-    if (route.params?.endLocationUID) {
-      setEndLocationString(route.params?.endLocationUID)
+    if (route.params?.endLocationName) {
+      setEndLocationString(route.params?.endLocationName)
+      setEndLocationUID(route.params?.buildingUID)
     }
-  }, [route.params?.endLocationUID]);
+  }, [route.params?.endLocationName]);
 
   useEffect(() => {
-    if (route.params?.startLocationUID) {
-      setStartLocationString(route.params?.startLocationUID)
+    if (route.params?.startLocationName) {
+      setStartLocationString(route.params?.startLocationName)
+      setStartLocationUID(route.params?.buildingUID)
     }
-  }, [route.params?.startLocationUID]);
+  }, [route.params?.startLocationName]);
 
   // request route data:
   useEffect(() => {}, [buildingLocations]);
   const requestRoute = async () => {
-    const { buildings, route_details, route_found, error } = await ParseLocationsAndRoute(startLocationString, endLocationString)
+    const { buildings, route_details, route_found, error } = await ParseLocationsAndRoute(startLocationUID, endLocationUID)
     setRouteFound(route_found);
     if (!error) {
       if(route_found){
@@ -51,7 +55,7 @@ const OutdoorHeader = ({ navigation, route, buildingLocations, setBuildingLocati
       onPress={() => navigation.navigate('SearchStartingBuilding')}/>
     <SearchBarButton title={"End"} 
     displayText={endLocationString}
-    onPress={() => navigation.navigate('SearchEndingingBuilding')}/>
+    onPress={() => navigation.navigate('SearchEndingBuilding')}/>
     <View style={{ justifyContent: 'center', flex: 1, alignItems: "center", }}>
       <TouchableOpacity style={styles.btnContainer} onPressIn={requestRoute} >
         <Text style={{ padding: 10 }}> Find Route</Text>

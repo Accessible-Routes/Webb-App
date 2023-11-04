@@ -25,7 +25,7 @@ export default function App() {
       options={{ headerShown: false }}
       initialParams={{ buildingSearchField: 'start' }}
       />
-    <Stack.Screen name="SearchEndingingBuilding" 
+    <Stack.Screen name="SearchEndingBuilding" 
       component={SearchBuildingScreen} 
       options={{ headerShown: false }}
       initialParams={{ buildingSearchField: 'end' }}
