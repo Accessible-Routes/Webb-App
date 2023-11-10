@@ -9,15 +9,16 @@ class entrancePoint:
             self.id = id
             self.lng = lng
             self.lat = lat
-            self.tags = {"Entrance" : building + ' Entrance'}
+            self.tags = {"Entrance" : building}
       def serialize(self):
             dict ={
                   'id' : id,
                   'y' : self.lat,
                   'x' : self.lng,
-                  'highway' : self.tags['Entrance'],
+                  'highway' : 'custom_entrance',
                   'street_count' : 1,
-                  'geometry' : Point(self.lat, self.lng),
+                  'geometry' : Point(self.lng, self.lat),
+                  0 : np.NaN,
                   'osmid' : self.id
             }
             return dict

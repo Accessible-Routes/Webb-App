@@ -30,17 +30,32 @@ def createNodeArray(filename):
                   tmp_id = add_nulls(counter, 5)
                   pointName = buidling + str(tmp_id)
                   #print(pointName)
-                  lat, lon = j.strip(' ').split(',')
+                  lon, lat = j.strip(' ').split(',')
                   #print(float(lon), float(lat))
                   tmp_p = entrancePoint(tmp_id, lon, lat, pointName, buidling)
                   nodeArr.append(tmp_p.serialize())
+
+
+      # '001': 
+      #       {
+      #             'y': 7.367210, 
+      #             'x': 151.838487,
+      #             'street_count': 1
+      #       }
+      # }
       gdf = gpd.GeoDataFrame(nodeArr)
       return gdf
 
 
 def plotGraph(new_nodes):
+      #ox.config(use_cache=True, log_console=False)
       ox.settings.log_console = False
       ox.settings.use_cache = True
+      # RPI = ox.graph_from_place('Troy, NY', network_type="walk")
+      # RPI = ox.speed.add_edge_speeds(RPI)
+      # RPI = ox.speed.add_edge_travel_times(RPI)
+      #point1 = "lat": 42.7334294, "lon": -73.6905807
+      #point2 = "lat": 42.7338301, "lon": -73.6887063
       north = 42.73201
       south = 42.72492
       east = -73.67119
@@ -49,26 +64,20 @@ def plotGraph(new_nodes):
       RPI = ox.add_edge_speeds(RPI,5)
       RPI = ox.add_edge_travel_times(RPI)
 
-      # for u, v in zip(shortest_path[0:], shortest_path[1:]):
-      #       edge_data = RPI.get_edge_data(u, v)
-      #       min_weight = min([edge_data[edge]['length'] for edge in edge_data])
-      #       #print(f"{u}---({edge_data, min_weight})---{v}")
-      nodes, edges = ox.graph_to_gdfs(RPI, nodes=True, edges=True, fill_edge_geometry=True)      
+      origin_node = ox.nearest_nodes(RPI, north, south)
+      destination_node = list(RPI.nodes())[-1]
+      shortest_path = nx.shortest_path(RPI,origin_node,destination_node) 
+      for u, v in zip(shortest_path[0:], shortest_path[1:]):
+            edge_data = RPI.get_edge_data(u, v)
+            min_weight = min([edge_data[edge]['length'] for edge in edge_data])
+            #print(f"{u}---({edge_data, min_weight})---{v}")
+      nodes, edges = ox.graph_to_gdfs(RPI, nodes=True, edges=True)      
       new_node_gdf = gpd.GeoDataFrame(new_nodes)
-      new_node_gdf = new_node_gdf.set_crs(4326, allow_override=True)
-      nodes = nodes.set_crs(4326, allow_override=True)
-      nodes = pd.concat([nodes, new_node_gdf], ignore_index=False)
-      
-      # print(nodes.loc[nodes['highway'] == 'custom_entrance'])
-      # print(nodes)
-      # print(edges)
-      graph_attrs = {'crs': 'epsg:4326', 'simplified': True}
-
-      RPI = ox.graph_from_gdfs(nodes, edges, graph_attrs)
-      # origin_node = ox.nearest_nodes(RPI, north, south)
-      # destination_node = list(RPI.nodes())[-1]
-      # shortest_path = nx.shortest_path(RPI,origin_node,destination_node) 
-      #ox.plot_graph(RPI)#, graph_attrs)
+      nodes = pd.concat([nodes, new_node_gdf], ignore_index=True)
+      #print(nodes.loc[nodes['highway'] == 'custom_entrance'])
+      RPI = ox.graph_from_gdfs(nodes, edges)
+      #graph_attrs = {'crs': 'epsg:4326', 'simplified': True}
+      ox.plot.plot_graph_route(RPI,shortest_path)#, graph_attrs)
       return RPI
 
 def weight(RPI):
@@ -84,9 +93,6 @@ def addNodes(RPI, filename):
 place = 'Rensselaer Polytechnic Institute'
 new_nodes = createNodeArray('Database/fetchGraph/buildingEntrance.json')
 test = plotGraph(new_nodes).edges(data=True)
-filepath = "./data/piedmont.graphml"
-ox.save_graphml(test, filepath)
-G = ox.load_graphml(filepath)
 
 #for i in arr:
 #      print(i.serialize())
