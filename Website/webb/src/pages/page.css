@@ -33,7 +33,9 @@
   .SearchBar {
     position: relative;
     right: 0;
-    border: 2px solid #000000
+    border: 2px solid #000000;
+    width: 100%;
+    background-color: red;
   }
   
   .StartDropDown {

@@ -74,7 +74,7 @@ const Button = () => {
   const Call = () => {
     buildings = []
     axios
-      .get('http://54.219.173.249:8000/api/all-buildings')
+      .get('http://13.56.159.146:8000/api/all-buildings')
       .then((result) => {
         for (let i = 0; i < result.data.length; i++){
           console.log(containsBuilding(result.data[i], buildings))
