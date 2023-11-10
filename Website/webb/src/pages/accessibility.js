@@ -11,6 +11,7 @@ import {buildings, isAccessible} from "./Map"
 const Accessible = () => {
     return (
         <div className="SearchBar">
+          <h2>Building Accessibility</h2>
           <StartSearch/>
       </div>
     );
