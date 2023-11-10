@@ -1,22 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, Text} from 'react-native';
-
+import { StyleSheet, View, Text, SafeAreaView } from 'react-native';
 
 
 const IndoorNavScreen = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <Text>Placeholder Text for Indoor View</Text>
-        </View>
+        <SafeAreaView>
+                <Text>Placeholder Text for Indoor View</Text>
+        </SafeAreaView>
     );
 }
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    }
-});
 
 
 export default IndoorNavScreen;

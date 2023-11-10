@@ -49,7 +49,7 @@ const OutdoorHeader = ({ navigation, route, buildingLocations, setBuildingLocati
   }
 
   return <View style={styles.header}>
-    <TopBar />
+    <TopBar navigation={navigation} />
     <SearchBarButton title={"Start"} 
       displayText={startLocationString} 
       onPress={() => navigation.navigate('SearchStartingBuilding')}/>

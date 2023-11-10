@@ -3,13 +3,14 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 
 
-const TopBar = () => {
+const TopBar = ({ navigation }) => {
     return <View style={styles.container}>
         <Image
             source={{ uri: 'https://raw.githubusercontent.com/json-mp3/Accessible-Routes/main/Logo.png' }}
             resizeMode="contain"
             style={styles.logoImg("100%")}/>
-        <TouchableOpacity style={styles.btnContainer}>
+        <TouchableOpacity style={styles.btnContainer}
+            onPress={() => navigation.navigate('IndoorNavigation')}>
             <Text style={{ padding: 10 }}>Switch View</Text>
         </TouchableOpacity>
     </View>

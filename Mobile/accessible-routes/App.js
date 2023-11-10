@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
 import OutdoorNavScreen from './common/screens/OutdoorNavScreen';
 import SearchBuildingScreen from './common/screens/SearchBuildingScreen';
+import IndoorNavScreen from './common/screens/IndoorNavScreen';
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -29,6 +30,10 @@ export default function App() {
       component={SearchBuildingScreen} 
       options={{ headerShown: false }}
       initialParams={{ buildingSearchField: 'end' }}
+      />
+    <Stack.Screen name="IndoorNavigation" 
+      component={IndoorNavScreen} 
+      options={{ headerShown: false }}
       />
     </Stack.Navigator>
   </NavigationContainer>
