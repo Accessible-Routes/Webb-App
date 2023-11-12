@@ -18,12 +18,31 @@ const SearchBuildingScreen = ({ route, navigation }) => {
 
     useEffect(() => { requestAllBuildings() }, []);
     const requestAllBuildings = async () => {
-        const allBuildingsURL = `http://54.219.173.249:8000/api/all-buildings`
+        const allBuildingsURL = `http://13.56.159.146:8000/api/all-buildings`
         const response = await axios.get(allBuildingsURL).catch((err) => {
             console.log('error during retrieval of when getting response (requesting all ): ', err);
             // report error
         });
         setBuildingNames(response.data)
+    }
+
+    function styliseSubstring(searchStr, str){
+
+        var searchStrLen = searchStr.length;
+        if (searchStrLen == 0) {
+            return [];
+        }
+        var startIndex = 0, index, indices = [];
+        if (!caseSensitive) {
+            str = str.toLowerCase();
+            searchStr = searchStr.toLowerCase();
+        }
+        while ((index = str.indexOf(searchStr, startIndex)) > -1) {
+            indices.push(index);
+            startIndex = index + searchStrLen;
+        }
+
+        return indices;
     }
 
     const renderBuildingDetails = (buildingName, buildingUID) => {
@@ -48,7 +67,7 @@ const SearchBuildingScreen = ({ route, navigation }) => {
                     style={styles.itemContainer}>
                     <Text>
                         {buildingName}
-                    </Text>
+                    </Text> 
                 </TouchableOpacity>
             </View>)
         }
