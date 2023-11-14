@@ -55,7 +55,7 @@
   }
 
   .SearchBar{
-    width: 80vw;
+    width: 85vw;
     background-color: grey;
     justify-content:center;
     align-items:center;
@@ -65,6 +65,14 @@
     position: absolute;
     top: 20px;
     right: 14vw;
+    padding: 10px;
+    z-index: 400;
+  }
+
+  #accessButton {
+    position: absolute;
+    top: 20px;
+    right: -13vw;
     padding: 10px;
     z-index: 400;
   }

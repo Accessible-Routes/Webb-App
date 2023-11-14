@@ -1,7 +1,7 @@
 import './page.css';
 import MyMap from '../common/components/mapSample.component';
 //import searchBar from './common/components/searchBar';
-import {React, useState, useEffect} from 'react';
+import {React, useState, useEffect, Component} from 'react';
 import Select from 'react-select';
 import {AwesomeButtonProgress} from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css'; 
@@ -9,24 +9,24 @@ import axios from 'axios';
 
 import {Link} from "react-router-dom"
 
-/*
-export default function mapPage() 
-{
-    Call();
-    return (
-        <div className="Page">
-          <MyMap/>
-          <a href="https://google.com">
-            <button id="mapButton">Swap to Accessibility View</button>
-          </a>
-          <div className="Search">
-              <StartDropDown/>
-              <EndDropDown/>
-              <Button/>
-          </div>
-      </div>
-    );
-}*/
+// class MapPage extends Component () {
+//   render() {
+//   Call();
+//   return (
+//     <div className="Page">
+//       <MyMap/>
+//         <button id="mapButton">
+//           <Link to ="/accessibility"> Swap to Accessibility View </Link>
+//         </button>
+//       <div className="Search">
+//           <StartDropDown/>
+//           <EndDropDown/>
+//           <Button/>
+//       </div>
+//     </div>
+//   );
+//   }
+// }
 
 const MapPage = () => {
   Call();
