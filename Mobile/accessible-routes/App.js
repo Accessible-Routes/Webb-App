@@ -33,7 +33,7 @@ export default function App() {
       />
     <Stack.Screen name="IndoorNavigation" 
       component={IndoorNavScreen} 
-      options={{ headerShown: false }}
+      options={{ headerShown: true }}
       />
     </Stack.Navigator>
   </NavigationContainer>

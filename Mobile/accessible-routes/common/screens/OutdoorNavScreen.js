@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { StyleSheet, View, SafeAreaView, Text } from 'react-native';
 import OutdoorHeader from '../components/OutdoorHeader.component';
 import MyMap from '../components/myMap.component';
+import NewPageButton from '../components/NewPageButton.component';
 
 
 
@@ -26,6 +27,10 @@ const OutdoorNavScreen = ({ navigation, route }) => {
                 buildingLocations={buildingLocations}
                 routeFound={routeFound}
             />
+            <SafeAreaView style={styles.overlay_container}>
+                <NewPageButton navigation={navigation} />
+                <NewPageButton navigation={navigation} />
+            </SafeAreaView>
         </View>
     );
 }
@@ -34,6 +39,10 @@ const OutdoorNavScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    overlay_container: {
+        position: 'absolute',
+        bottom: 100, right: 10
     }
 });
 
