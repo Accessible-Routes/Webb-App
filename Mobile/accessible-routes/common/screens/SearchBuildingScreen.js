@@ -46,7 +46,7 @@ const SearchBuildingScreen = ({ route, navigation }) => {
     }
 
     const renderBuildingDetails = (buildingName, buildingUID) => {
-        console.log(buildingName)
+        // console.log(buildingName)
         if (buildingName === '' || buildingName.toLowerCase().includes(buildingText.toLowerCase())) {
             return (
             <View >

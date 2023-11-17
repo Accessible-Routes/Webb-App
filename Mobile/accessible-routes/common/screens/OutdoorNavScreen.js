@@ -27,10 +27,10 @@ const OutdoorNavScreen = ({ navigation, route }) => {
                 buildingLocations={buildingLocations}
                 routeFound={routeFound}
             />
-            <SafeAreaView style={styles.overlay_container}>
+            {/* <SafeAreaView style={styles.overlay_container}>
                 <NewPageButton navigation={navigation} />
                 <NewPageButton navigation={navigation} />
-            </SafeAreaView>
+            </SafeAreaView> */}
         </View>
     );
 }
