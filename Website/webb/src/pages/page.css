@@ -84,3 +84,12 @@
     padding: 10px;
     z-index: 400;
   }
+
+  .Accessibility {
+    align-items: center;
+    justify-content: center;
+  }
+
+  #GetBuilding {
+    position: absolute;
+  }

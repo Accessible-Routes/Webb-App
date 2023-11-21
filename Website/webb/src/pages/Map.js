@@ -9,25 +9,6 @@ import axios from 'axios';
 
 import {Link} from "react-router-dom"
 
-// class MapPage extends Component () {
-//   render() {
-//   Call();
-//   return (
-//     <div className="Page">
-//       <MyMap/>
-//         <button id="mapButton">
-//           <Link to ="/accessibility"> Swap to Accessibility View </Link>
-//         </button>
-//       <div className="Search">
-//           <StartDropDown/>
-//           <EndDropDown/>
-//           <Button/>
-//       </div>
-//     </div>
-//   );
-//   }
-// }
-
 const MapPage = () => {
   Call();
   return (
@@ -89,13 +70,6 @@ const Button = () => {
         }
       }).catch((err) => {
         console.log(err)
-      })
-  }
-
-const customStyles = {
-    indicatorSeparator: styles => ({ ...styles, display: "none" }),
-      option: (provided, state) => ({
-        ...provided,
       })
   }
   

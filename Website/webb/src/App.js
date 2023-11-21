@@ -12,25 +12,6 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import MapPage from "./pages/Map.js";
 import Accessible from "./pages/accessibility.js"
 
-
-/*
-function App() {
-  Call();
-  return (
-    <div className="Page">
-        <MyMap/>
-        <a href="https://google.com">
-          <button id="mapButton">Swap to Accessibility View</button>
-        </a>
-        <div className="Search">
-            <StartDropDown/>
-            <EndDropDown/>
-            <Button/>
-        </div>
-    </div>
-  );
-}*/
-
 function App() {
   return(
     <div className = "App">

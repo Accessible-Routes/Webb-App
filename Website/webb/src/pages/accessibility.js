@@ -9,12 +9,11 @@ import axios from 'axios';
 import {buildings, isAccessible} from "./Map"
 import {Link} from "react-router-dom"
 
-import AccessibleDiv from './accessibleDiv';
 
 const Accessible = () => {
     return (
         <div className="SearchBar">
-          <h2>Building Accessibility</h2>
+          <h1>Building Accessibility</h1>
           <StartSearch/>
           <button id="accessButton">
             <Link to ="/"> Swap to Map View </Link>
@@ -25,22 +24,6 @@ const Accessible = () => {
     );
   }
 
-// class Accessible extends Component() {
-//   render(){
-//   return (
-//       <div className="SearchBar">
-//         <h2>Building Accessibility</h2>
-//         <StartSearch/>
-//         <button id="accessButton">
-//           <Link to ="/"> Swap to Map View </Link>
-//         </button>
-//         <AccessibleDiv/>
-//       </div>
-//   );
-//   }
-// }
-
-
 
   var userInput = null
 
@@ -50,7 +33,6 @@ const Accessible = () => {
   
     const handleChange = (event) => {
       setStart(event.label);
-      console.log(isAccessible.get(Starting))
       userInput = isAccessible.get(Starting)
     }
     return(
@@ -63,16 +45,49 @@ const Accessible = () => {
         options={buildings}/>
       </div>
     );
-    //<p>{isAccessible.get(Starting)}</p>
   }
 
-  const AccessibleCheck = () => {
-    return (
-      <div className = "accessibleValue">
-        <p>{userInput}</p>
-      </div>
-    );
-}
+  class AccessibleDiv extends Component {
+    state = {
+      accessible: "Starting"
+    };
+    render() {
+      return (
+        <div className = "Accessibility">
+          <button id = "GetBuilding"
+            onClick={() => {
+              this.getResult();
+            }}
+          >
+            Get Building
+          </button>
+          <br />
+          <br />
+          {(this.state.accessible === "Starting" || this.state.accessible === null || this.state.accessible === undefined) &&
+          <div>Choose A Building</div>
+          }
+          {this.state.accessible  === false &&
+          <div>This Building is not Accessible</div>
+          }
+
+          {this.state.accessible === true && 
+          <div>This Building is Accessible</div>
+          }
+        </div>
+      );
+    }
+
+    handleChange(event) {
+      this.state ({ Starting: event.label })
+      console.log (event.label)
+    }
+  
+    getResult() {
+      console.log(userInput)
+      this.setState({ accessible: userInput });
+      console.log(userInput);
+    }
+  }
 
 
 export default Accessible  
