@@ -4,14 +4,13 @@
     "description": "This project is really great.",
     "slug": "expo-test",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
+    "sdkVersion": "49.0.0",
     "platforms": [
       "ios",
       "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "assetBundlePatterns": [
       "**/*"
     ],
