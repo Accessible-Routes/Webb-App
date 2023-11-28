@@ -76,3 +76,26 @@ class AllRoomViewTest(TestCase):
         assert(data['DCC'][0]['Number'] == 330)
         assert(data['DCC'][1]['Number'] == 308)
         assert(data['DCC'][2]['Number'] == 324)
+
+class RoomViewTest(TestCase):
+    def test_no_room(self):
+        call = reverse('room', kwargs={'room_id': 'abcd'})
+
+        response = self.client.get(call)
+        assert(response.status_code==404)
+    
+    def test_room_no_connections(self):
+        sage = Building.objects.create(name = 'Sage')
+        room = Room.objects.create(building = sage, room_number = 3303)
+
+        call = reverse('room', kwargs={'room_id': room.id})
+
+        response = self.client.get(call)
+        data = json.loads(response.content)
+        assert(data['UUID'] == str(room.id))
+        assert(data['Number'] == 3303)
+        assert(data['Accessible'] == False)
+        assert(data['Room Type'] == 'UNSPECIFIED')
+        assert(len(data['Connections']) == 0)
+
+        

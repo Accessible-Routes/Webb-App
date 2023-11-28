@@ -5,4 +5,4 @@ Scripts/
 pyvenv.cfg
 *.pyc
 node_modules
-
+cache/

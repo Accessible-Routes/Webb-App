@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .models import Room, Building, Node, Way
 from django.http import JsonResponse
 from random import randrange, uniform
+from coppyGenerate import routemaker, plotGraph
 
 # Create your views here.
 class AllBuildingView(APIView):
@@ -51,7 +52,7 @@ class RoomAccessibleView(APIView):
         try:
             room = Room.objects.get(id=room_id)            
         except:
-            return JsonResponse({'message':'No Room Found.'},status=400)
+            return JsonResponse({'message':'No Room Found.'},status=404)
         
         room_json = {}
         room_json['UUID'] = room.id
@@ -277,15 +278,10 @@ class OutdoorRouteView(APIView):
         response_dict['buildings'][1]['longitude'] = end_building.long
         
         # Data for route routing from start to end building
-        response_dict['route'] = []
-        
-        # TODO 
-        # Implement the pathfinding algorithming, currently just generates a random path to just have an API to use
-        for _ in range(randrange(2,6)):
-            node = {}
-            node['latitude'] = uniform(42.729270, 42.730594)
-            node['longitude'] = uniform(-73.682323, -73.677375)
-            response_dict['route'].append(node)
+        start = "Entrance_" + start_building.name
+        end = "Entrance_" + end_building.name 
+        route = routemaker(start,end)
+        response_dict['route'] = route
 
         #Returns JSON data
         return JsonResponse(response_dict, status=200)
