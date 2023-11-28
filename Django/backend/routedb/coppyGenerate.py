@@ -87,7 +87,7 @@ def plotGraph(new_nodes):
 
 def routemaker(start, end):
       place = 'Rensselaer Polytechnic Institute'
-      new_nodes = createNodeArray('buildingEntrance.json')
+      new_nodes = createNodeArray('.\\buildingEntrance.json')
       test = plotGraph(new_nodes)
 
       nodes, edges = ox.graph_to_gdfs(test, nodes=True, edges=True) 
@@ -101,8 +101,8 @@ def routemaker(start, end):
       route_list = []
       for i in route:
            node = {}
-           node['latitude'] = test.nodes[i]['x']
-           node['longitude'] = test.nodes[i]['y']
+           node['latitude'] = test.nodes[i]['y']
+           node['longitude'] = test.nodes[i]['x']
            route_list.append(node)
      
       return route_list
