@@ -1,16 +1,13 @@
 import './page.css';
-import MyMap from '../common/components/mapSample.component';
 import { React, useState, useEffect } from 'react';
 import Button from '../common/components/Button.component';
 import BuildingDropdown from '../common/components/BuildingDropdown.component';
 import { Link } from "react-router-dom";
 import { requestAllBuildings } from '../helpers/requestHelper';
+import Map from '../common/components/Map';
 
 
-const isAccessible = new Map()
-
-const MapPage = () => {
-
+const HomePage = () => {
   // STATES
   // buildings are stored as: {name, building_uid}
   const [startingBuilding, setStartingBuilding] = useState({});
@@ -34,7 +31,7 @@ const MapPage = () => {
   // RENDERING
   return (
     <div className="Page">
-      <MyMap />
+      <Map/>
       <div className="Search Building">
         <BuildingDropdown
           place_holder_text={'select starting building'}
@@ -50,5 +47,4 @@ const MapPage = () => {
   );
 }
 
-export default MapPage
-export { isAccessible };
+export default HomePage;
