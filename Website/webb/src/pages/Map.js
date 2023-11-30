@@ -1,10 +1,10 @@
 import './page.css';
 import MyMap from '../common/components/mapSample.component';
-import { React, useState } from 'react';
-import axios from 'axios';
+import { React, useState, useEffect } from 'react';
 import Button from '../common/components/Button.component';
 import BuildingDropdown from '../common/components/BuildingDropdown.component';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { requestAllBuildings } from '../helpers/requestHelper';
 
 var buildings = []
 
@@ -12,11 +12,27 @@ const isAccessible = new Map()
 
 const MapPage = () => {
 
+  // STATES
+  // buildings are stored as: {name, building_uid}
   const [startingBuilding, setStartingBuilding] = useState({});
   const [destinationBuilding, setDestinationBuilding] = useState({});
+  const [allBuildings, setAllBuildings] = useState([]);
 
-  // rendering code:
-  Call(); // call to pull all buildings 
+  // EFFECTS
+  useEffect(() => {
+    // on mount
+
+    // gather the name and UID of all the buildings from the backend
+    requestAllBuildings(setAllBuildings).catch((err) => {
+      console.log('An error occurred. please contact developers and inform them of the following:');
+      console.log('site could not not retrieve all buildings from back-end.');
+      console.log('failed with the following error:');
+      console.log(err)
+    })
+  }, []);
+
+
+  // RENDERING
   return (
     <div className="Page">
       <MyMap />
@@ -26,48 +42,16 @@ const MapPage = () => {
       <div className="Search Building">
         <BuildingDropdown
           place_holder_text={'select starting building'}
-          building_options={buildings}
+          building_options={allBuildings}
           setSelectedBuilding={setStartingBuilding} />
         <BuildingDropdown
           place_holder_text={'select ending building'}
-          building_options={buildings}
+          building_options={allBuildings}
           setSelectedBuilding={setDestinationBuilding} />
         <Button title={"find route"} onPressIn={() => { console.log('pressed find route button') }} />
       </div>
     </div>
   );
-}
-
-
-function containsBuilding(obj, list) {
-  var i;
-  for (i = 0; i < list.length; i++) {
-    if (list[i].label === obj.Name) {
-      return true;
-    }
-  }
-  return false;
-}
-
-const Call = () => {
-  buildings = []
-  axios
-    .get('http://13.56.159.146:8000/api/all-buildings')
-    .then((result) => {
-      for (let i = 0; i < result.data.length; i++) {
-        console.log(containsBuilding(result.data[i], buildings))
-        console.log(result.data[i], buildings)
-        if (containsBuilding(result.data[i], buildings) == false) {
-          buildings.push({
-            value: result.data[i].UUID,
-            label: result.data[i].Name
-          })
-          isAccessible.set(result.data[i].Name, result.data[i].accessible)
-        }
-      }
-    }).catch((err) => {
-      console.log(err)
-    })
 }
 
 export default MapPage
