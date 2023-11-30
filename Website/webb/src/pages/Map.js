@@ -1,33 +1,38 @@
 import './page.css';
 import MyMap from '../common/components/mapSample.component';
-//import searchBar from './common/components/searchBar';
-import { React, useState, useEffect } from 'react';
-import Select from 'react-select';
-import { AwesomeButtonProgress } from 'react-awesome-button';
-import 'react-awesome-button/dist/styles.css';
+import { React, useState } from 'react';
 import axios from 'axios';
 import Button from '../common/components/Button.component';
-
+import BuildingDropdown from '../common/components/BuildingDropdown.component';
 import { Link } from "react-router-dom"
 
-
 var buildings = []
- 
+
 const isAccessible = new Map()
 
 const MapPage = () => {
+
+  const [startingBuilding, setStartingBuilding] = useState({});
+  const [destinationBuilding, setDestinationBuilding] = useState({});
+
   // rendering code:
-  Call();
+  Call(); // call to pull all buildings 
   return (
     <div className="Page">
       <MyMap />
       <button id="mapButton">
         <Link to="/accessibility"> Swap to Accessibility View </Link>
       </button>
-      <div className="Search">
-        <StartDropDown />
-        <EndDropDown />
-        <Button title={"find route"} onPressIn={()=>{console.log('pressed find route button')}} />
+      <div className="Search Building">
+        <BuildingDropdown
+          place_holder_text={'select starting building'}
+          building_options={buildings}
+          setSelectedBuilding={setStartingBuilding} />
+        <BuildingDropdown
+          place_holder_text={'select ending building'}
+          building_options={buildings}
+          setSelectedBuilding={setDestinationBuilding} />
+        <Button title={"find route"} onPressIn={() => { console.log('pressed find route button') }} />
       </div>
     </div>
   );
@@ -63,47 +68,6 @@ const Call = () => {
     }).catch((err) => {
       console.log(err)
     })
-}
-
-
-const StartDropDown = () => {
-  //Store starting location selected by user to get ready for to query 
-  const [Starting, setStart] = useState('');
-
-  const handleChange = (selectedOption) => {
-    console.log(selectedOption)
-  }
-  return (
-    <div>
-      <Select
-        menuPortalTarget={document.body}  
-        menuPosition={'fixed'}
-        placeholder='Choose Starting Location'
-        onChange={handleChange}
-        options={buildings} />
-    </div>
-  );
-  //<p>{Starting}</p>
-}
-
-const EndDropDown = () => {
-  //Store destination location selected by user to get ready for query
-  const [Ending, setEnd] = useState('');
-
-  const handleChange = (event) => {
-    setEnd(event.label);
-  }
-  return (
-    <div>
-      <Select
-        menuPortalTarget={document.body}
-        menuPosition={'fixed'}
-        placeholder='Choose Starting Location'
-        onChange={handleChange}
-        options={buildings} />
-    </div>
-  );
-  //<p>{Ending}</p>
 }
 
 export default MapPage
