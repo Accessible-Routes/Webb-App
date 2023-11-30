@@ -6,7 +6,6 @@ import BuildingDropdown from '../common/components/BuildingDropdown.component';
 import { Link } from "react-router-dom";
 import { requestAllBuildings } from '../helpers/requestHelper';
 
-var buildings = []
 
 const isAccessible = new Map()
 
@@ -36,9 +35,6 @@ const MapPage = () => {
   return (
     <div className="Page">
       <MyMap />
-      <button id="mapButton">
-        <Link to="/accessibility"> Swap to Accessibility View </Link>
-      </button>
       <div className="Search Building">
         <BuildingDropdown
           place_holder_text={'select starting building'}
@@ -55,4 +51,4 @@ const MapPage = () => {
 }
 
 export default MapPage
-export { buildings, isAccessible };
+export { isAccessible };
