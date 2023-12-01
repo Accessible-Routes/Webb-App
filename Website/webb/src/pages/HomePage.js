@@ -3,7 +3,7 @@ import { React, useState, useEffect } from 'react';
 import Button from '../common/components/Button.component';
 import BuildingDropdown from '../common/components/BuildingDropdown.component';
 import { Link } from "react-router-dom";
-import { requestAllBuildings } from '../helpers/requestHelper';
+import { requestAllBuildings, ParseLocationsAndRoute } from '../helpers/requestHelper';
 import Map from '../common/components/Map';
 
 
@@ -13,6 +13,10 @@ const HomePage = () => {
   const [startingBuilding, setStartingBuilding] = useState({});
   const [destinationBuilding, setDestinationBuilding] = useState({});
   const [allBuildings, setAllBuildings] = useState([]);
+
+  // route and building details
+  const [routeCordList, setRouteCordList] = useState([{latitude: 42.730808708361856, longitude: -73.67975985815578}]);
+  const [buildingLocations, setBuildingLocations] = useState([{latitude: 42.7294, longitude: -73.6797}]);
 
   // EFFECTS
   useEffect(() => {
@@ -28,10 +32,35 @@ const HomePage = () => {
   }, []);
 
 
+  const requestRoute = async () => {
+    const { buildings, route_details, route_found, error } = await ParseLocationsAndRoute(startingBuilding, destinationBuilding)// .catch((err) => {console.log('in the home page, the response from ParseLocationsAndRoute is: ', err)})
+
+    // console.log(route_details)
+    if (!error) {
+      if (route_found) {
+        console.log('setting building and route')
+
+        setBuildingLocations(buildings)
+        setRouteCordList(route_details)
+      } else {
+        // if there is not path route available, clear all markers and routes on map
+        setBuildingLocations([])
+        setRouteCordList([])
+      }
+    } else {
+      console.log('route parsing error')
+      console.log(error)
+
+    }
+  }
+
+
   // RENDERING
   return (
-    <div className="Page">
-      <Map/>
+    <div className="Home Page">
+      <Map 
+        routeCordList={routeCordList}
+        buildingLocations={buildingLocations}/>
       <div className="Search Building">
         <BuildingDropdown
           place_holder_text={'select starting building'}
@@ -41,7 +70,7 @@ const HomePage = () => {
           place_holder_text={'select ending building'}
           building_options={allBuildings}
           setSelectedBuilding={setDestinationBuilding} />
-        <Button title={"find route"} onPressIn={() => { console.log('pressed find route button') }} />
+        <Button title={"find route"} onPressIn={requestRoute} />
       </div>
     </div>
   );
