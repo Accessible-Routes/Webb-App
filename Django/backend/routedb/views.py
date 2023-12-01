@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .models import Room, Building, Node, Way
 from django.http import JsonResponse
 from random import randrange, uniform
+from coppyGenerate import routemaker, plotGraph
 
 # Create your views here.
 class AllBuildingView(APIView):
@@ -15,6 +16,10 @@ class AllBuildingView(APIView):
             temp_json = {}
             temp_json['Name'] = building.name
             temp_json['UUID'] = building.id
+            temp_json['latitude'] = building.lat
+            temp_json['longitude'] = building.long
+            temp_json['accessible'] = building.accessible
+
             building_list.append(temp_json)
         return JsonResponse(building_list, safe=False, status=200)
 
@@ -47,7 +52,7 @@ class RoomAccessibleView(APIView):
         try:
             room = Room.objects.get(id=room_id)            
         except:
-            return JsonResponse({'message':'No Room Found.'},status=400)
+            return JsonResponse({'message':'No Room Found.'},status=404)
         
         room_json = {}
         room_json['UUID'] = room.id
@@ -241,7 +246,7 @@ class NodeRecreateView(APIView):
 
 class OutdoorRouteView(APIView):
     def get(self, request):
-        data = request.data
+        data = request.GET
 
         start_name = data.get('starting_location', None)
         end_name = data.get('ending_location', None)
@@ -250,8 +255,8 @@ class OutdoorRouteView(APIView):
             return Response(f'Invalid Building Data', status=400)
         
         try:
-            start_building = Building.objects.get(name = start_name)
-            end_building = Building.objects.get(name = end_name)
+            start_building = Building.objects.get(id = start_name)
+            end_building = Building.objects.get(id = end_name)
         except:
             return Response(f'Invalid Room Accessible Data', status=400)
         
@@ -273,15 +278,13 @@ class OutdoorRouteView(APIView):
         response_dict['buildings'][1]['longitude'] = end_building.long
         
         # Data for route routing from start to end building
-        response_dict['route'] = []
-        
-        # TODO 
-        # Implement the pathfinding algorithming, currently just generates a random path to just have an API to use
-        for _ in range(randrange(2,6)):
-            node = {}
-            node['latitude'] = uniform(42.729270, 42.730594)
-            node['longitude'] = uniform(-73.682323, -73.677375)
-            response_dict['route'].append(node)
-            
+        start = "Entrance_" + start_building.name
+        end = "Entrance_" + end_building.name 
+        route = routemaker(start,end)
+        response_dict['route'] = route
+        response_dict['found'] = True
+        if not route:
+            response_dict['found'] = False
+
         #Returns JSON data
         return JsonResponse(response_dict, status=200)

@@ -1,4 +1,5 @@
 The backend for Accessible Routes is written using the Django Framework.
+https://docs.djangoproject.com/en/4.2/intro/overview/
 
 To start the backend, you have to create the database then migrate the database.
 Part 1: Create the database
@@ -32,4 +33,5 @@ POST <url>/api/edit-room/ modify a room. Room must exist to modify its data. Roo
                                                                     and tags. 
 POST <url>/api/recreate/ recreates the outdoor nodes database. The post requires a json and assumes the data in the json is valid then
                                                                     deletes the outdoor database and recreates it based on the json.
-
+GET <url>/api/get-route/ gets the route from two building. The request data should be a query param with the start and 
+                                                                    end building UUID.
