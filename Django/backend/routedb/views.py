@@ -282,6 +282,9 @@ class OutdoorRouteView(APIView):
         end = "Entrance_" + end_building.name 
         route = routemaker(start,end)
         response_dict['route'] = route
+        response_dict['found'] = True
+        if not route:
+            response_dict['found'] = False
 
         #Returns JSON data
         return JsonResponse(response_dict, status=200)

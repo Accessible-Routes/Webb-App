@@ -86,28 +86,29 @@ def plotGraph(new_nodes):
       return RPI
 
 def routemaker(start, end):
-      place = 'Rensselaer Polytechnic Institute'
-      new_nodes = createNodeArray('.\\buildingEntrance.json')
-      test = plotGraph(new_nodes)
+      try:
+            place = 'Rensselaer Polytechnic Institute'
+            new_nodes = createNodeArray('.\\buildingEntrance.json')
+            test = plotGraph(new_nodes)
 
-      nodes, edges = ox.graph_to_gdfs(test, nodes=True, edges=True) 
-      entrance_df = nodes[nodes['highway'].str.contains("Entrance", na=False)]
-      start_node = int(entrance_df.loc[entrance_df['highway'] == start]['id'].values[0].item())
-      end_node = int(entrance_df.loc[entrance_df['highway'] == end]['id'].values[0].item())
+            nodes, edges = ox.graph_to_gdfs(test, nodes=True, edges=True) 
+            entrance_df = nodes[nodes['highway'].str.contains("Entrance", na=False)]
+            start_node = int(entrance_df.loc[entrance_df['highway'] == start]['id'].values[0].item())
+            end_node = int(entrance_df.loc[entrance_df['highway'] == end]['id'].values[0].item())
 
-      route = nx.shortest_path(test, start_node, end_node, 'travel_time')
-      # #shortest_path = nx.shortest_path(test, source=start_node, target=end_node)
+            route = nx.shortest_path(test, start_node, end_node, 'travel_time')
+            # #shortest_path = nx.shortest_path(test, source=start_node, target=end_node)
 
-      route_list = []
-      for i in route:
-           node = {}
-           node['latitude'] = test.nodes[i]['y']
-           node['longitude'] = test.nodes[i]['x']
-           route_list.append(node)
-     
-      return route_list
+            route_list = []
+            for i in route:
+                  node = {}
+                  node['latitude'] = test.nodes[i]['y']
+                  node['longitude'] = test.nodes[i]['x']
+                  route_list.append(node)
       
-routemaker("Entrance_Rensselaer Union", "Entrance_DCC")     
+            return route_list
+      except:
+            return [] 
 
 #ox.save_graphml(test, filepath)
 #G = ox.load_graphml(filepath)
