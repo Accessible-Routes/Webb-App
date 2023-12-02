@@ -17,6 +17,7 @@ const requestAllBuildings = async (setAllBuildings) => {
     standardized_building['building_uid'] = building.UUID
     standardized_building['latitude'] = building.latitude
     standardized_building['longitude'] = building.longitude
+    standardized_building['accessible'] = building.accessible
 
     // required for dropdown selector library
     standardized_building['label'] = building.Name

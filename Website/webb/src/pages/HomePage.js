@@ -4,7 +4,6 @@ import Button from '../common/components/Button.component';
 import BuildingDropdown from '../common/components/BuildingDropdown.component';
 import { requestAllBuildings, ParseLocationsAndRoute } from '../helpers/requestHelper';
 import Map from '../common/components/Map';
-import Alert from '@mui/material/Alert';
 import RouteStatusPanel from '../common/components/RouteStatusPanel.component'
 
 
@@ -40,7 +39,6 @@ const HomePage = () => {
   const requestRoute = async () => {
     const { buildings, route_details, route_found, error_found } = await ParseLocationsAndRoute(startingBuilding, destinationBuilding).catch((err) => { console.log('in the home page, the response from ParseLocationsAndRoute is: ', err) })
 
-    // console.log(route_details)
     if (!error_found) {
       if (route_found) {
         setBuildingLocations(buildings)
@@ -55,8 +53,7 @@ const HomePage = () => {
     }
 
     // inform user if no route was found
-    if(error_found || route_found === false || !route_details?.length){
-      console.log('no route was found pie')
+    if (error_found || route_found === false || !route_details?.length) {
       setBuildingLocations([])
       setRouteCordList([])
       setFoundRoute(false)
@@ -83,7 +80,7 @@ const HomePage = () => {
           building_options={allBuildings}
           setSelectedBuilding={setDestinationBuilding} />
         <Button title={"find route"} onPressIn={requestRoute} />
-        <RouteStatusPanel displayPanel={displayingRoute} foundRoute={foundRoute} startingBuilding={startingBuilding} destinationBuilding={destinationBuilding}/>
+        <RouteStatusPanel displayPanel={displayingRoute} foundRoute={foundRoute} startingBuilding={startingBuilding} destinationBuilding={destinationBuilding} />
       </div>
     </div>
   );
