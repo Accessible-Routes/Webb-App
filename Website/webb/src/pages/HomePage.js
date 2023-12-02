@@ -15,8 +15,8 @@ const HomePage = () => {
   const [allBuildings, setAllBuildings] = useState([]);
 
   // route and building details
-  const [routeCordList, setRouteCordList] = useState([{latitude: 42.730808708361856, longitude: -73.67975985815578}]);
-  const [buildingLocations, setBuildingLocations] = useState([{latitude: 42.7294, longitude: -73.6797}]);
+  const [routeCordList, setRouteCordList] = useState([]);
+  const [buildingLocations, setBuildingLocations] = useState([]);
 
   // EFFECTS
   useEffect(() => {
@@ -33,7 +33,7 @@ const HomePage = () => {
 
 
   const requestRoute = async () => {
-    const { buildings, route_details, route_found, error } = await ParseLocationsAndRoute(startingBuilding, destinationBuilding)// .catch((err) => {console.log('in the home page, the response from ParseLocationsAndRoute is: ', err)})
+    const { buildings, route_details, route_found, error } = await ParseLocationsAndRoute(startingBuilding, destinationBuilding).catch((err) => {console.log('in the home page, the response from ParseLocationsAndRoute is: ', err)})
 
     // console.log(route_details)
     if (!error) {
