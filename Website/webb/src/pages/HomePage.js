@@ -2,9 +2,11 @@ import './page.css';
 import { React, useState, useEffect } from 'react';
 import Button from '../common/components/Button.component';
 import BuildingDropdown from '../common/components/BuildingDropdown.component';
-import { Link } from "react-router-dom";
 import { requestAllBuildings, ParseLocationsAndRoute } from '../helpers/requestHelper';
 import Map from '../common/components/Map';
+import RouteStatusPanel from '../common/components/RouteStatusPanel.component';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
 
 
 const HomePage = () => {
@@ -15,8 +17,12 @@ const HomePage = () => {
   const [allBuildings, setAllBuildings] = useState([]);
 
   // route and building details
-  const [routeCordList, setRouteCordList] = useState([{latitude: 42.730808708361856, longitude: -73.67975985815578}]);
-  const [buildingLocations, setBuildingLocations] = useState([{latitude: 42.7294, longitude: -73.6797}]);
+  const [routeCordList, setRouteCordList] = useState([]);
+  const [buildingLocations, setBuildingLocations] = useState([]);
+
+  // options and loading
+  const [displayingRoute, setDisplayingRoute] = useState(false);
+  const [foundRoute, setFoundRoute] = useState(false);
 
   // EFFECTS
   useEffect(() => {
@@ -33,35 +39,42 @@ const HomePage = () => {
 
 
   const requestRoute = async () => {
-    const { buildings, route_details, route_found, error } = await ParseLocationsAndRoute(startingBuilding, destinationBuilding)// .catch((err) => {console.log('in the home page, the response from ParseLocationsAndRoute is: ', err)})
+    const { buildings, route_details, route_found, error_found } = await ParseLocationsAndRoute(startingBuilding, destinationBuilding).catch((err) => { console.log('in the home page, the response from ParseLocationsAndRoute is: ', err) })
 
-    // console.log(route_details)
-    if (!error) {
+    if (!error_found) {
       if (route_found) {
-        console.log('setting building and route')
-
         setBuildingLocations(buildings)
         setRouteCordList(route_details)
+        setFoundRoute(true)
       } else {
         // if there is not path route available, clear all markers and routes on map
         setBuildingLocations([])
         setRouteCordList([])
+        // display message to user that there was no route found between the buildings
       }
-    } else {
-      console.log('route parsing error')
-      console.log(error)
-
     }
+
+    // inform user if no route was found
+    if (error_found || route_found === false || !route_details?.length) {
+      setBuildingLocations([])
+      setRouteCordList([])
+      setFoundRoute(false)
+    }
+
+    // after a route has been selected, display the route status
+    setDisplayingRoute(true);
   }
 
 
   // RENDERING
   return (
     <div className="Home Page">
-      <Map 
+      <Map
         routeCordList={routeCordList}
-        buildingLocations={buildingLocations}/>
-      <div className="Search Building">
+        buildingLocations={buildingLocations} />
+      <div className="search-building-panel" >
+        <Avatar variant="square" sx={{ width: 56, height: 56, padding: 1 }} src="https://raw.githubusercontent.com/json-mp3/Accessible-Routes/main/Logo.png" />
+        <Typography sx={{ fontWeight: 'bold' }}>Accessible Routes</Typography>
         <BuildingDropdown
           place_holder_text={'select starting building'}
           building_options={allBuildings}
@@ -71,6 +84,7 @@ const HomePage = () => {
           building_options={allBuildings}
           setSelectedBuilding={setDestinationBuilding} />
         <Button title={"find route"} onPressIn={requestRoute} />
+        <RouteStatusPanel displayPanel={displayingRoute} foundRoute={foundRoute} startingBuilding={startingBuilding} destinationBuilding={destinationBuilding} />
       </div>
     </div>
   );
