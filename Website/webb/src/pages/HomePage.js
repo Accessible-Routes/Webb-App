@@ -4,7 +4,9 @@ import Button from '../common/components/Button.component';
 import BuildingDropdown from '../common/components/BuildingDropdown.component';
 import { requestAllBuildings, ParseLocationsAndRoute } from '../helpers/requestHelper';
 import Map from '../common/components/Map';
-import RouteStatusPanel from '../common/components/RouteStatusPanel.component'
+import RouteStatusPanel from '../common/components/RouteStatusPanel.component';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
 
 
 const HomePage = () => {
@@ -71,6 +73,8 @@ const HomePage = () => {
         routeCordList={routeCordList}
         buildingLocations={buildingLocations} />
       <div className="search-building-panel" >
+        <Avatar variant="square" sx={{ width: 56, height: 56, padding: 1 }} src="https://raw.githubusercontent.com/json-mp3/Accessible-Routes/main/Logo.png" />
+        <Typography sx={{ fontWeight: 'bold' }}>Accessible Routes</Typography>
         <BuildingDropdown
           place_holder_text={'select starting building'}
           building_options={allBuildings}
