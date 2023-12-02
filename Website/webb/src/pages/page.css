@@ -37,6 +37,11 @@
     width: 100%;
     background-color: red;
   }
+
+  .search-building-panel {
+    background-color:#e3f2fd;
+    width: 30%;
+  }
   
   .StartDropDown {
     position: static;

@@ -2,9 +2,10 @@ import './page.css';
 import { React, useState, useEffect } from 'react';
 import Button from '../common/components/Button.component';
 import BuildingDropdown from '../common/components/BuildingDropdown.component';
-import { Link } from "react-router-dom";
 import { requestAllBuildings, ParseLocationsAndRoute } from '../helpers/requestHelper';
 import Map from '../common/components/Map';
+import Alert from '@mui/material/Alert';
+import RouteStatusPanel from '../common/components/RouteStatusPanel.component'
 
 
 const HomePage = () => {
@@ -17,6 +18,10 @@ const HomePage = () => {
   // route and building details
   const [routeCordList, setRouteCordList] = useState([]);
   const [buildingLocations, setBuildingLocations] = useState([]);
+
+  // options and loading
+  const [displayingRoute, setDisplayingRoute] = useState(false);
+  const [foundRoute, setFoundRoute] = useState(false);
 
   // EFFECTS
   useEffect(() => {
@@ -38,20 +43,27 @@ const HomePage = () => {
     // console.log(route_details)
     if (!error_found) {
       if (route_found) {
-        console.log('setting building and route')
-
         setBuildingLocations(buildings)
         setRouteCordList(route_details)
+        setFoundRoute(true)
       } else {
         // if there is not path route available, clear all markers and routes on map
         setBuildingLocations([])
         setRouteCordList([])
         // display message to user that there was no route found between the buildings
       }
-    } else {
-      console.log('route requesting error occurred');
-      // display message to user indicating that there was an error & we could not produce a route
     }
+
+    // inform user if no route was found
+    if(error_found || route_found === false || !route_details?.length){
+      console.log('no route was found pie')
+      setBuildingLocations([])
+      setRouteCordList([])
+      setFoundRoute(false)
+    }
+
+    // after a route has been selected, display the route status
+    setDisplayingRoute(true);
   }
 
 
@@ -61,7 +73,7 @@ const HomePage = () => {
       <Map
         routeCordList={routeCordList}
         buildingLocations={buildingLocations} />
-      <div className="Search Building">
+      <div className="search-building-panel" >
         <BuildingDropdown
           place_holder_text={'select starting building'}
           building_options={allBuildings}
@@ -71,6 +83,7 @@ const HomePage = () => {
           building_options={allBuildings}
           setSelectedBuilding={setDestinationBuilding} />
         <Button title={"find route"} onPressIn={requestRoute} />
+        <RouteStatusPanel displayPanel={displayingRoute} foundRoute={foundRoute} startingBuilding={startingBuilding} destinationBuilding={destinationBuilding}/>
       </div>
     </div>
   );

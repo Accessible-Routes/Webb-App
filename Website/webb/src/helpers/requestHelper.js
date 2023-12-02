@@ -40,7 +40,7 @@ const ParseLocationsAndRoute = async (startingBuilding, destinationBuilding) => 
 
   // check if input is valid
   if (starting_building_uid === undefined && destinationBuilding_uid === undefined) {
-    return { buildings: [], route_details: [], route_found: [], error_found: true };
+    return { buildings: [], route_details: [], route_found: false, error_found: true };
   }
 
   // returned variables
@@ -81,7 +81,7 @@ const ParseLocationsAndRoute = async (startingBuilding, destinationBuilding) => 
     .catch(error => {
       error_found = true
       console.log('The following error occurred during the requesting of routes', error)
-      return { buildings: [], route_details: [], route_found: [], error_found: true };
+      return { buildings: [], route_details: [], route_found: false, error_found: true };
     });
 
   // parse parse json payload
