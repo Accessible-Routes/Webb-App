@@ -33,10 +33,10 @@ const HomePage = () => {
 
 
   const requestRoute = async () => {
-    const { buildings, route_details, route_found, error } = await ParseLocationsAndRoute(startingBuilding, destinationBuilding).catch((err) => {console.log('in the home page, the response from ParseLocationsAndRoute is: ', err)})
+    const { buildings, route_details, route_found, error_found } = await ParseLocationsAndRoute(startingBuilding, destinationBuilding).catch((err) => { console.log('in the home page, the response from ParseLocationsAndRoute is: ', err) })
 
     // console.log(route_details)
-    if (!error) {
+    if (!error_found) {
       if (route_found) {
         console.log('setting building and route')
 
@@ -46,11 +46,11 @@ const HomePage = () => {
         // if there is not path route available, clear all markers and routes on map
         setBuildingLocations([])
         setRouteCordList([])
+        // display message to user that there was no route found between the buildings
       }
     } else {
-      console.log('route parsing error')
-      console.log(error)
-
+      console.log('route requesting error occurred');
+      // display message to user indicating that there was an error & we could not produce a route
     }
   }
 
@@ -58,9 +58,9 @@ const HomePage = () => {
   // RENDERING
   return (
     <div className="Home Page">
-      <Map 
+      <Map
         routeCordList={routeCordList}
-        buildingLocations={buildingLocations}/>
+        buildingLocations={buildingLocations} />
       <div className="Search Building">
         <BuildingDropdown
           place_holder_text={'select starting building'}
