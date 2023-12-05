@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const endpoint_address = 'http://54.153.99.29:8000'
 
-
 const ParseLocationsAndRoute = async (startLocationString, endLocationString) => {
 
   const baseUrl = endpoint_address + `/api/get-route`
+
   const query_string = `?starting_location=${startLocationString}&ending_location=${endLocationString}`
   let error = false;
   const response = await axios.get(baseUrl + query_string).catch((err) => {

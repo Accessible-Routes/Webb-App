@@ -4,6 +4,7 @@ import axios from 'axios';
 import {endpoint_address} from '../components/helpers'
 
 
+
 const SearchBuildingScreen = ({ route, navigation }) => { 
 
     const [buildingSearchField, SetBuildingSearchField] = useState('');
