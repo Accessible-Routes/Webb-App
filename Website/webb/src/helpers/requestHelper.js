@@ -97,8 +97,6 @@ const ParseLocationsAndRoute = async (startingBuilding, destinationBuilding) => 
     route_details = RouteResponse.route.map((spot) => ([Number(spot.latitude), Number(spot.longitude)]))
   }
 
-  // cleaning route in relation to issue #
-  route_details = route_details.slice(1, -1);
 
   return { buildings, route_details, route_found, error_found };
 }

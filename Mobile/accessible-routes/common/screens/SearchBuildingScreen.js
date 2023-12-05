@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, SafeAreaView, FlatList, TextInput } from "react-native";
 import axios from 'axios';
+import {endpoint_address} from '../components/helpers'
 
 
 const SearchBuildingScreen = ({ route, navigation }) => { 
@@ -18,7 +19,7 @@ const SearchBuildingScreen = ({ route, navigation }) => {
 
     useEffect(() => { requestAllBuildings() }, []);
     const requestAllBuildings = async () => {
-        const allBuildingsURL = `http://13.56.159.146:8000/api/all-buildings`
+        const allBuildingsURL = `${endpoint_address}/api/all-buildings`
         const response = await axios.get(allBuildingsURL).catch((err) => {
             console.log('error during retrieval of when getting response (requesting all ): ', err);
             // report error
