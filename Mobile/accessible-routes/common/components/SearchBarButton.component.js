@@ -1,14 +1,21 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TextInput } from 'react-native';
+import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 
 
-const SearchBar = ({title, setLocationText}) => {
+const SearchBarButton = ({ title, displayText, onPress }) => {
+    
     return (<View style={styles.container}>
         <Text style={styles.inputTitle}>{title}:</Text>
-        <TextInput 
+
+        <TouchableOpacity 
             style={styles.input}
-            placeholder= {title + " location"} 
-            onChangeText={newText => setLocationText(newText)}/>
+            onPressIn={onPress}
+        >
+
+            {displayText ? 
+                <Text>{displayText}</Text>: 
+                <Text style={{color:'grey'}}>select building</Text>}
+        </TouchableOpacity>
     </View>);
 };
 
@@ -42,4 +49,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default SearchBar;
+export default SearchBarButton;

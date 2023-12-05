@@ -2,27 +2,22 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 
-
-const TopBar = ({ navigation }) => {
+const NewPageButton = ({ navigation }) => {
     return <View style={styles.container}>
-        <Image
-            source={{ uri: 'https://raw.githubusercontent.com/json-mp3/Accessible-Routes/main/Logo.png' }}
-            resizeMode="contain"
-            style={styles.logoImg("100%")}/>
         <TouchableOpacity style={styles.btnContainer}
-            onPress={() => navigation.navigate('IndoorNavigation')}>
-            <Text style={{ padding: 10 }}>Switch View</Text>
+            // replace with help screen
+            onPress={() => navigation.navigate('IndoorNavigation')}> 
+            <Text style={{ padding: 10 }}>New Page</Text>
         </TouchableOpacity>
     </View>
 };
 
 
+
 const styles = StyleSheet.create({
     container: {
-        width: "100%",
-        height: 40,
-        flexDirection: "row",
-        gap: 90
+        flex: 1,
+        padding: 10
     },
 
     logoImg: (dimension) => ({
@@ -36,15 +31,13 @@ const styles = StyleSheet.create({
     btnContainer: {
 
         height: 40,
-        backgroundColor: "#97dbf0",
-        borderRadius: 12 / 1.25,
+        backgroundColor: "#dba7c3",
+        borderRadius: 100,
         justifyContent: "center",
         alignItems: "center",
         flex: 1,
     },
-
-
 });
 
 
-export default TopBar;
+export default NewPageButton;
