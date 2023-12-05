@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from .models import Room, Building, Node, Way
 from django.http import JsonResponse
 from random import randrange, uniform
-from coppyGenerate import routemaker, plotGraph
+from .coppyGenerate import routemaker, plotGraph
 
 # Create your views here.
 class AllBuildingView(APIView):
