@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const endpoint = 'http://54.153.99.29:8000'
+
 const requestAllBuildings = async (setAllBuildings) => {
   // request building data from back-end
-  const allBuildingsURL = `http://13.56.159.146:8000/api/all-buildings`
+  const allBuildingsURL = endpoint + `/api/all-buildings`
   const response = await axios.get(allBuildingsURL);
 
   // parse building payload into standardized building format
@@ -49,9 +51,9 @@ const ParseLocationsAndRoute = async (startingBuilding, destinationBuilding) => 
   let route_details = [];
   let route_found = true;
   let error_found = false;
-  const baseUrl = `http://13.56.159.146:8000/api/get-route`;
+  const routeUrl = endpoint + `/api/get-route`;
   const query_string = `?starting_location=${starting_building_uid}&ending_location=${destinationBuilding_uid}`;
-  const endpoint_uri = baseUrl + query_string;
+  const endpoint_uri = routeUrl + query_string;
 
   // function to request building data from back-end
   let requestRoute = () => {
