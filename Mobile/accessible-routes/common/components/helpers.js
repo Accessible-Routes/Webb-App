@@ -1,76 +1,11 @@
-const MockResponse = {
-  "route": [
-    {
-      "latitude": 42.73020035793919,
-      "longitude": -73.68182322241921
-    },
-    {
-      "latitude": 42.730443933307185,
-      "longitude": -73.68061432268627
-    },
-    {
-      "latitude": 42.730808708361856,
-      "longitude": -73.67975985815578
-    },
-  ],
-
-  "buildings": [
-    {
-      "title": "Lally Hally",
-      "location_type": "start",
-      "latitude": 42.73020035793919,
-      "longitude": -73.68182322241921
-    },
-    {
-      "title": "Building 2",
-      "location_type": "end",
-      "latitude": 42.730808708361856,
-      "longitude": -73.67975985815578
-    },
-  ]
-}
-
-
-const MockResponse2 = {
-  "route": [
-    {
-      "latitude": 42.72975825494276,
-      "longitude": -73.67830944235584
-    },
-    {
-      "latitude": 42.72997145681171,
-      "longitude": -73.67746822832613
-    },
-    {
-      "latitude": 42.73026414996813,
-      "longitude": -73.67738462670044
-    },
-    {
-      "latitude": 42.72993893531263,
-      "longitude": -73.676754972665
-    },
-  ],
-
-  "buildings": [
-    {
-      "title": "Place 1",
-      "location_type": "start",
-      "latitude": 42.72975825494276,
-      "longitude": -73.67830944235584
-    },
-    {
-      "title": "Union",
-      "location_type": "end",
-      "latitude": 42.72993893531263,
-      "longitude": -73.676754972665
-    },
-  ]
-}
 import axios from 'axios';
+
+const endpoint_address = 'http://54.153.99.29:8000'
 
 const ParseLocationsAndRoute = async (startLocationString, endLocationString) => {
 
-  const baseUrl = `http://13.56.159.146:8000/api/get-route`
+  const baseUrl = endpoint_address + `/api/get-route`
+
   const query_string = `?starting_location=${startLocationString}&ending_location=${endLocationString}`
   let error = false;
   const response = await axios.get(baseUrl + query_string).catch((err) => {
@@ -96,5 +31,5 @@ const ParseLocationsAndRoute = async (startLocationString, endLocationString) =>
 
 
 
-
+export {ParseLocationsAndRoute, endpoint_address}
 export default ParseLocationsAndRoute;
