@@ -1,34 +1,56 @@
 import React from 'react';
-import MapView from 'react-native-maps';
+import MapView, { Marker, Polyline } from 'react-native-maps';
 import { StyleSheet, View, Text } from 'react-native';
 
-const MyMap = () => {
-  const campus_center = [42.7294, -73.6797]
 
+const MyMap = ({ buildingLocations, routeCordList, routeFound }) => {
+  const initialRegion = {
+    latitude: 42.729268,
+    longitude: -73.681227,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  }
 
   return <View style={styles.container}>
-            <MapView 
-              initialRegion={{
-                latitude: 42.729268, 
-                longitude: -73.681227,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-              }}
-            
-            style={styles.map} />
+    <MapView
+      initialRegion={initialRegion}
+      style={styles.map}>
 
-        </View>
+      {/* Draw buildings */
+        buildingLocations.map((marker) =>
+        (<Marker
+          key={marker.location_type}
+          coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
+          title={marker.title}
+        />)
+        )}
+
+      {/* Draw route */
+        <Polyline
+          coordinates={routeCordList.map((line) => ({ latitude: line.latitude, longitude: line.longitude }))}
+          strokeColor={"#2e294e"}
+          strokeWidth={3}
+          lineJoin={"round"}
+        />}
+
+    </MapView>
+    <View style={{justifyContent:'center',alignItems:'center',alignSelf:'center', position:'absolute', paddingTop:40}}>
+
+          {routeFound ? <Text></Text> : <Text style={{fontSize:30, textDecorationLine: 'underline'}}>No Route Found</Text>}
+
+    </View>
+
+  </View>
 };
 
-
 const styles = StyleSheet.create({
-    container: {
-      flex: 3,
-    },
-    map: {
-      width: '100%',
-      height: '100%',
-    },
-  });
-  
+  container: {
+    flex: 3,
+  },
+  map: {
+    width: '100%',
+    height: '100%',
+  },
+});
+
 export default MyMap;
