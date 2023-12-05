@@ -4,8 +4,9 @@ import math
 import geopandas as gpd
 import networkx as nx
 import osmnx as ox
+import pickle
 import pandas as pd
-from entrancePoint import entrancePoint
+from .entrancePoint import entrancePoint
 
 
 def testPlotRoute(RPI):
@@ -81,15 +82,21 @@ def plotGraph(new_nodes):
                   RPI.add_edge(tmp_orig_id, tmp_dest_id)   
       RPI = ox.add_edge_speeds(RPI,5)   
       G = RPI
-      #print(RPI.nodes)
-      ox.save_graphml(G, "test.graphml")
+      
+      with open("graph.p", 'wb') as f:
+            pickle.dump(G, f)
       return RPI
+
+def readGraphFromFile():
+      with open("routedb/graph.p", 'rb') as f: 
+            G_loaded = pickle.load(f)
+            return G_loaded
 
 def routemaker(start, end):
       try:
             place = 'Rensselaer Polytechnic Institute'
-            new_nodes = createNodeArray('.\\buildingEntrance.json')
-            test = plotGraph(new_nodes)
+            new_nodes = createNodeArray('routedb/buildingEntrance.json')
+            test = readGraphFromFile()
 
             nodes, edges = ox.graph_to_gdfs(test, nodes=True, edges=True) 
             entrance_df = nodes[nodes['highway'].str.contains("Entrance", na=False)]
@@ -97,19 +104,16 @@ def routemaker(start, end):
             end_node = int(entrance_df.loc[entrance_df['highway'] == end]['id'].values[0].item())
 
             route = nx.shortest_path(test, start_node, end_node, 'travel_time')
-            # #shortest_path = nx.shortest_path(test, source=start_node, target=end_node)
-
+      
             route_list = []
             for i in route:
                   node = {}
                   node['latitude'] = test.nodes[i]['y']
                   node['longitude'] = test.nodes[i]['x']
                   route_list.append(node)
-      
-            return route_list
-      except:
-            return [] 
-
-#ox.save_graphml(test, filepath)
-#G = ox.load_graphml(filepath)
+            
+            return route_list[1:-1]
+      except Exception as e:
+            print('exception', e)
+            return []
       
