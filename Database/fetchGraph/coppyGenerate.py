@@ -97,7 +97,7 @@ if __name__ == "__main__":
       route = nx.shortest_path(test, start_node, end_node, 'travel_time')
       #shortest_path = nx.shortest_path(test, source=start_node, target=end_node)
       print(route)
-      #ox.plot_graph(test)
+      ox.plot_graph(test)
       filepath = "./data/piedmont.graphml"
 #ox.save_graphml(test, filepath)
 #G = ox.load_graphml(filepath)
