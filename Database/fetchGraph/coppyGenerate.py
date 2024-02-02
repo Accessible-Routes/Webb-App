@@ -79,7 +79,7 @@ def plotGraph(new_nodes):
             tmp_x = float(row['x'])  
             tmp_y = float(row['y'])          
             tmp_dest_id = closestNode(RPI, tmp_x, tmp_y, tmp_orig_id)
-            if tmp_orig_id != 33:
+            if tmp_orig_id != 32:
                   RPI.add_edge(tmp_orig_id, tmp_dest_id)   
       RPI = ox.add_edge_speeds(RPI,5)   
       G = RPI
@@ -95,6 +95,7 @@ if __name__ == "__main__":
       start_node = 31
       end_node = 1208041960
       route = nx.shortest_path(test, start_node, end_node, 'travel_time')
+      #closest_stair_node = ox.nearest_nodes(test, X = 42.73108, Y = -73.6822)
       #shortest_path = nx.shortest_path(test, source=start_node, target=end_node)
       print(route)
       ox.plot_graph(test)
