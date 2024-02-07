@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const endpoint = 'http://54.153.99.29:8000'
+const endpoint = 'https://accessibleroutes.com:8000'
 
 const requestAllBuildings = async (setAllBuildings) => {
   // request building data from back-end
