@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const endpoint = 'https://www.accessibleroutes.com:8000'
 
-
 const mocked_artifacts_response = {
   data: {
     stairs_locations: [
@@ -17,6 +16,7 @@ const mocked_artifacts_response = {
     ]
   }
 }
+
 
 const requestAllBuildings = async (setAllBuildings) => {
   // request building data from back-end
