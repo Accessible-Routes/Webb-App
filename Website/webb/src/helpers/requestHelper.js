@@ -1,6 +1,22 @@
 import axios from 'axios';
 
-const endpoint = 'http://54.153.99.29:8000'
+const endpoint = 'https://www.accessibleroutes.com:8000'
+
+
+const mocked_artifacts_response = {
+  data: {
+    stairs_locations: [
+      {
+        "latitude": "42.730587",
+        "longitude": "-73.682124",
+      },
+      {
+        "latitude": "42.730263",
+        "longitude": "-73.682972",
+      }
+    ]
+  }
+}
 
 const requestAllBuildings = async (setAllBuildings) => {
   // request building data from back-end
@@ -101,5 +117,26 @@ const ParseLocationsAndRoute = async (startingBuilding, destinationBuilding) => 
   return { buildings, route_details, route_found, error_found };
 }
 
-export { requestAllBuildings, ParseLocationsAndRoute }
+const parseArtifacts = async (setStairCordList) => {
+  // request all artifacts from back-end (e.g. stairs) (use mock stair artifact request)
+  const response = mocked_artifacts_response;
+
+  // parse artifact/stair location payload into standardized building format
+  let standardized_stair_locations_list = []
+  for (const stair_index in response.data["stairs_locations"]) {
+    const stair_location = response.data["stairs_locations"][stair_index]
+    let standardized_stair_location = {}
+
+    standardized_stair_location['latitude'] = stair_location.latitude
+    standardized_stair_location['longitude'] = stair_location.longitude
+
+    standardized_stair_locations_list.push(standardized_stair_location);
+  }
+
+  // set all stair locations to the standardized format
+  setStairCordList(standardized_stair_locations_list);
+}
+
+
+export { requestAllBuildings, ParseLocationsAndRoute, parseArtifacts }
 export default requestAllBuildings; 
