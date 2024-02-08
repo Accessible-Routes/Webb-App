@@ -1,8 +1,10 @@
 import './page.css';
 import { React, useState, useEffect } from 'react';
 import Button from '../common/components/Button.component';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import BuildingDropdown from '../common/components/BuildingDropdown.component';
-import { requestAllBuildings, ParseLocationsAndRoute } from '../helpers/requestHelper';
+import { requestAllBuildings, ParseLocationsAndRoute, parseArtifacts } from '../helpers/requestHelper';
 import Map from '../common/components/Map';
 import RouteStatusPanel from '../common/components/RouteStatusPanel.component';
 
@@ -17,6 +19,10 @@ const HomePage = () => {
   const [routeCordList, setRouteCordList] = useState([]);
   const [buildingLocations, setBuildingLocations] = useState([]);
 
+  // artifacts (e.g. stairs details)
+  const [stairCordList, setStairCordList] = useState([]);
+  const [displayStairCords, setDisplayStairCords] = useState(false);
+
   // options and loading
   const [displayingRoute, setDisplayingRoute] = useState(false);
   const [foundRoute, setFoundRoute] = useState(false);
@@ -29,6 +35,14 @@ const HomePage = () => {
     requestAllBuildings(setAllBuildings).catch((err) => {
       console.log('An error occurred. please contact developers and inform them of the following:');
       console.log('site could not not retrieve all buildings from back-end.');
+      console.log('failed with the following error:');
+      console.log(err)
+    })
+
+    // gather the location of all of the artifacts from the backend
+    parseArtifacts(setStairCordList).catch((err) => {
+      console.log('An error occurred. please contact developers and inform them of the following:');
+      console.log('site could not not retrieve all stair locations from back-end.');
       console.log('failed with the following error:');
       console.log(err)
     })
@@ -68,7 +82,10 @@ const HomePage = () => {
     <div className="Home Page">
       <Map
         routeCordList={routeCordList}
-        buildingLocations={buildingLocations} />
+        buildingLocations={buildingLocations} 
+        stairCordList={stairCordList}
+        displayStairCords={displayStairCords}
+        />
       <div className="search-building-panel" >
         <p class="h4">Find Route</p>
         <BuildingDropdown
@@ -81,6 +98,11 @@ const HomePage = () => {
           setSelectedBuilding={setDestinationBuilding} />
         <Button title={"find route"} onPressIn={requestRoute} />
         <RouteStatusPanel displayPanel={displayingRoute} foundRoute={foundRoute} startingBuilding={startingBuilding} destinationBuilding={destinationBuilding} />
+        {/* TODO: replace with component: */}
+        <FormControlLabel control={
+        <Switch 
+          onClick={() => {setDisplayStairCords(!displayStairCords)}}
+        />} label="Display Stairs" />
       </div>
     </div>
   );
