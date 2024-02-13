@@ -1,0 +1,31 @@
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.Page {
+  display: flex;  
+}
+
+.MyMap {
+  position: static;
+}
+
+
+.search-building-panel {
+  width: 30%;
+  border: 2px solid #c6c6c6;
+  border-bottom-left-radius: 80px 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}

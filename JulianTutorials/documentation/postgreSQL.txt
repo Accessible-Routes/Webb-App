@@ -1,5 +1,0 @@
-https://www.youtube.com/playlist?list=PL_YF--8vjjEX4I9L_GM3EZ7Ti4LtRv6-y
-
-I followed the first few in the above series of tutorials to install, set up, and make a table using
-postgreSQL. I also confirmed that all data types we intend to use on the project exist and are
-useable.
