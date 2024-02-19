@@ -35,6 +35,9 @@ Used to handle clicks and interactions.
 ## Hooks
 Hooks are an important part of React. They allow funciton components to have access to React features including state. They usually begin with the word "use."
 
+## Accessible Routes Notes
+As of 2/16/24 the Accessible Routes website is stored in Website/webb directory. If this is your first time running the application, do npm install. Otherwise type in npm start run to launch the website.  
+
 
 Sources:
 https://react.dev/learn#rendering-lists
