@@ -15,7 +15,7 @@ function CustomNavBar() {
             <Nav.Link as={NavLink} to="/" className={styles.navLink}>
               Home
             </Nav.Link>
-            <Nav.Link as={NavLink} to={CONFIG.about_page_link} className={styles.navLink}>
+            <Nav.Link as={NavLink} to="/about" className={styles.navLink}>
               About
             </Nav.Link>
             <Nav.Link as={NavLink} to={CONFIG.report_issue_page_link} className={styles.navLink}>
