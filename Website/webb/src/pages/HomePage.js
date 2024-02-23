@@ -8,6 +8,8 @@ import { requestAllBuildings, ParseLocationsAndRoute, parseArtifacts } from '../
 import Map from '../common/components/Map';
 import RouteStatusPanel from '../common/components/RouteStatusPanel.component';
 
+import CONFIG from '../config.json'
+
 const HomePage = () => {
   // STATES
   // buildings are stored as: {name, building_uid}
@@ -99,10 +101,11 @@ const HomePage = () => {
         <Button title={"find route"} onPressIn={requestRoute} />
         <RouteStatusPanel displayPanel={displayingRoute} foundRoute={foundRoute} startingBuilding={startingBuilding} destinationBuilding={destinationBuilding} />
         {/* TODO: replace with component: */}
-        <FormControlLabel control={
+        {CONFIG.visible_display_stairs_option==="y" ? <FormControlLabel control={
         <Switch 
           onClick={() => {setDisplayStairCords(!displayStairCords)}}
-        />} label="Display Stairs" />
+        />} label="Display Stairs" /> : <></>}
+        
       </div>
     </div>
   );
