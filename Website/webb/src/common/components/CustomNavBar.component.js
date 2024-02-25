@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import CONFIG from '../../config.json'
 
 import styles from './NavBar.module.css';
 
@@ -17,7 +18,7 @@ function CustomNavBar() {
             <Nav.Link as={NavLink} to="/about" className={styles.navLink}>
               About
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/issue" className={styles.navLink}>
+            <Nav.Link as={NavLink} to={CONFIG.report_issue_page_link} className={styles.navLink}>
               Report Issue
             </Nav.Link>
           </Nav>
