@@ -14,7 +14,7 @@ const About = () => {
       }}
     >
       <img
-        src="https://raw.githubusercontent.com/json-mp3/Accessible-Routes/main/Logo.png"
+        src={require('../common/components/Logo.png')}
         alt="Accessible Routes Logo"
         style={{ width: "300px", marginBottom: "20px" }} // Adjust width as needed
       />
