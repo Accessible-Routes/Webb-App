@@ -44,6 +44,18 @@ const requestAllBuildings = async (setAllBuildings) => {
     standardized_building_list.push(standardized_building);
   }
 
+  // sort the list of buildings 
+  standardized_building_list.sort(function(a,b){
+    if (a['name'] < b['name']) {
+      return -1;
+    }
+    if (a['name'] > b['name']) {
+      return 1;
+    }
+    return 0;
+  })
+
+
   // set all buildings to the standardized format
   setAllBuildings(standardized_building_list)
 }
