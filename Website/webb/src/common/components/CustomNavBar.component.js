@@ -19,7 +19,7 @@ function CustomNavBar() {
               About
             </Nav.Link>
             <Nav.Link as={NavLink} to={CONFIG.report_issue_page_link} className={styles.navLink}>
-              Report Issue
+              Contact Us
             </Nav.Link>
           </Nav>
         
