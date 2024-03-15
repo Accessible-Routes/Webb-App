@@ -1,34 +1,40 @@
 /* NavBar.module.css */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
 .navbar {
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    align-items: center;
-    margin-bottom: 0px;
-    border:2px solid #2397e9;
-    border-radius: 0%;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 0px;
+  border: 2px solid #2397e9;
+  border-radius: 0%;
+}
+
+.navbar-toggler {
+  border: #ff0000;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/2048px-Hamburger_icon.svg.png");
 }
 
 .navLink {
-    color: #3f3b3b;
-    font-weight: 300;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    transition: color 0.3s, background-color 0.3s;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+  color: #3f3b3b;
+  font-weight: 300;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  transition: color 0.3s, background-color 0.3s;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .navLink:hover {
-    background-color: #aeccf1;
+  background-color: #aeccf1;
 }
 
 .navbarContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
 }
