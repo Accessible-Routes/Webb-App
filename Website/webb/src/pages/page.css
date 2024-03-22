@@ -9,15 +9,20 @@
   color: white;
 }
 
+.CustomBar {
+  width: 90%;
+  position: relative;
+  right: 50%;
+}
 
 .Page {
-  display: flex;  
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .MyMap {
   position: static;
 }
-
 
 .search-building-panel {
   width: 30%;

@@ -9,7 +9,6 @@ import About from "./pages/about.js";
 function App() {
   return (
     <Router>
-      <CustomNavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />

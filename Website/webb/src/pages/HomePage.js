@@ -9,6 +9,8 @@ import Map from '../common/components/Map';
 import RouteStatusPanel from '../common/components/RouteStatusPanel.component';
 
 import CONFIG from '../config.json'
+import { Navbar } from 'react-bootstrap';
+import CustomNavBar from '../common/components/CustomNavBar.component';
 
 const HomePage = () => {
   // STATES
@@ -81,8 +83,11 @@ const HomePage = () => {
 
   // RENDERING
   return (
-    <div className="Home Page">
+    <div className="Page">
+      <CustomNavBar className="CustomBar"/>
+      
       <Map
+        className="Map"
         routeCordList={routeCordList}
         buildingLocations={buildingLocations} 
         stairCordList={stairCordList}
@@ -100,13 +105,13 @@ const HomePage = () => {
           setSelectedBuilding={setDestinationBuilding} />
         <Button title={"find route"} onPressIn={requestRoute} />
         <RouteStatusPanel displayPanel={displayingRoute} foundRoute={foundRoute} startingBuilding={startingBuilding} destinationBuilding={destinationBuilding} />
-        {/* TODO: replace with component: */}
+        
         {CONFIG.visible_display_stairs_option==="y" ? <FormControlLabel control={
         <Switch 
           onClick={() => {setDisplayStairCords(!displayStairCords)}}
         />} label="Display Stairs" /> : <></>}
         
-      </div>
+        </div>
     </div>
   );
 }
