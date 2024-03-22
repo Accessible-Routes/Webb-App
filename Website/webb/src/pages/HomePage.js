@@ -84,7 +84,10 @@ const HomePage = () => {
   // RENDERING
   return (
     <div className="Page">
-      <CustomNavBar className="CustomBar"/>
+      <div>
+        <CustomNavBar className="CustomBar"/>
+      </div>
+      
       
       <Map
         className="Map"
