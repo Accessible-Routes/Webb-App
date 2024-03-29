@@ -7,14 +7,25 @@ const BuildingDropdown = ({ place_holder_text, building_options, setSelectedBuil
     setSelectedBuilding(selectedOption)
   }
 
+  // const customStyles = {
+  //   control: (provided, state) => ({
+  //     flex: 1, 
+  //     position: 'absolute',
+  //     ...provided, // Spread provided styles to retain default styles
+  //   }),
+  // };
+
+
   return (
     <div id={place_holder_text}>
       <Select
-        menuPortalTarget={document.body}
+        //menuPortalTarget={document.body}
+
         menuPosition={'fixed'}
         placeholder={place_holder_text}
         onChange={handleChange}
         options={building_options} />
+        {/* styles={customStyles}  */}
     </div>
   );
 }
