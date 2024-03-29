@@ -83,21 +83,16 @@ const HomePage = () => {
 
   // RENDERING
   return (
-    <div className="Page">
-      <div>
-        <CustomNavBar className="CustomBar"/>
-      </div>
+    <div style={{display:'flex', flexDirection:'row'}}>
+    
+      <CustomNavBar></CustomNavBar>
       
+
+      <div style={{flex:9, display:'flex', flexDirection:'column'}}>
       
-      <Map
-        className="Map"
-        routeCordList={routeCordList}
-        buildingLocations={buildingLocations} 
-        stairCordList={stairCordList}
-        displayStairCords={displayStairCords}
-        />
-      <div className="search-building-panel" >
-        <p class="h4">Find Route</p>
+      <div style={{display:'flex', flexDirection:'column'}}>
+        <p class="h4" style={{flex:1}}>Find Route</p>
+        <div style={{flex:1,display:'flex'}}>
         <BuildingDropdown
           place_holder_text={'select starting building'}
           building_options={allBuildings}
@@ -108,14 +103,31 @@ const HomePage = () => {
           setSelectedBuilding={setDestinationBuilding} />
         <Button title={"find route"} onPressIn={requestRoute} />
         <RouteStatusPanel displayPanel={displayingRoute} foundRoute={foundRoute} startingBuilding={startingBuilding} destinationBuilding={destinationBuilding} />
+        </div>
+        
         
         {CONFIG.visible_display_stairs_option==="y" ? <FormControlLabel control={
         <Switch 
           onClick={() => {setDisplayStairCords(!displayStairCords)}}
         />} label="Display Stairs" /> : <></>}
         
-        </div>
+      </div>
+
+    <div style={{flex:1}}>
+      <Map
+        routeCordList={routeCordList}
+        buildingLocations={buildingLocations}
+        stairCordList={stairCordList}
+        displayStairCords={displayStairCords}
+        />
+      
+        
     </div>
+    
+    </div>
+
+    </div>
+    
   );
 }
 
