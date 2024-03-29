@@ -9,26 +9,31 @@
   color: white;
 }
 
+.CustomBar {
+  width: 90%;
+  position: relative;
+  right: 50%;
+}
 
 .Page {
-  display: flex;  
+  display: flex;
   flex-direction: column-reverse;
 }
 
 .MyMap {
-  position: static;
+  position: relative;
+  width: 50%;
 }
-
 
 .search-building-panel {
   width: 100%;
-  
+
   border: 2px solid #c6c6c6;
   border-bottom-left-radius: 80px 80px;
-  display: flex;
   justify-content: center;
   align-items: center;
   overflow: visible;
   flex-direction: row;
   gap: 2rem;
+  flex: 1;
 }

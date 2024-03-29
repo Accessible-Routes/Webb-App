@@ -16,10 +16,11 @@ const Map = ({ buildingLocations, routeCordList, stairCordList, displayStairCord
     }
 
     return (
-        <MapContainer center={campus_center} zoom={17} style={{ width: "100%", height: "100vh" }}>
+        <MapContainer center={campus_center} zoom={17} style={{width:'100%', height: "100vh"}}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png"
+            
             />
 
             {/* Draw buildings */
