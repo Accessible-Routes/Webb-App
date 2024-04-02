@@ -1,16 +1,20 @@
-import './page.css';
-import { React, useState, useEffect } from 'react';
-import Button from '../common/components/Button.component';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import BuildingDropdown from '../common/components/BuildingDropdown.component';
-import { requestAllBuildings, ParseLocationsAndRoute, parseArtifacts } from '../helpers/requestHelper';
-import Map from '../common/components/Map';
-import RouteStatusPanel from '../common/components/RouteStatusPanel.component';
+import "./page.css";
+import { React, useState, useEffect } from "react";
+import Button from "../common/components/Button.component";
+import Switch from "@mui/material/Switch";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import BuildingDropdown from "../common/components/BuildingDropdown.component";
+import {
+  requestAllBuildings,
+  ParseLocationsAndRoute,
+  parseArtifacts,
+} from "../helpers/requestHelper";
+import Map from "../common/components/Map";
+import RouteStatusPanel from "../common/components/RouteStatusPanel.component";
 
-import CONFIG from '../config.json'
-import { Navbar } from 'react-bootstrap';
-import CustomNavBar from '../common/components/CustomNavBar.component';
+import CONFIG from "../config.json";
+import { Navbar } from "react-bootstrap";
+import CustomNavBar from "../common/components/CustomNavBar.component";
 
 const HomePage = () => {
   // STATES
@@ -37,98 +41,121 @@ const HomePage = () => {
 
     // gather the name and UID of all the buildings from the backend
     requestAllBuildings(setAllBuildings).catch((err) => {
-      console.log('An error occurred. please contact developers and inform them of the following:');
-      console.log('site could not not retrieve all buildings from back-end.');
-      console.log('failed with the following error:');
-      console.log(err)
-    })
+      console.log(
+        "An error occurred. please contact developers and inform them of the following:"
+      );
+      console.log("site could not not retrieve all buildings from back-end.");
+      console.log("failed with the following error:");
+      console.log(err);
+    });
 
     // gather the location of all of the artifacts from the backend
     parseArtifacts(setStairCordList).catch((err) => {
-      console.log('An error occurred. please contact developers and inform them of the following:');
-      console.log('site could not not retrieve all stair locations from back-end.');
-      console.log('failed with the following error:');
-      console.log(err)
-    })
+      console.log(
+        "An error occurred. please contact developers and inform them of the following:"
+      );
+      console.log(
+        "site could not not retrieve all stair locations from back-end."
+      );
+      console.log("failed with the following error:");
+      console.log(err);
+    });
   }, []);
 
-
   const requestRoute = async () => {
-    const { buildings, route_details, route_found, error_found } = await ParseLocationsAndRoute(startingBuilding, destinationBuilding).catch((err) => { console.log('in the home page, the response from ParseLocationsAndRoute is: ', err) })
+    const { buildings, route_details, route_found, error_found } =
+      await ParseLocationsAndRoute(startingBuilding, destinationBuilding).catch(
+        (err) => {
+          console.log(
+            "in the home page, the response from ParseLocationsAndRoute is: ",
+            err
+          );
+        }
+      );
 
     if (!error_found) {
       if (route_found) {
-        setBuildingLocations(buildings)
-        setRouteCordList(route_details)
-        setFoundRoute(true)
+        setBuildingLocations(buildings);
+        setRouteCordList(route_details);
+        setFoundRoute(true);
       } else {
         // if there is not path route available, clear all markers and routes on map
-        setBuildingLocations([])
-        setRouteCordList([])
+        setBuildingLocations([]);
+        setRouteCordList([]);
         // display message to user that there was no route found between the buildings
       }
     }
 
     // inform user if no route was found
     if (error_found || route_found === false || !route_details?.length) {
-      setBuildingLocations([])
-      setRouteCordList([])
-      setFoundRoute(false)
+      setBuildingLocations([]);
+      setRouteCordList([]);
+      setFoundRoute(false);
     }
 
     // after a route has been selected, display the route status
     setDisplayingRoute(true);
-  }
-
+  };
 
   // RENDERING
   return (
-    <div style={{display:'flex', flexDirection:'row'}}>
-    
-      <CustomNavBar></CustomNavBar>
-      
-
-      <div style={{flex:9, display:'flex', flexDirection:'column'}}>
-      
-      <div style={{display:'flex', flexDirection:'column'}}>
-        <p class="h4" style={{flex:1}}>Find Route</p>
-        <div style={{flex:1,display:'flex'}}>
-        <BuildingDropdown
-          place_holder_text={'select starting building'}
-          building_options={allBuildings}
-          setSelectedBuilding={setStartingBuilding} />
-        <BuildingDropdown
-          place_holder_text={'select ending building'}
-          building_options={allBuildings}
-          setSelectedBuilding={setDestinationBuilding} />
-        <Button title={"find route"} onPressIn={requestRoute} />
-        <RouteStatusPanel displayPanel={displayingRoute} foundRoute={foundRoute} startingBuilding={startingBuilding} destinationBuilding={destinationBuilding} />
-        </div>
-        
-        
-        {CONFIG.visible_display_stairs_option==="y" ? <FormControlLabel control={
-        <Switch 
-          onClick={() => {setDisplayStairCords(!displayStairCords)}}
-        />} label="Display Stairs" /> : <></>}
-        
+    <div style={{ display: "flex", flexDirection: "row" }}>
+      <div style={{ flex: 1 }}>
+        <CustomNavBar></CustomNavBar>
       </div>
 
-    <div style={{flex:1}}>
-      <Map
-        routeCordList={routeCordList}
-        buildingLocations={buildingLocations}
-        stairCordList={stairCordList}
-        displayStairCords={displayStairCords}
-        />
-      
-        
-    </div>
-    
-    </div>
+      <div style={{ flex: 8, display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <p class="h4" style={{ flex: 1 }}>
+            Find Route
+          </p>
+          <div style={{ flex: 1, display: "flex" }}>
+            <BuildingDropdown
+              place_holder_text={"select starting building"}
+              building_options={allBuildings}
+              setSelectedBuilding={setStartingBuilding}
+            />
+            <BuildingDropdown
+              place_holder_text={"select ending building"}
+              building_options={allBuildings}
+              setSelectedBuilding={setDestinationBuilding}
+            />
+            <Button title={"find route"} onPressIn={requestRoute} />
+            <RouteStatusPanel
+              displayPanel={displayingRoute}
+              foundRoute={foundRoute}
+              startingBuilding={startingBuilding}
+              destinationBuilding={destinationBuilding}
+            />
+          </div>
 
+          {CONFIG.visible_display_stairs_option === "y" ? (
+            <FormControlLabel
+              control={
+                <Switch
+                  onClick={() => {
+                    setDisplayStairCords(!displayStairCords);
+                  }}
+                />
+              }
+              label="Display Stairs"
+            />
+          ) : (
+            <></>
+          )}
+        </div>
+
+        <div style={{ flex: 1 }}>
+          <Map
+            routeCordList={routeCordList}
+            buildingLocations={buildingLocations}
+            stairCordList={stairCordList}
+            displayStairCords={displayStairCords}
+          />
+        </div>
+      </div>
     </div>
-    
   );
-}
+};
 
 export default HomePage;

@@ -6,8 +6,6 @@ import CONFIG from "../../config.json";
 
 import styles from "./NavBar.module.css";
 
-import { Header, SideBar } from "./CustomSideBar/CustomSideBar";
-
 function CustomNavBar() {
   const [sidebarOpen, setSideBarOpen] = useState(false);
   const handleViewSidebar = () => {
@@ -15,14 +13,9 @@ function CustomNavBar() {
   };
 
   return (
-    // <>
-    //   <div style={{flex:1}}>HEY OVE RHERE</div>
-    //   <SideBar isOpen={sidebarOpen} toggleSidebar={handleViewSidebar} />
-    // </>
     <Navbar bg="light" expand="lg" className={styles.navbar}>
-      <Container className={styles.navbarContainer}>
-        
-        <Navbar.Collapse>
+      {sidebarOpen && (
+        <>
           <Navbar.Brand as={NavLink} to="/">
             Accessible Routes
           </Navbar.Brand>
@@ -47,9 +40,10 @@ function CustomNavBar() {
               Contact Us
             </Nav.Link>
           </Nav>
-        </Navbar.Collapse>
-        <Navbar.Toggle className="navbar-toggler flex-row ml-md-auto d-md-flex">Toggle</Navbar.Toggle>
-      </Container>
+        </>
+      )}
+
+      <button onClick={() => setSideBarOpen(!sidebarOpen)}></button>
     </Navbar>
   );
 }

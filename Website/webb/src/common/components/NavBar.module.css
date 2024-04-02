@@ -8,10 +8,13 @@
   margin-bottom: 0px;
   border: 2px solid #2397e9;
   border-radius: 0%;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar-toggler {
   border: #ff0000;
+  top: 100px;
 }
 
 .navLink {
@@ -36,4 +39,8 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+}
+
+button {
+  color: red;
 }
