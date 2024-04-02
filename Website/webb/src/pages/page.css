@@ -37,3 +37,12 @@
   gap: 2rem;
   flex: 1;
 }
+
+.toggleButton {
+  background-color: #aeccf1;
+  border: none;
+  color: white;
+  font-size: 40px;
+  width: 40px;
+  /* padding: 150px 32px; */
+}

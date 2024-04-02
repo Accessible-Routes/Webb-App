@@ -14,7 +14,7 @@ const About = () => {
       }}
     >
       <img
-        src={require('../common/components/Logo.png')}
+        src={require('../assets/Logo.png')}
         alt="Accessible Routes Logo"
         style={{ width: "300px", marginBottom: "20px" }} // Adjust width as needed
       />

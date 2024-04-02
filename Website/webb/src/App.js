@@ -1,6 +1,6 @@
 import { React } from 'react';
 import 'react-awesome-button/dist/styles.css';
-import CustomNavBar from './common/components/CustomNavBar.component.js';
+import CustomNavBar from './common/components/Navbars/VerticalNavbar.js';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage.js";
 import About from "./pages/about.js";

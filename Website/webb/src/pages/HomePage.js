@@ -14,7 +14,7 @@ import RouteStatusPanel from "../common/components/RouteStatusPanel.component";
 
 import CONFIG from "../config.json";
 import { Navbar } from "react-bootstrap";
-import CustomNavBar from "../common/components/CustomNavBar.component";
+import CustomNavBar from "../common/components/Navbars/VerticalNavbar";
 
 const HomePage = () => {
   // STATES
@@ -34,6 +34,8 @@ const HomePage = () => {
   // options and loading
   const [displayingRoute, setDisplayingRoute] = useState(false);
   const [foundRoute, setFoundRoute] = useState(false);
+
+  const [toggle, setToggle] = useState(false);
 
   // EFFECTS
   useEffect(() => {
@@ -100,9 +102,14 @@ const HomePage = () => {
   // RENDERING
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
-      <div style={{ flex: 1 }}>
-        <CustomNavBar></CustomNavBar>
-      </div>
+
+      <button className = {'toggleButton'} onClick={() => setToggle(!toggle)}>{toggle ? "<" : ">"}</button>
+      {
+        toggle && (<div style={{ flex: 1 }}>
+          <CustomNavBar toggle={toggle}></CustomNavBar>
+        </div>
+        )}
+      
 
       <div style={{ flex: 8, display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex", flexDirection: "column" }}>
