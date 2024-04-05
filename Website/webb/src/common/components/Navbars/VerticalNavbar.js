@@ -9,10 +9,7 @@ import { flexbox } from "@mui/system";
 
 function VerticalNavBar({ toggle }) {
   const [sidebarOpen, setSideBarOpen] = useState(toggle);
-  const handleViewSidebar = () => {
-    setSideBarOpen(!sidebarOpen);
-  };
-
+  
   return (
     <Navbar bg="light" expand="lg" className={styles.navbar}>
       {sidebarOpen && (
