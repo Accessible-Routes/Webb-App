@@ -13,8 +13,7 @@ import Map from "../common/components/Map";
 import RouteStatusPanel from "../common/components/RouteStatusPanel.component";
 
 import CONFIG from "../config.json";
-import { Navbar } from "react-bootstrap";
-import CustomNavBar from "../common/components/Navbars/VerticalNavbar";
+import VerticalNavBar from "../common/components/Navbars/VerticalNavbar";
 
 const HomePage = () => {
   // STATES
@@ -106,7 +105,7 @@ const HomePage = () => {
       <button className = {'toggleButton'} onClick={() => setToggle(!toggle)}>{toggle ? "<" : ">"}</button>
       {
         toggle && (<div style={{ flex: 1 }}>
-          <CustomNavBar toggle={toggle}></CustomNavBar>
+          <VerticalNavBar toggle={toggle}></VerticalNavBar>
         </div>
         )}
       
