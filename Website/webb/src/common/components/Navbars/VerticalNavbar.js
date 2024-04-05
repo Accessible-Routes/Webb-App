@@ -4,10 +4,10 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import CONFIG from "../../../config.json";
 
-import styles from "./NavBar.module.css";
+import styles from "./VerticalNavBar.module.css";
 import { flexbox } from "@mui/system";
 
-function CustomNavBar({ toggle }) {
+function VerticalNavBar({ toggle }) {
   const [sidebarOpen, setSideBarOpen] = useState(toggle);
   const handleViewSidebar = () => {
     setSideBarOpen(!sidebarOpen);
@@ -17,6 +17,7 @@ function CustomNavBar({ toggle }) {
     <Navbar bg="light" expand="lg" className={styles.navbar}>
       {sidebarOpen && (
         <>
+          <div>
           <Navbar.Brand as={NavLink} to="/">
             Accessible Routes
           </Navbar.Brand>
@@ -26,12 +27,14 @@ function CustomNavBar({ toggle }) {
             alt="Accessible Routes logo"
             src={require("../../../assets/Logo.png")}
           />
+          </div>
+          
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              flexWrap: "nowrap",
-              justifyContent: "space-between",
+              
+              justifyContent:"space-around"
 
             }}
           >
@@ -61,4 +64,4 @@ function CustomNavBar({ toggle }) {
   );
 }
 
-export default CustomNavBar;
+export default VerticalNavBar;
