@@ -1,11 +1,9 @@
 import Select from 'react-select';
 
 const BuildingDropdown = ({ place_holder_text, building_options, setSelectedBuilding }) => {
-  // component for allowing a user to select a building from building options
-
   const handleChange = (selectedOption) => {
-    setSelectedBuilding(selectedOption)
-  }
+    setSelectedBuilding(selectedOption);
+  };
 
   return (
     <div id={place_holder_text}>
@@ -14,9 +12,15 @@ const BuildingDropdown = ({ place_holder_text, building_options, setSelectedBuil
         menuPosition={'fixed'}
         placeholder={place_holder_text}
         onChange={handleChange}
-        options={building_options} />
+        options={building_options}
+        styles={{
+          menuPortal: base => ({ ...base, zIndex: 9999 }), // Apply high z-index to the menu
+          menu: provided => ({ ...provided, zIndex: 9999 }), // Apply high z-index to the dropdown menu
+          option: provided => ({ ...provided, zIndex: 9999 }) // Apply high z-index to the dropdown options
+        }}
+      />
     </div>
   );
-}
+};
 
 export default BuildingDropdown;
