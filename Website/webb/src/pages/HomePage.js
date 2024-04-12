@@ -83,6 +83,7 @@ const HomePage = () => {
   return (
     <div className="Home Page">
       <Map
+        allBuildings={allBuildings}
         routeCordList={routeCordList}
         buildingLocations={buildingLocations} 
         stairCordList={stairCordList}
