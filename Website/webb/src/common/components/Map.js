@@ -16,7 +16,7 @@ const Map = ({ allBuildings, buildingLocations, routeCordList, stairCordList, di
     }
 
     // Assuming you have a list of positions named 'positionList'
-    const positionList = allBuildings.map(building => [building.latitude, building.longitude]);
+    const positionList = allBuildings.map(building => [building.latitude, building.longitude, building.name]);
 
     return (
         <MapContainer center={campus_center} zoom={17} style={{ width: "100%", height: "100vh" }}>
@@ -51,7 +51,7 @@ const Map = ({ allBuildings, buildingLocations, routeCordList, stairCordList, di
                 <Marker key={index} position={position}>
                     <Popup>
                         <div>
-                            <h2>Position {index + 1}</h2>
+                        <h3>{position[2]}</h3>
                             {/* Additional information about the position can be displayed here */}
                         </div>
                     </Popup>
